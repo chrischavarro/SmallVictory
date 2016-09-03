@@ -1,0 +1,71 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.left {
+	float: left;
+	padding-left: 20px;
+}
+
+.right {
+	float: right; 
+	padding-right: 20px;
+}
+
+.top {
+	background-color: #3C78D8;
+	height: 50px; 
+	color: white;
+	font-size: 24px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-family: "Helvetica Neue", "serif";
+}
+
+.body {
+	color: #7d7d7d;
+	text-align: center;
+	position: relative;
+	top: 200px;
+
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+h3 {
+	font-weight: 400;
+}
+
+.login_signup {
+	position: relative;
+	top: 30px;
+
+}
+
+@media screen and (min-width: 320px) {
+
+}
+
+@media screen and (min-width: 480px) {
+	.navbar_logo {
+		width: 100px;
+		height: 20px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.top {
+		// background-color: black; 
+	}
+}
+
+@media screen and (min-width: 1024px) {
+
+}
+
+@media screen and (min-width: 1200px) {
+
+}
