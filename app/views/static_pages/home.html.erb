@@ -1,23 +1,17 @@
 <% content_for :title, "Home" %>
-<div class="container-fluid">
-	<div class="row top">
-		<div class="left">
-			<span class="navbar_logo"><%= image_tag('small_victory_navbar_logo.png', size: "200x30") %></span>
-		</div>
-		<div class=" right">
-			Log in | Sign up
-		</div>
-	</div>
-	<div class="body">
+
 		<%= image_tag('small_victory_logo.svg', size: "300x180") %>
 			<h3>Do one 5 minute task that <br>
 			makes you <span class="underline">better.</span></h3>
+			
+				<div class="login_signup">
+			<% if user_signed_in? %>
+				<h3>How's it going, <%= current_user.name %>?</h3>
+			<% else %>
+				<h3><span class="underline"><%= link_to("Log in", new_user_session_path) %></span> | <span class="underline"><%= link_to("Sign up", new_user_registration_path) %></span></h3>
+				</div>
+			<% end %>
 
-			<div class="login_signup">
-				<h3 class="underline">Log In | Sign up</h3>
-			</div>
-
-	</div>
 
 </div>
 

@@ -9,6 +9,10 @@
 }
 
 .right {
+	a{
+		color: white;
+	}
+
 	float: right; 
 	padding-right: 20px;
 }
@@ -23,6 +27,16 @@
 	font-family: "Helvetica Neue", "serif";
 }
 
+.no_underline {
+	text-decoration: none;
+}
+
+span {
+	.no_underline {
+		text-decoration: none;
+	}
+}
+
 .body {
 	color: #7d7d7d;
 	text-align: center;
@@ -31,8 +45,16 @@
 
 }
 
+.sign_up_form {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
 .underline {
 	text-decoration: underline;
+	a{
+		color: #7d7d7d;
+	}
 }
 
 h3 {

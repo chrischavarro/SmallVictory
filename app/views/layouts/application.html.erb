@@ -9,6 +9,23 @@
   </head>
 
   <body>
+<div class="container-fluid">
+	<div class="row top">
+		<div class="left">
+			<span class="navbar_logo"><%= link_to image_tag('small_victory_navbar_logo.png', size: "200x30"), root_path %></span>
+		</div>
+		<div class="right">
+			<% if user_signed_in? %>
+				<span class="top"><%= link_to(current_user.name , dashboard_path) %> | <%= link_to("Log out", destroy_user_session_path, method: 'DELETE') %></span>
+			<% else %>
+				<%= link_to("Log in", new_user_session_path)  %> | 
+				<%= link_to("Sign up", new_user_registration_path)  %>
+			<% end %>
+		</div>
+	</div>
+	<div class="body">
     <%= yield %>
+    </div>
   </body>
+</div>
 </html>
