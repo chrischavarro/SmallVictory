@@ -45,6 +45,11 @@ span {
 
 }
 
+li span {
+	display: block;
+	margin-left: -0.5em;
+}
+
 .sign_up_form {
 	padding-top: 5px;
 	padding-bottom: 5px;
