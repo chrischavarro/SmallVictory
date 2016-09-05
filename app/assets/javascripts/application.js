@@ -16,8 +16,6 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-//= require jquery.mousewheel.min
-//= require moment.min.js
 
 $(document).ready(function(){
     $('#calendar').datepicker({
@@ -28,6 +26,7 @@ $(document).ready(function(){
     });
 
 	 $('.wakeup_time_select').TimePickerAlone({
+	    inputFormat: 'HH:mm',
 	    hours: true,
 	    minutes: true,
 	    seconds: false,

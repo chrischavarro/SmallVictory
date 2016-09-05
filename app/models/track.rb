@@ -1,2 +1,3 @@
 class Track < ApplicationRecord
+
 end
