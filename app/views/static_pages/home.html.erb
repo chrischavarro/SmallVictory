@@ -1,9 +1,10 @@
 <% content_for :title, "Home" %>
 
-		<%= image_tag('small_victory_logo.svg', size: "300x180") %>
-			<h3>Do one 5 minute task that <br>
+		<div class="victor"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
+
+		<div class="small_victory_text"><%= image_tag('small_victory_text.svg', size: "300x80") %></div>
+			<h3 class="app_description">Do one 5 minute task that <br>
 			makes you <span class="underline">better.</span></h3>
-			
 				<div class="login_signup">
 			<% if user_signed_in? %>
 				<h3>How's it going, <%= current_user.name %>?</h3>
@@ -12,8 +13,6 @@
 				</div>
 			<% end %>
 
-
-</div>
 
 
 

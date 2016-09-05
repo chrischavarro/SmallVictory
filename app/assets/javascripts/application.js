@@ -16,9 +16,28 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-$('#calendar').datepicker({
-          inline: true,
-          firstDay: 1,
-          showOtherMonths: true,
-          dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-        });
+//= require jquery.mousewheel.min
+//= require moment.min.js
+
+$(document).ready(function(){
+    $('#calendar').datepicker({
+        inline: true,
+        firstDay: 1,
+        showOtherMonths: true,
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    });
+
+	 $('.wakeup_time_select').TimePickerAlone({
+	    hours: true,
+	    minutes: true,
+	    seconds: false,
+	    ampm: true
+	  });
+	  window.onerror = function (m){
+	  alert(m)
+	  }
+
+    $('.victor').click(function(){
+    	$('.victor').toggleClass("animated bounce")
+    });
+});
