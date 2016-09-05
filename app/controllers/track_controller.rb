@@ -1,7 +1,7 @@
 class TrackController < ApplicationController
 
 	def select
-
+		@track = Track.all
 	end
 
 	private
