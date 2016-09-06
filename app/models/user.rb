@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-	devise :omniauthable, :omniauth_providers => [:facebook]
+	devise :omniauthable, :omniauth_providers => [:facebook, :twitter]
 validates :phone_number, phony_plausible: true
 
   phony_normalize :phone_number, default_country_code: 'US'
@@ -17,4 +17,8 @@ validates :phone_number, phony_plausible: true
 	  		user.name = auth.info.name
   		end
 	end
+
+  def email_required?
+    false
+  end
 end
