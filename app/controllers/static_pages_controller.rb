@@ -11,4 +11,8 @@ class StaticPagesController < ApplicationController
 
 	def privacypolicy
 	end
+
+	def setup
+		@tags = Tag.all
+	end
 end
