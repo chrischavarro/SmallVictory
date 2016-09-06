@@ -203,8 +203,8 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
   config.omniauth :facebook, "1121906471180947", "f6981a15f89d73239fe34728bc54e0ec", 
                   callback_url: "http://localhost:3000/users/auth/facebook/callback",
-                  scope: 'email',
-                  info_fields: 'email, first_name, last_name'
+                  scope: 'email, public_profile',
+                  info_fields: 'email, first_name, last_name, picture'
   config.omniauth :twitter, "yxi1CquxobvbQYPnBTv8pyjq3", "XblcP26awmBwtETWgNt8HJEamL86BaAEGednMP2aftWXR2byt4",
                   callback_url: "http://localhost:3000/users/auth/twitter/callback"                  
   # When set to false, does not sign a user in automatically after their password is
