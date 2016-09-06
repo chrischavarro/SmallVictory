@@ -1,0 +1,2 @@
+class TagAssociation < ApplicationRecord
+end
