@@ -4,4 +4,11 @@ class StaticPagesController < ApplicationController
 			redirect_to dashboard_url
 		end
 	end
+
+	def TOS
+
+	end
+
+	def privacypolicy
+	end
 end

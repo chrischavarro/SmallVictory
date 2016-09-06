@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 	get '/dashboard' => 'dashboard#main'
 	get '/track' => 'track#select'
 	get '/setup' => 'static_pages#setup'
+	get '/termsofservice' => 'static_pages#TOS'
+	get '/privacypolicy' => 'static_pages#privacypolicy'
 end
