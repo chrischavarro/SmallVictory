@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -39,4 +40,12 @@ $(document).ready(function(){
     $('.victor').click(function(){
     	$('.victor').toggleClass("animated bounce")
     });
+
+    $('.profile_dropdown').click(function(){
+    	$('#modal').modal('show');
+    })
+
+    $( function() {
+    	$( "#menu" ).menu();
+  } );
 });

@@ -1,12 +1,45 @@
-<h1>Let's get you set up, <%= current_user.name %></h1><br>
+<div class="animated bounce"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
+
+<h2>Hey, <%= current_user.name %>! I'm Victor. Let's get started.</h2><br>
 
 
- <div class="container">
+<!--  <div class="container">
       <div id="calendar" class="center"></div>
     </div>
+ -->
 
-<h3>What time do you usually wake up?</h3>
-  <input value="12:00" type="text" class="wakeup_time_select" />
+
+<div class="nonresponsive-center">
+	<div class="card col-sm-3 track ">
+	      
+	      <div class="card-block">
+	        <h4 class="card-title">What days do you want to take off?</h4>
+	        <p class="card-text">INSERT RADIO HERE</p>
+	              <a href="#" class="btn btn-primary">Go somewhere</a>
+
+	      </div>
+	</div>
+	<div class="card col-sm-3 track ">
+	      <div class="card-block">
+	        <h4 class="card-title">What time do you usually wake up?</h4>
+	        <p class="card-text"> <input value="12:00" type="text" class="wakeup_time_select" />
+</p>
+	              <a href="#" class="btn btn-primary">Go somewhere</a>
+
+		</div>
+	</div>
+	     <div class="card col-sm-3 track ">
+	      <div class="card-block">
+	        <h4 class="card-title">Card title</h4>
+	        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+	              <a href="#" class="btn btn-primary">Go somewhere</a>
+
+		</div>
+	</div>
+</div>
+
+
+<h3></h3>
 
 
 <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.js"></script>
