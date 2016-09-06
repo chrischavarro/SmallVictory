@@ -4,8 +4,12 @@
   <%= render 'layouts/error_messages', object: resource  %>
 
   <div class="field">
-  <%= f.label :name  %><br />
-  <%= f.text_field :name, autofocus:true %>
+  <%= f.label :first_name  %><br />
+  <%= f.text_field :first_name, autofocus:true %>
+
+  <div class="field">
+  <%= f.label :last_name  %><br />
+  <%= f.text_field :last_name %>
 
   <div class="field">
     <%= f.label :email %><br />
