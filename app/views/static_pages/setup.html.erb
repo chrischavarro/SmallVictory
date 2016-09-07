@@ -1,51 +1,36 @@
-<div class="animated bounce"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
-
-<h2>Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
-
-
-<!--  <div class="container">
-      <div id="calendar" class="center"></div>
-    </div>
- -->
-
-
-<div class="nonresponsive-center">
-	<div class="card col-sm-3 track ">
-	      
-	      <div class="card-block">
+<div class="row row-centered body-text">
+	<div class="animated bounce"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
+	<h2>Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
+	<div class="col-sm-3 track col-centered">
+	      <div class="card-block text-center">
 	        <h4 class="card-title">What days do you want to take off?</h4>
 	        <p class="card-text">INSERT RADIO HERE</p>
 	              <a href="#" class="btn btn-primary">Go somewhere</a>
-
 	      </div>
 	</div>
-	<div class="card col-sm-3 track ">
-	      <div class="card-block">
+	<div class="col-sm-3 track col-centered">
+	      <div class="card-block text-center">
 	        <h4 class="card-title">What time do you usually wake up?</h4>
-	        <p class="card-text"> <input value="12:00" type="text" class="wakeup_time_select" />
-</p>
+	        <p class="card-text"> <input value="12:00" type="text" class="wakeup_time_select" /></p>
 	              <a href="#" class="btn btn-primary">Go somewhere</a>
-
 		</div>
 	</div>
-	     <div class="card col-sm-3 track ">
-	      <div class="card-block">
+	     <div class="col-sm-3 track col-centered">
+	      <div class="card-block text-center">
 	        <h4 class="card-title">What do you want to get better at?</h4>
 	        <p class="card-text">
-	        	<ul>
+	        	<div class="btn-group" data-toggle="buttons">
 		        	<% @tags.each do |tag| %>
-		        		<li><%= tag.name %></li>
+		        		<label class="btn btn-primary">
+		        			<input type="checkbox"><%= tag.name  %>
+		        		</label><br>
 		        	<% end %>
-	        	</ul>
+	        	</div>
 	        </p>
-	              <a href="#" class="btn btn-primary">Go somewhere</a>
-
+	           <a href="#" class="btn btn-primary">Go somewhere</a>
 		</div>
 	</div>
 </div>
-
-
-<h3></h3>
 
 
 <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.js"></script>

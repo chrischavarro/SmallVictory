@@ -17,13 +17,13 @@ validates :phone_number, phony_plausible: true
           user.password = Devise.friendly_token[0,20]
           user.first_name = auth.extra.raw_info.first_name
           user.last_name = auth.extra.raw_info.last_name
-          user.profile_pic = auth.info.image
+          user.profile_pic = auth.info.image + "?type=large"
           puts auth
         elsif auth.provider == 'twitter'
           user.email = auth.info.email
   	  		user.password = Devise.friendly_token[0,20]
           user.first_name = auth.info.name
-          user.profile_pic = auth.info.image
+          user.profile_pic = auth.info.image 
           puts auth
 
         end
