@@ -33,4 +33,6 @@ validates :phone_number, phony_plausible: true
   def email_required?
     false
   end
+# require "awesome_print"
+# ap object, options = {}
 end
