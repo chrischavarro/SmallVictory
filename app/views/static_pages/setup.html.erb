@@ -3,21 +3,42 @@
 	<h2>Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
 	<div class="col-sm-3 track col-centered">
 	      <div class="card-block text-center">
-	        <h4 class="card-title">What days do you want to take off?</h4>
-	        <p class="card-text">INSERT RADIO HERE</p>
-	              <a href="#" class="btn btn-primary">Go somewhere</a>
+	        <h2 class="card-title">What days do you <br> want to take off?</h2>
+	        <p class="card-text">
+	        	<div class="btn-group" data-toggle="buttons">
+					<label class="btn btn-primary text-center">
+						<input type="checkbox">Monday
+					</label> <br>
+					<label class="btn btn-primary">
+						<input type="checkbox">Tuesday
+					</label> <br>
+					<label class="btn btn-primary">
+						<input type="checkbox">Wednesday
+					</label> <br>
+					<label class="btn btn-primary">
+						<input type="checkbox">Thursday
+					</label> <br>
+					<label class="btn btn-primary">
+						<input type="checkbox">Friday
+					</label> <br>
+					<label class="btn btn-primary">
+						<input type="checkbox">Saturday
+					</label> <br>
+					<label class="btn btn-primary">
+						<input type="checkbox">Sunday
+					</label>
+	        	</div></p>
 	      </div>
 	</div>
 	<div class="col-sm-3 track col-centered">
 	      <div class="card-block text-center">
-	        <h4 class="card-title">What time do you usually wake up?</h4>
-	        <p class="card-text"> <input value="12:00" type="text" class="wakeup_time_select" /></p>
-	              <a href="#" class="btn btn-primary">Go somewhere</a>
+	        <h2 class="card-title">What time do you <br> usually wake up?</h2>
+	        <p class="card-text"> <input value="12:00" type="text" class="wakeup_time_select body-text text-center" /></p>
 		</div>
 	</div>
 	     <div class="col-sm-3 track col-centered">
 	      <div class="card-block text-center">
-	        <h4 class="card-title">What do you want to get better at?</h4>
+	        <h2 class="card-title">What do you want <br> to get better at?</h2>
 	        <p class="card-text">
 	        	<div class="btn-group" data-toggle="buttons">
 		        	<% @tags.each do |tag| %>
@@ -27,7 +48,6 @@
 		        	<% end %>
 	        	</div>
 	        </p>
-	           <a href="#" class="btn btn-primary">Go somewhere</a>
 		</div>
 	</div>
 </div>

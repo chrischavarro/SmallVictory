@@ -29,7 +29,7 @@
 		<div class="right">
 			<% if user_signed_in? %>
 				<span class="top">
-       <img src="<%= current_user.profile_pic %>" class="img-circle" width="40px" height="40px">
+       <img src="<%= current_user.profile_pic %>" class="img-circle" width="35px" height="35px">
           <%= link_to(current_user.first_name , edit_user_registration_path) %> </a>
           
             <%= image_tag('down_arrow.svg', size: "20x20")%>
