@@ -1,4 +1,6 @@
 <%= javascript_include_tag "Chart" %>
+<%= javascript_include_tag "raphael-2.1.4.min" %>
+<%= javascript_include_tag "justgage" %>
 <div class="row row-centered body-text">
 <h1>Dashboard</h1>
 <h3>What's up, <%= current_user.first_name  %>!</h3>
@@ -9,5 +11,8 @@
 	<div class="col-md-6 col-centered">
 		<canvas id="myChart" ></canvas>
 	</div>
+
+<div id="gauge" class="200x160px"></div>
+
 
 </div> 

@@ -7,6 +7,8 @@ Rails.application.config.assets.precompile += %w(jquery.mousewheel.min.js)
 Rails.application.config.assets.precompile += %w(jquery.timepicker.min.css)
 Rails.application.config.assets.precompile += %w(jquery.timepicker.min.js)
 Rails.application.config.assets.precompile += %w(Chart.js)
+Rails.application.config.assets.precompile += %w(justgage.js)
+Rails.application.config.assets.precompile += %w(raphael-2.1.4.min.js)
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
