@@ -1,13 +1,13 @@
+<%= javascript_include_tag "Chart" %>
 <div class="row row-centered body-text">
 <h1>Dashboard</h1>
 <h3>What's up, <%= current_user.first_name  %>!</h3>
-</div> 
   <style>
   .ui-menu { width: 150px; }
   </style>
 
+	<div class="col-md-6 col-centered">
+		<canvas id="myChart" ></canvas>
+	</div>
 
-
-<%= javascript_include_tag "Chart" %>
-
-<canvas id="myChart" width="400" height="400"></canvas>
+</div> 
