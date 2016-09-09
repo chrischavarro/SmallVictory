@@ -1,5 +1,4 @@
-ActiveAdmin.register TagAssociation do
-
+ActiveAdmin.register PersonTagAssociation do
 
 	permit_params :tag_id, :user_id
 # See permitted parameters documentation:

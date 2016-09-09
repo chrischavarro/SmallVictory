@@ -6,6 +6,11 @@ class User < ApplicationRecord
 	devise :omniauthable, :omniauth_providers => [:facebook, :twitter]
 validates :phone_number, phony_plausible: true
 
+  has_one :profile
+
+  has_many :tags, through: :person_tag_associations
+  has_many :tags
+
   phony_normalize :phone_number, default_country_code: 'US'
   phony_normalize :phone_number, as: :phone_number_normalized_version, default_country_code: 'US'
   phony_normalized_method :fax_number

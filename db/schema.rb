@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906225648) do
+ActiveRecord::Schema.define(version: 20160909001222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,29 @@ ActiveRecord::Schema.define(version: 20160906225648) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "person_tag_associations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_person_tag_associations_on_tag_id", using: :btree
+    t.index ["user_id"], name: "index_person_tag_associations_on_user_id", using: :btree
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.time     "wake_up_time"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednedsay"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+  end
+
   create_table "static_pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,6 +82,8 @@ ActiveRecord::Schema.define(version: 20160906225648) do
   create_table "tag_associations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "tag_id"
+    t.integer  "track_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -69,7 +94,6 @@ ActiveRecord::Schema.define(version: 20160906225648) do
 
   create_table "tracks", force: :cascade do |t|
     t.string   "name"
-    t.string   "tag"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "description"

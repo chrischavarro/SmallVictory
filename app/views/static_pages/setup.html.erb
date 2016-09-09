@@ -1,12 +1,13 @@
 <div class="row row-centered body-text">
 	<div class="animated bounce"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
 	<h2>Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
+	<form>
 	<div class="col-sm-3 track col-centered">
 	      <div class="card-block text-center">
 	        <h2 class="card-title">What days do you <br> want to take off?</h2>
 	        <p class="card-text">
 	        	<div class="btn-group" data-toggle="buttons">
-					<label class="btn btn-primary text-center">
+					<label class="btn btn-primary">
 						<input type="checkbox">Monday
 					</label> <br>
 					<label class="btn btn-primary">
@@ -50,7 +51,11 @@
 	        </p>
 		</div>
 	</div>
+<br>
+<div class="row col-sm-10 col-centered">
+	<button class="btn btn-default btn-block">Continue</button>
 </div>
-
+</div>
+</form>
 
 <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.js"></script>

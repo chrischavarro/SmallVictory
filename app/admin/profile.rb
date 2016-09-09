@@ -1,7 +1,5 @@
-ActiveAdmin.register TagAssociation do
+ActiveAdmin.register Profile do
 
-
-	permit_params :tag_id, :user_id
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -15,5 +13,6 @@ ActiveAdmin.register TagAssociation do
 #   permitted
 # end
 
+permit_params :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :wake_up_time, :user_id
 
 end
