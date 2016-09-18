@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 	get '/setup' => 'static_pages#setup'
 	get '/termsofservice' => 'static_pages#TOS'
 	get '/privacypolicy' => 'static_pages#privacypolicy'
+
+	resources :profiles
 end

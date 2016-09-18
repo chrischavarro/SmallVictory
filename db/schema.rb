@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909001222) do
+ActiveRecord::Schema.define(version: 20160918153939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20160909001222) do
     t.time     "wake_up_time"
     t.boolean  "monday"
     t.boolean  "tuesday"
-    t.boolean  "wednedsay"
+    t.boolean  "wednesday"
     t.boolean  "thursday"
     t.boolean  "friday"
     t.boolean  "saturday"
