@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-  	request.env['omniauth.origin'] || stored_location_for(resource) || setup_path
+  	request.env['omniauth.origin'] || stored_location_for(resource) || new_profile_path
   end
 
   protected

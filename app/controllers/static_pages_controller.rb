@@ -12,21 +12,22 @@ class StaticPagesController < ApplicationController
 	def privacypolicy
 	end
 
-	def setup
-		@tags = Tag.all
-		@profile = Profile.new(
-			user_id: current_user,
-			wake_up_time: params[:wake_up_time],
-			monday: params[:monday],
-			tuesday: params[:tuesday],
-			wednesday: params[:wednesday],
-			thursday: params[:thursday],
-			friday: params[:friday],
-			saturday: params[:saturday],
-			sunday: params[:sunday],
-			tags: params[:tag]
-			)
-		@profile.save
+	# def setup
+	# 	@tags = Tag.all
+	# 	# current_user.tags << params[:tag]
+	# 	@profile = Profile.new(
+	# 		user_id: current_user.id,
+	# 		wake_up_time: params[:wake_up_time],
+	# 		monday: params[:monday],
+	# 		tuesday: params[:tuesday],
+	# 		wednesday: params[:wednesday],
+	# 		thursday: params[:thursday],
+	# 		friday: params[:friday],
+	# 		saturday: params[:saturday],
+	# 		sunday: params[:sunday]
+	# 		)
+	# 	@profile.save
 
-	end
+	# 	# redirect_to '/'
+	# end
 end

@@ -6,10 +6,10 @@
 	      <div class="card-block text-center">
 	        <h2 class="card-title">What days do you <br> want to take off?</h2>
 	        <p class="card-text">
-	        	<div class="btn-group" data-toggle="buttons">
-					<label class="btn btn-primary">
+	        	<div class="btn-group" data-toggle="buttons" >
+					<label class="btn btn-primary" >
 						<%= f.label :monday  %>
-						<%= f.check_box :monday  %>
+						<%= f.check_box :monday, :style => 'visibility: hidden' %>
 					</label> <br>
 					<label class="btn btn-primary">
 						<%= f.label :tuesday  %>
@@ -70,3 +70,14 @@
 <% end %>
 
 <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.js"></script>
+<!-- <script type="text/javascript">
+	$("[data-toggle='buttons'] .btn").each(function(i, el) {
+  var $button = $(el);
+  var checked = $button.find("input[type='checkbox']").prop("checked");
+  if (checked) {
+    $button.addClass("active");
+  } else {
+    $button.removeClass("active");
+  }
+});
+</script> -->

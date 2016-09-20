@@ -8,8 +8,8 @@ validates :phone_number, phony_plausible: true
 
   has_one :profile
 
-  has_many :tags, through: :person_tag_associations
-  has_many :tags
+  has_one :person_tag_association
+  has_many :tags, through: :person_tag_association
 
   phony_normalize :phone_number, default_country_code: 'US'
   phony_normalize :phone_number, as: :phone_number_normalized_version, default_country_code: 'US'
