@@ -9,8 +9,7 @@
 	      <div class="card-block text-center">
 	        <h4 class="card-title"><%= track.name  %></h4>
 	        <p class="card-text"><%= track.description %></p>
-	              <a href="#" class="btn btn-primary">Select</a>
-	              <%= link_to("Select", new_user_track_path(track.id))  %>
+	        <%= link_to("Select", user_track_path(track.id), :class => 'btn btn-primary')  %>
 
 	      </div>
 		</div>

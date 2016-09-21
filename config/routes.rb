@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 	get '/termsofservice' => 'static_pages#TOS'
 	get '/privacypolicy' => 'static_pages#privacypolicy'
 
+	get '/assign_track/:id' => 'user_tracks_associations#create', as: 'user_track'
 	resources :profiles
+	
 end
