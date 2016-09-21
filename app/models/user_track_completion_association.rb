@@ -1,0 +1,2 @@
+class UserTrackCompletionAssociation < ApplicationRecord
+end

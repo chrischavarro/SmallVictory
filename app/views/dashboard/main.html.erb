@@ -4,11 +4,23 @@
 <div class="row row-centered body-text">
 <h1>Dashboard</h1>
 <h2>What's up, <%= current_user.first_name  %>!</h2>
-
 <h3>You're currently on a 3 day streak</h3>
 <h3>Your longest streak was 96 days</h3>
 <h3>You've completed 82 out of 93 victories</h3>
 <h3>You've completed 95% of your victories!</h3>
+
+
+
+<h2>You're following these tracks </h2>
+	<ul>
+		<% current_user.tracks.each do |track|  %>
+			<li><%= link_to(track.name, new_track_task_path(track.id))  %>
+				<%= UserTrackCompletionAssociation.where(track_id: track.id, user_id: current_user.id).count  %>
+			</li>
+		<% end %>
+	</ul>
+
+
   <style>
   .ui-menu { width: 150px; }
   </style>

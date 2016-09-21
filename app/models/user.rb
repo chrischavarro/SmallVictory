@@ -14,6 +14,8 @@ validates :phone_number, phony_plausible: true
   has_many :user_track_associations
   has_many :tracks, through: :user_track_associations
 
+  has_many :user_track_completion_associations
+
   phony_normalize :phone_number, default_country_code: 'US'
   phony_normalize :phone_number, as: :phone_number_normalized_version, default_country_code: 'US'
   phony_normalized_method :fax_number
