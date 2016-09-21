@@ -6,10 +6,9 @@
 	      <div class="card-block text-center">
 	        <h2 class="card-title">What days do you <br> want to take off?</h2>
 	        <p class="card-text">
-	        	<div class="btn-group" data-toggle="buttons" >
 					<label class="btn btn-primary" >
 						<%= f.label :monday  %>
-						<%= f.check_box :monday, :style => 'visibility: hidden' %>
+						<%= f.check_box :monday %>
 					</label> <br>
 					<label class="btn btn-primary">
 						<%= f.label :tuesday  %>
@@ -35,7 +34,7 @@
 						<%= f.label :sunday  %>
 						<%= f.check_box :sunday  %>
 					</label>
-	        	</div></p>
+	        	</p>
 	      </div>
 	</div>
 	<div class="col-sm-3 track col-centered">
@@ -54,6 +53,8 @@
 	        	<div class="btn-group" data-toggle="buttons">
 		        	<% @tags.each do |tag| %>
 		        		<label class="btn btn-primary">
+		        		<label><%= tag.name  %></label>
+		        		<input type="checkbox" name="tags[<%= tag.id %>]" >
 		        		</label><br>
 		        	<% end %>
 	        	</div>

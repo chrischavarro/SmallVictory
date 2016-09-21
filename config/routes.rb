@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 	root to: 'static_pages#home'
 
 	get '/dashboard' => 'dashboard#main'
-	get '/track' => 'track#select'
+	get '/tracks' => 'tracks#select'
 	get '/setup' => 'static_pages#setup'
 	get '/termsofservice' => 'static_pages#TOS'
 	get '/privacypolicy' => 'static_pages#privacypolicy'

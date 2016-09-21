@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+before_action(:authenticate_user!)
 
 	def new
 		@profile = Profile.new
@@ -7,6 +8,15 @@ class ProfilesController < ApplicationController
 
 	def create
 		# current_user.tags << params[:tag]
+		params[:tags].each_with_index do |(tag, value), index|
+			p tag
+			p "Tag: #{tag}, value: #{value}, index: #{index}\n"
+			if tag.to_i 
+				new_tag = Tag.find_by(:id => tag.to_i)
+				current_user.tags.push(new_tag)	
+			end
+
+		end
 		@profile = Profile.new(
 			user_id: current_user.id,
 			wake_up_time: params[:profile][:wake_up_time],
@@ -20,7 +30,7 @@ class ProfilesController < ApplicationController
 			)
 		@profile.save
 
-		redirect_to '/'
+		redirect_to tracks_path
 	end
 
 end
