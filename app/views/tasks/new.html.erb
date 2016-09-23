@@ -1,3 +1,14 @@
-<%= form_tag("/tracks/" + @track.id.to_s + "/tasks") do  %>
-	<button type="submit">Submit</button>
-<% end %>
+<%= javascript_include_tag "TimeCircles" %>
+
+<div class="row row-centered body-text">
+<h1>Your task for today:</h1>
+<h2>Do 100 Pushups</h2>
+<div class="row row-centered">
+	<button class="btn btn-success start">Get Started</button>
+</div>
+	<div class="demo stopwatch col-centered" data-timer="300"></div>
+	<%= form_tag("/tracks/" + @track.id.to_s + "/tasks") do  %>
+		<button type="submit">Victory</button>
+	<% end %>
+
+</div>

@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 
 
+
 $(document).ready(function(){
     $('#calendar').datepicker({
         inline: true,
@@ -91,6 +92,22 @@ $(document).ready(function(){
   //   max: 100,
   //   title: "Visitors"
   // });
+
+$(".demo").TimeCircles(
+    { time: {
+    Days: {show: false},
+    Hours: {show: false},
+    Minutes: {show: false},
+    Seconds: {show: true}
+    },
+    count_past_zero: false,
+    circle_bg_color: "#3C78D8",
+    use_background: false,
+    start: false
+});
+
+$(".start").click(function(){ $(".demo.stopwatch").TimeCircles().start(); }); 
+
 
 });
 
