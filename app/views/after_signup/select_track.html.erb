@@ -7,7 +7,7 @@
 	      <div class="card-block text-center">
 	        <h4 class="card-title"><%= track.name  %></h4>
 	        <p class="card-text"><%= track.description %></p>
-	        <%= link_to("Select", next_wizard_path(track.id), :class => 'btn btn-primary')  %>
+	        <%= link_to("Select", next_wizard_path(:track_id => track.id), :class => 'btn btn-primary')  %>
 
 	      </div>
 		</div>
