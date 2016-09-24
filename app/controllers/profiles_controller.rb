@@ -30,7 +30,7 @@ before_action(:authenticate_user!)
 			)
 		@profile.save
 
-		redirect_to tracks_path
+		redirect_to '/after_signup/select_track'
 	end
 
 end
