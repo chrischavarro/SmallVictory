@@ -49,7 +49,7 @@ class User < ApplicationRecord
 # ap object, options = {}
 
   private
-
+# Done to destroy any associations after user deletes their account
   def destroy_user_associations
     person_tag_associations.each do |person_tag_association|
       person_tag_association.destroy 
@@ -57,6 +57,6 @@ class User < ApplicationRecord
     user_track_associations.each do |user_track_association|
       user_track_association.destroy 
     end
-    # user.profile.destroy
+    profile.destroy
   end
 end
