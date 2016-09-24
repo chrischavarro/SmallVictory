@@ -7,6 +7,7 @@ class UserTracksAssociationsController < ApplicationController
 
 			if current_user.first_time_user?
 				redirect_to new_track_task_path(new_track.id)
+				
 			else
 				redirect_to dashboard_path
 			end

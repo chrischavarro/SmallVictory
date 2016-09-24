@@ -57,6 +57,8 @@ class User < ApplicationRecord
     user_track_associations.each do |user_track_association|
       user_track_association.destroy 
     end
-    profile.destroy
+    if profile
+      profile.destroy
+    end
   end
 end
