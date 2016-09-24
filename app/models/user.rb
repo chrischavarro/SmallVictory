@@ -4,8 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 	devise :omniauthable, :omniauth_providers => [:facebook, :twitter]
-validates :phone_number, phony_plausible: true
+  validates :phone_number, phony_plausible: true
 
+  after_destroy :destroy_user_associations
+  
   has_one :profile
 
   has_many :person_tag_associations
@@ -45,4 +47,16 @@ validates :phone_number, phony_plausible: true
   end
 # require "awesome_print"
 # ap object, options = {}
+
+  private
+
+  def destroy_user_associations
+    person_tag_associations.each do |person_tag_association|
+      person_tag_association.destroy 
+    end
+    user_track_associations.each do |user_track_association|
+      user_track_association.destroy 
+    end
+    # user.profile.destroy
+  end
 end

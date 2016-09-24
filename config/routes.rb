@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 	get '/privacypolicy' => 'static_pages#privacypolicy'
 
 	get '/assign_track/:id' => 'user_tracks_associations#create', as: 'user_track'
+	resources :after_signup
 	resources :profiles
 	resources :tracks do
 		resources :tasks
