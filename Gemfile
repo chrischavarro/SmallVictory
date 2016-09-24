@@ -13,6 +13,7 @@ gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
+gem 'chartjs-ror'
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 # Use Uglifier as compressor for JavaScript assets
