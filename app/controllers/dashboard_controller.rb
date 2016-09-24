@@ -1,8 +1,17 @@
 class DashboardController < ApplicationController
   before_action :verified_user_has_profile?
+  before_action(:authenticate_user!)
+
 
 	def main
 		# @user = User.find_by(params[:id])
+
+		respond_to do |format|
+			format.html
+			format.json 
+		end
+
+
 		completions = UserTrackCompletionAssociation.where(user_id: current_user.id)
 		@completed = []
 		@attempted = []
@@ -14,6 +23,7 @@ class DashboardController < ApplicationController
 		end
 
 		@completion_percentage = (@completed.count.to_f/@attempted.count.to_f) * 100
+
 	end
 
 	protected

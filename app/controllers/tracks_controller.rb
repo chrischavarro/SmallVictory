@@ -1,4 +1,5 @@
 class TracksController < ApplicationController
+before_action(:authenticate_user!)
 
 	def select
 		@user_tags = current_user.tags.pluck(:id)
