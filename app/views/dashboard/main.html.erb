@@ -1,6 +1,27 @@
 <%= javascript_include_tag "Chart" %>
 <%= javascript_include_tag "raphael-2.1.4.min" %>
 <%= javascript_include_tag "justgage" %>
+
+<!-- BEGIN RUBY CODE FOR CHART -->
+<% data = { %>
+  <%  labels: ["January", "February", "March", "April", "May", "June", "July"],%>
+  <% datasets: [  %>
+    <%  { %>
+        <%  label: "My First dataset",%>
+       <%   backgroundColor: "rgba(220,220,220,0.2)",%>
+        <%  borderColor: "rgba(220,220,220,1)",%>
+        <%  data: [65, 59, 80, 81, 56, 55, 40]%>
+    <%  },%>
+    <% { %>
+        <%  label: "My Second dataset",%>
+        <%  backgroundColor: "rgba(151,187,205,0.2)",%>
+        <% borderColor: "rgba(151,187,205,1)", %>
+        <%  data: [28, 48, 40, 19, 86, 27, 90]%>
+    <%  } %>
+  <%  ] %>
+<% } %>
+<!-- END RUBY CODE FOR CHART -->
+
 <div class="row row-centered body-text">
 <h1>Dashboard</h1>
 <h2>What's up, <%= current_user.first_name  %>!</h2>
@@ -8,6 +29,7 @@
 <h3>Your longest streak was 96 days</h3>
 <h3>You've completed <%= @completed.count  %> out of <%= @attempted.count  %> victories</h3>
 <h3>You've completed <%= @completion_percentage.round(0) %>% of your victories!</h3>
+
 
 
 
@@ -26,10 +48,12 @@
   </style>
 
 	<div class="col-md-6 col-centered">
-		<canvas id="myChart" ></canvas>
+<%= pie_chart         data %>
 	<div id="gauge" class="200x160px"></div>
 	</div>
 
 
 
 </div> 
+
+
