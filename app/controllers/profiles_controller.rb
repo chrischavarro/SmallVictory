@@ -6,6 +6,20 @@ before_action(:authenticate_user!)
 		@tags = Tag.all
 	end
 
+	def update
+		profile = current_user.profile
+		# profile.update_attributes(params[:profile_params])
+		profile.update!(profile_params)
+			redirect_to dashboard_path
+
+	end
+
+	def show
+		@profile = current_user.profile
+		@tags = Tag.all
+
+	end
+
 	def create
 		# current_user.tags << params[:tag]
 		params[:tags].each_with_index do |(tag, value), index|
@@ -31,6 +45,12 @@ before_action(:authenticate_user!)
 		@profile.save
 
 		redirect_to '/after_signup/select_track'
+	end
+
+	private
+
+	def profile_params
+		params.require(:profile).permit(:wake_up_time, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
 	end
 
 end
