@@ -60,5 +60,8 @@ class User < ApplicationRecord
     if profile
       profile.destroy
     end
+    user_track_completion_associations.each do |user_track_completion_association|
+      user_track_completion_association.destroy
+    end
   end
 end
