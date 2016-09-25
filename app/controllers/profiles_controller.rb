@@ -8,20 +8,27 @@ before_action(:authenticate_user!)
 
 	def update
 		profile = current_user.profile
-		# profile.update_attributes(params[:profile_params])
 		profile.update!(profile_params)
 			redirect_to dashboard_path
 
 	end
 
 	def show
+		params[:tags].each_with_index do |(tag, value), index|
+			p tag
+			p "Tag: #{tag}, value: #{value}, index: #{index}\n"
+			if tag.to_i 
+				new_tag = Tag.find_by(:id => tag.to_i)
+				current_user.tags.push(new_tag)	
+			end
+		end
+
 		@profile = current_user.profile
 		@tags = Tag.all
 
 	end
 
 	def create
-		# current_user.tags << params[:tag]
 		params[:tags].each_with_index do |(tag, value), index|
 			p tag
 			p "Tag: #{tag}, value: #{value}, index: #{index}\n"

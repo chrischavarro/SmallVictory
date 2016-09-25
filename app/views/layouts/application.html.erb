@@ -9,9 +9,6 @@
 
     <!-- JAVASCRIPT AND CSS BELOW USED FOR TIME SELECTOR ON USER SIGN UP -->
     <%= stylesheet_link_tag 'jquery.timepicker.min.css' %>
-    <%= javascript_include_tag 'moment.min.js'  %>
-    <%= javascript_include_tag 'jquery.mousewheel.min.js'  %>
-    <%= javascript_include_tag 'jquery.timepicker.min.js'  %>
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -31,7 +28,7 @@
 				<span class="top">
        <img src="<%= current_user.profile_pic %>" class="img-circle" width="35px" height="35px">
           <%= link_to(current_user.first_name , edit_user_registration_path) %>
-          <%= link_to("Edit Profile" , '/profiles/edit') %>
+          <%= link_to("Edit Profile" , '/profiles/update') %>
           
             <%= image_tag('down_arrow.svg', size: "20x20")%>
           </span>
@@ -39,7 +36,7 @@
 
 			<% else %>
 				<%= link_to("Log in", new_user_session_path)  %> | 
-				<%= link_to("Sign up", '/profiles/update')  %>
+				<%= link_to("Sign up", new_user_registration_path)  %>
 			<% end %>
       <!-- NAV BAR RIGHT END -->
 		</div>

@@ -1,7 +1,7 @@
 class AfterSignupController < ApplicationController
 	include Wicked::Wizard
 
-	steps :setup_profile, :select_track, :complete_first_task
+	steps :setup_profile, :select_track
 
 	def show
 		@user = current_user

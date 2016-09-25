@@ -7,7 +7,8 @@
 	      <div class="card-block text-center">
 	        <h4 class="card-title"><%= track.name  %></h4>
 	        <p class="card-text"><%= track.description %></p>
-	        <%= link_to("Select", next_wizard_path(:track_id => track.id), :class => 'btn btn-primary')  %>
+	        <!-- user_track_path(track.id) fixes problem of track not being assigned -->
+	        <%= link_to("Select", user_track_path(track.id), :class => 'btn btn-primary')  %>
 
 	      </div>
 		</div>

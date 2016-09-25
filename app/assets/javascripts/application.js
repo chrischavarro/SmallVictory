@@ -17,6 +17,11 @@
 //= require bootstrap-sprockets
 //= require Chart.bundle.min
 //= require TimeCircles.js
+//= require moment.min.js
+//= require jquery.mousewheel.min.js
+//= require raphael-2.1.4.min.js
+//= require justgage.js
+//= require jquery.timepicker.min.js
 
 
 
@@ -94,21 +99,37 @@ $(document).ready(function(){
   //   max: 100,
   //   title: "Visitors"
   // });
+$(".start").click(function(){ $(".demo.stopwatch").TimeCircles().start(); }); 
+
 
 $(".demo").TimeCircles(
     { time: {
     Days: {show: false},
     Hours: {show: false},
-    Minutes: {show: false},
-    Seconds: {show: true}
+    Minutes: {show: true},
+    Seconds: {show: false}
     },
     count_past_zero: false,
     circle_bg_color: "#3C78D8",
     use_background: false,
-    start: false
+    start: false,
+    total_duration: "Auto",
+    start_angle: 0
 });
 
-$(".start").click(function(){ $(".demo.stopwatch").TimeCircles().start(); }); 
+var $container = $('.demo .textDiv_Seconds');
+$container.find('h4').text('Minutes');
+var $original = $container.find('span');
+var $clone = $original.clone().appendTo($container);
+$original.hide();
+
+$('.demo').TimeCircles().addListener(function(unit, value, total) {
+    total = Math.abs(total);
+    var minutes = Math.floor(total / 60) % 60;
+    $clone.text(minutes);
+}, "all")
+
+
 
 
 });

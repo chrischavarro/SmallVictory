@@ -4,13 +4,10 @@ class DashboardController < ApplicationController
 
 
 	def main
-		# @user = User.find_by(params[:id])
-
 		respond_to do |format|
 			format.html
 			format.json 
 		end
-
 
 		completions = UserTrackCompletionAssociation.where(user_id: current_user.id)
 		@completed = []
@@ -30,7 +27,7 @@ class DashboardController < ApplicationController
 	
 	def verified_user_has_profile? 
   		if current_user && !current_user.profile
-  			redirect_to new_profile_path
+  			redirect_to after_signup_path(:setup_profile)
   		end
   	end
 end
