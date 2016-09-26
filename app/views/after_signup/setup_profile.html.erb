@@ -1,73 +1,81 @@
 <div class="row row-centered body-text">
-	<div class="animated bounce"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
-	<h2>Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
-	<%= form_for @profile do |f| %>
-	<div class="col-sm-3 track col-centered">
-	      <div class="card-block text-center">
-	        <h2 class="card-title">What days do you <br> want to take off?</h2>
-	        <p class="card-text">
-					<label class="btn btn-primary" >
-						<%= f.label :monday  %>
-						<%= f.check_box :monday %>
-					</label> <br>
-					<label class="btn btn-primary">
-						<%= f.label :tuesday  %>
-						<%= f.check_box :tuesday  %>
-					</label> <br>
-					<label class="btn btn-primary">
-						<%= f.label :wednesday  %>
-						<%= f.check_box :wednesday  %>
-					</label> <br>
-					<label class="btn btn-primary">
-						<%= f.label :thursday  %>
-						<%= f.check_box :thursday  %>
-					</label> <br>
-					<label class="btn btn-primary">
-						<%= f.label :friday  %>
-						<%= f.check_box :friday  %>
-					</label> <br>
-					<label class="btn btn-primary">
-						<%= f.label :saturday  %>
-						<%= f.check_box :saturday  %>
-					</label> <br>
-					<label class="btn btn-primary">
-						<%= f.label :sunday  %>
-						<%= f.check_box :sunday  %>
-					</label>
-	        	</p>
-	      </div>
-	</div>
-	<div class="col-sm-3 track col-centered">
-	      <div class="card-block text-center">
-	        <h2 class="card-title">What time do you <br> usually wake up?</h2>
-	        <span class="body-text text-center card-text">
-	        	<%= f.text_field :wake_up_time, id: "wakeup_time_select" %>
-	        </span>
-<!-- 	        <p class="card-text"> <input value="12:00" type="text" class="wakeup_time_select body-text text-center" /></p> -->
+
+		<div class="animated bounce"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
+		
+		<h2>Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
+	<div class="col-sm-6 col-sm-offset-3">
+		<%= form_for @profile do |f| %>
+		<div class="col-sm-4 track col-centered">
+		      <div class="card-block text-center">
+		        <h2 class="card-title">What days do you <br> want to take off?</h2>
+		        <p class="card-text">
+					<div class="btn-group" data-toggle="buttons">
+
+						<label class="btn btn-primary profile_setup_button" >
+							<label>Monday</label>
+							<input type="checkbox" value="1" name="profile[monday]" id="profile_monday">
+						</label> <br>
+						<label class="btn btn-primary profile_setup_button">
+							<label>Tuesday</label>
+							<input type="checkbox" value="1" name="profile[tuesday]" id="profile_tuesday">
+						</label> <br>
+						<label class="btn btn-primary profile_setup_button">
+							<label>Wednesday</label>
+							<input type="checkbox" value="1" name="profile[wednesday]" id="profile_wednesday">
+						</label> <br>
+						<label class="btn btn-primary profile_setup_button">
+							<label>Thursday</label>
+							<input type="checkbox" value="1" name="profile[thursday]" id="profile_thursday">
+						</label> <br>
+						<label class="btn btn-primary profile_setup_button">
+							<label>Friday</label>
+							<input type="checkbox" value="1" name="profile[friday]" id="profile_friday">
+						</label> <br>
+						<label class="btn btn-primary profile_setup_button">
+							<label>Saturday</label>
+							<input type="checkbox" value="1" name="profile[saturday]" id="profile_saturday">
+						</label> <br>
+						<label class="btn btn-primary profile_setup_button">
+							<label>Sunday</label>
+							<input type="checkbox" value="1" name="profile[sunday]" id="profile_sunday">
+						</label>
+					</div>
+		        	</p>
+		      </div>
 		</div>
-	</div>
-	     <div class="col-sm-3 track col-centered">
-	      <div class="card-block text-center">
-	        <h2 class="card-title">What do you want <br> to get better at?</h2>
-	        <p class="card-text">
-	        	<div class="btn-group" data-toggle="buttons">
-		        	<% @tags.each do |tag| %>
-		        		<label class="btn btn-primary">
-		        		<label><%= tag.name  %></label>
-		        		<input type="checkbox" name="tags[<%= tag.id %>]" >
-		        		</label><br>
-		        	<% end %>
-	        	</div>
-	        </p>
+		<div class="col-sm-4 track col-centered">
+		      <div class="card-block text-center">
+		        <h2 class="card-title">What time do you <br> usually wake up?</h2>
+		        <span class="body-text text-center card-text">
+		        	<%= f.text_field :wake_up_time, id: "wakeup_time_select" %>
+		        </span>
+	<!-- 	        <p class="card-text"> <input value="12:00" type="text" class="wakeup_time_select body-text text-center" /></p> -->
+			</div>
 		</div>
+		     <div class="col-sm-4 track col-centered">
+		      <div class="card-block text-center">
+		        <h2 class="card-title">What do you want <br> to get better at?</h2>
+		        <p class="card-text">
+		        	<div class="btn-group" data-toggle="buttons">
+			        	<% @tags.each do |tag| %>
+			        		<label class="btn btn-primary profile_setup_button">
+			        		<label><%= tag.name  %></label>
+			        		<input type="checkbox" name="tags[<%= tag.id %>]" >
+			        		</label><br>
+			        	<% end %>
+		        	</div>
+		        </p>
+			</div>
+		</div>
+	<br>
+	<div class="row col-sm-12 col-centered">
+		<!-- <button class="btn btn-default btn-block"> -->
+		<%= f.submit 'Continue', :class => 'btn btn-primary btn-block button'  %>
+		<!-- </button> -->
 	</div>
-<br>
-<div class="row col-sm-10 col-centered">
-	<!-- <button class="btn btn-default btn-block"> -->
-	<%= f.submit 'Continue', :class => 'btn btn-default btn-block'  %>
-	<!-- </button> -->
-</div>
+	</div>
 </div>
 <% end %>
 
 <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.js"></script>
+<!-- TO BE USED IN DIV CLASS WITH DATA TOGGLE BUTTONS btn-group -->

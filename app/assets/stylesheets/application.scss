@@ -4,6 +4,11 @@
 @import "TimeCircles";
 @import "jquery.timepicker.min";
 
+// COLOR GUIDE
+// #3C78D8 => SMALL VICTORY BLUE
+// #26a69a => SPOTIFY GREEN
+// #7d7d7d => GREY
+
 /* centered columns styles */
 .row-centered {
     text-align:center;
@@ -16,7 +21,7 @@
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
-    min-height: 300px;
+    // min-height: 300px;
 
 }
 // .col-centered {
@@ -199,6 +204,26 @@ h3 {
 .button:hover {
     background-color: rgba(60, 120, 216, 0.8);
 }
+
+// USED TO FORMAT BUTTONS ON PROFILE SETUP PAGE
+.profile_setup_button {
+    background-color: #7d7d7d;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    height: 36px;
+    outline: 0;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    // text-transform: uppercase;
+    letter-spacing: .5px;
+    transition: all .3s;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+
+
 
 // USED TO FORMAT 'OR' SPAN ON SIGN UP PAGE
 .or {
