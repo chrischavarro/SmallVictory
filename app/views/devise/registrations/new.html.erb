@@ -1,52 +1,53 @@
 <div class="row row-centered body-text">
-<h1>Sign up</h1>
+  <h1 class="header">Sign up</h1>
 
-<div class="col-sm-4 col-sm-offset-4">
-<div class="row social_buttons">
-  <%= link_to image_tag('facebook_login_unpressed.png', :class => "facebook_button"), user_facebook_omniauth_authorize_path %> 
-  <%= link_to image_tag('twitter_login_unpressed.png', :class => "twitter_button"), user_twitter_omniauth_authorize_path %>
+  <div class="col-sm-4 col-sm-offset-4">
+    <div class="row social_buttons">
+      <%= link_to image_tag('facebook_signup_unpressed.png', :class => "facebook_button"), user_facebook_omniauth_authorize_path %> 
+      <%= link_to image_tag('twitter_signup_unpressed.png', :class => "twitter_button"), user_twitter_omniauth_authorize_path %>
+      </div>
+    <span class="or">OR</span><br>
   </div>
-<span>OR</span><br>
-</div>
-<div class="col-sm-4 col-sm-offset-4">
-<%= form_for(resource, as: resource_name, html:{ :class => "signup_form" }, url: registration_path(resource_name)) do |f| %>
+  <div class="col-sm-4 col-sm-offset-4 or_span_padding">
+  <%= form_for(resource, as: resource_name, html:{ :class => "signup_form" }, url: registration_path(resource_name)) do |f| %>
+    
+    <%= render 'layouts/error_messages', object: resource  %>
+      <div class="field sign_up_form">
+        <%= f.label :name, :class => "signup_text" %><br> 
+        <%= f.text_field :first_name, autofocus:true, :class => "sign_up"  %>
+      </div>
+
+      <div class="field sign_up_form">
+        <%= f.label :email, :class => "signup_text" %><br>
+        <%= f.email_field :email, :class => "sign_up" %>
+      </div>
+
+      <div class="field sign_up_form">
+        <%= f.label :phone_number, :class => "signup_text" %><br>
+        <%= f.telephone_field :phone_number, :class => "sign_up"  %>
+      </div>
+
+      <div class="field sign_up_form">
+        <%= f.label "Password (6 characters minimum)", :class => "signup_text" %>
+        <%= f.password_field :password, autocomplete: "off", :class => "sign_up" %>
+      </div>
+
+      <div class="field sign_up_form">
+        <%= f.label :password_confirmation, :class => "signup_text" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", :class => "sign_up" %>
+      </div>
+
+      <div class="actions sign_up_form">
+        <%= f.submit "Sign up", :class => "button" %>
+      </div>
+  <% end %>
   
-  <%= render 'layouts/error_messages', object: resource  %>
-    <div class="field sign_up_form">
-      <%= f.label :name, :class => "signup_text" %><br> 
-      <%= f.text_field :first_name, autofocus:true, :class => "sign_up"  %>
-    </div>
+  <div class="divider"></div>
 
-    <div class="field sign_up_form">
-      <%= f.label :email, :class => "signup_text" %><br>
-      <%= f.email_field :email, :class => "sign_up" %>
-    </div>
+  <h2 class="sub_header">Already signed up?</h2>
+    <div class="login_button_padding">
+      <%= button_to "Log in", new_session_path(resource_name), :class => "button", :method => :get %><br />
 
-    <div class="field sign_up_form">
-      <%= f.label :phone_number, :class => "signup_text" %><br>
-      <%= f.telephone_field :phone_number, :class => "sign_up"  %>
     </div>
-
-    <div class="field sign_up_form">
-      <%= f.label "Password (6 characters minimum)", :class => "signup_text" %>
-      <%= f.password_field :password, autocomplete: "off", :class => "sign_up" %>
-    </div>
-
-    <div class="field sign_up_form">
-      <%= f.label :password_confirmation, :class => "signup_text" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", :class => "sign_up" %>
-    </div>
-
-    <div class="actions sign_up_form">
-      <%= f.submit "Sign up" %>
-    </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  </div>
 </div>
-</div>
- 
-  
-         <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
