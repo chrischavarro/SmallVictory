@@ -1,60 +1,70 @@
 <div class="row row-centered body-text">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h1 class="header">Edit <%= resource_name.to_s.humanize %></h1>
+    
+  <div class="col-sm-4 col-sm-offset-4 or_span_padding">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render 'layouts/error_messages', object: resource  %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render 'layouts/error_messages', object: resource  %>
+      <div class="field sign_up_form">
+      <%= f.label :first_name, :class => "signup_text"  %><br />
+      <%= f.text_field :first_name, autofocus:true, :class => "sign_up" %>
 
-  <div class="field">
-  <%= f.label :first_name  %><br />
-  <%= f.text_field :first_name, autofocus:true %>
+      <div class="field sign_up_form">
+        <%= f.label :last_name, :class => "signup_text"  %><br />
+        <%= f.text_field :last_name, :class => "sign_up" %>
+      </div>
 
-  <div class="field">
-  <%= f.label :last_name  %><br />
-  <%= f.text_field :last_name %>
+      <div class="field sign_up_form">
+        <%= f.label :email, :class => "signup_text" %><br />
+        <%= f.email_field :email, :class => "sign_up" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+      <div class="field sign_up_form">
+        <%= f.label :phone_number, :class => "signup_text"  %><br />
+        <%= f.telephone_field :phone_number, :class => "sign_up" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :phone_number  %><br />
-    <%= f.telephone_field :phone_number  %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <div class="field sign_up_form">
+        <label class="signup_text" for="user_password">New password <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %></label>
+        <br>
+        <%= f.password_field :password, autocomplete: "off", :class => "sign_up" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="field sign_up_form">
+        <%= f.label :password_confirmation, :class => "signup_text" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", :class => "sign_up" %>
+      </div>
+
+      <div class="field sign_up_form">
+        <label class="signup_text" for="user_current_password">Current password <i>(enter password to confirm your changes)</i></label><br>
+
+        <%= f.password_field :current_password, autocomplete: "off", :class => "sign_up" %>
+      </div>
+
+      <div class="actions sign_up_form">
+        <%= f.submit "Update User", :class => "button" %>
+      </div>
     <% end %>
+    </div>
+
+    <div class="divider"></div>
+
+      <div class="row">
+        <div class="login_button_padding">
+          <div class="col-sm-6">
+            <h2 class="sub_header">Taking a break?</h2>
+            <%= button_to("Log out", destroy_user_session_path, method: 'DELETE', :class => "button") %>
+          </div>
+            <div class="col-sm-6 ">
+            <h2 class="sub_header">Is this goodbye?</h2>
+            <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => "button" %> </div>
+        </div>
+      </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<%= link_to("Change your Settings", setup_path)  %>
-<%= link_to("Log out", destroy_user_session_path, method: 'DELETE') %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
 </div>
