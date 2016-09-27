@@ -51,6 +51,10 @@ $(document).ready(function(){
     $( function() {
     	$( "#menu" ).menu();
   })
+
+    // $('.next_step_1').click(function(){
+    //     $('.step_1').html($('.step_2'));
+    // })
 // CHART.JS
     // var ctx = document.getElementById("myChart");
     //     var myChart = new Chart(ctx, {
@@ -99,7 +103,6 @@ $(document).ready(function(){
   //   max: 100,
   //   title: "Visitors"
   // });
-$(".start").click(function(){ $(".demo.stopwatch").TimeCircles().start(); }); 
 
 
 $(".demo").TimeCircles(
@@ -117,23 +120,22 @@ $(".demo").TimeCircles(
     start_angle: 0
 });
 
-var $container = $('.demo .textDiv_Seconds');
-$container.find('h4').text('Minutes');
-var $original = $container.find('span');
-var $clone = $original.clone().appendTo($container);
-$original.hide();
+// var $container = $('.demo .textDiv_Seconds');
+// $container.find('h4').text('Minutes');
+// var $original = $container.find('span');
+// var $clone = $original.clone().appendTo($container);
+// $original.hide();
 
-$('.demo').TimeCircles().addListener(function(unit, value, total) {
-    total = Math.abs(total);
-    var minutes = Math.floor(total / 60) % 60;
-    $clone.text(minutes);
-}, "all")
+// $('.demo').TimeCircles().addListener(function(unit, value, total) {
+//     total = Math.abs(total);
+//     var minutes = Math.floor(total / 60) % 60;
+//     $clone.text(minutes);
+// }, "all")
 
+$(".start").click(function(){ 
+    $(".demo.stopwatch").TimeCircles().start(); 
+}); 
 
 
 
 });
-
-
-
-

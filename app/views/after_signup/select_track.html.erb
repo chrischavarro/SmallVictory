@@ -1,20 +1,17 @@
 <div class="row row-centered body-text">
-<h1>Select your Track</h1><br>
-<% @unique_tracks.each do |track|  %>
-		<div class="col-sm-3 track col-centered ">
-	      
-	      <img class="card-img-top img-responsive center" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150" alt="Card image cap">
-	      <div class="card-block text-center">
-	        <h4 class="card-title"><%= track.name  %></h4>
-	        <p class="card-text"><%= track.description %></p>
-	        <!-- user_track_path(track.id) fixes problem of track not being assigned -->
-	        <%= link_to("Select", user_track_path(track.id), :class => 'btn btn-primary')  %>
+	<h1>Select your Track</h1><br>
+	<% @unique_tracks.each do |track|  %>
+			<div class="col-sm-3 track col-centered ">
+		      
+		      <img class="card-img-top img-responsive center" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150" alt="Card image cap">
+		      <div class="card-block text-center">
+		        <h4 class="card-title"><%= track.name  %></h4>
+		        <p class="card-text"><%= track.description %></p>
+		        <!-- user_track_path(track.id) fixes problem of track not being assigned -->
+		        <%= link_to("Select", user_track_path(track.id), :class => 'btn btn-primary')  %>
 
-	      </div>
-		</div>
-
-
-		
-<% end %>
+		      </div>
+			</div>
+	<% end %>
 
 </div>
