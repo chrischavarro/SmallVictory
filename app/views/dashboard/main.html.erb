@@ -24,34 +24,40 @@
   <h1 class="header">Dashboard</h1>
 
   <div class="col-sm-6 col-sm-offset-3 or_span_padding">
+    <h2>What's up, <%= current_user.first_name  %>!</h2>
+    <h3>You're currently on a 3 day streak</h3>
+    <h3>Your longest streak was 96 days</h3>
+    <h3>You've completed <%= @completed.count  %> out of <%= @attempted.count  %> victories</h3>
+    <% if @attempted.empty? %>
+      <h3>You haven't completed any victories yet!</h3>
+    <% else %>
+      <h3>You've completed <%= @completion_percentage.round(0) %>% of your victories!</h3>
+      <ul>
+      <h3><% current_user.tracks.last.tasks.each do |task| %>
+        <li><%= task %></li>
+        <% end %>
+        </ul>
+      </h3>
+    <% end %>
 
-  <h2>What's up, <%= current_user.first_name  %>!</h2>
-  <h3>You're currently on a 3 day streak</h3>
-  <h3>Your longest streak was 96 days</h3>
-  <h3>You've completed <%= @completed.count  %> out of <%= @attempted.count  %> victories</h3>
-  <% if @attempted.empty? %>
-    <h3>You haven't completed any victories yet!</h3>
-  <% else %>
-    <h3>You've completed <%= @completion_percentage.round(0) %>% of your victories!</h3>
-  <% end %>
+    <h2>You're following these tracks </h2>
+    	<ul>
+    		<% current_user.tracks.each do |track|  %>
+    			<li><%= link_to(track.name, new_track_task_path(track.id))  %>
+    				<%= UserTrackCompletionAssociation.where(track_id: track.id, user_id: current_user.id,  completed: true).count  %>
+    			</li>
+    		<% end %>
+    	</ul>
 
-  <h2>You're following these tracks </h2>
-  	<ul>
-  		<% current_user.tracks.each do |track|  %>
-  			<li><%= link_to(track.name, new_track_task_path(track.id))  %>
-  				<%= UserTrackCompletionAssociation.where(track_id: track.id, user_id: current_user.id,  completed: true).count  %>
-  			</li>
-  		<% end %>
-  	</ul>
+      <style>
+      .ui-menu { width: 150px; }
+      </style>
 
-    <style>
-    .ui-menu { width: 150px; }
-    </style>
+    	<div class="col-md-6 col-centered">
+    <%= pie_chart         data, options %>
 
-  	<div class="col-md-6 col-centered">
-  <%= pie_chart         data, options %>
-  	<div id="gauge" class="200x160px"></div>
-  	</div>
+    	<div id="gauge" class="200x160px"></div>
+    	</div>
 </div>
   </div> 
 
