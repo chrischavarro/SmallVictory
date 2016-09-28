@@ -48,9 +48,24 @@ li span {
     font-size: 50px;
 }
 
+.setup_button_text {
+    font-weight: 400;
+}
+
 .sub_header {
     font-weight: 300;
     font-size: 28px;
+}
+
+.profile_setup_header {
+    font-size: 38px;
+    padding-bottom: 15px;
+    font-weight: 400;
+}
+
+.profile_greeting {
+    font-size: 40px;
+    font-weight: 300;
 }
 
 h3 {
@@ -121,14 +136,6 @@ h3 {
 	padding-top: 28px;
 }
 
-.track {
-	border-style: solid;
-	border-width: 1px;
-	background-color: #3C78D8;
-	color: #ffffff;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
 
 .profile_dropdown {
 	padding-left: 5px;
@@ -209,9 +216,10 @@ h3 {
 .profile_setup_button {
     background-color: #7d7d7d;
     color: #fff;
-    border: none;
+    // border: none;
+    font-size: 22px;
     border-radius: 2px;
-    height: 36px;
+    height: 50px;
     outline: 0;
     padding-left: 3.5rem;
     padding-right: 3.5rem;
@@ -222,7 +230,39 @@ h3 {
     width: 100%;
 }
 
+// USED TO FORMAT CONTINUE BUTTONS ON PROFILE SETUP PAGE
+.profile_setup_continue_button {
+    background-color: #7d7d7d;
+    color: #fff;
+    border: 1px solid transparent;
+    border-color: #2e6da4;
+    border-radius: 2px;
+    height: 44px;
+    font-size: 24px;  
+    font-weight: 600;  
+    outline: 0;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    margin-top: 10px;
+    // text-transform: uppercase;
+    letter-spacing: .5px;
+    transition: all .3s;
+    margin-bottom: 15px;
+    width: 75%;
+}
 
+
+
+.profile_setup_continue_button:hover {
+    background-color: #26a69a;
+}
+
+// USED TO FORMAT DAY AND TAG BUTTONS ON PROFILE SETUP PAGE
+.select_profile_attributes {
+    width: 60%;
+    float: none;
+    margin: 0 auto;
+}
 
 
 // USED TO FORMAT 'OR' SPAN ON SIGN UP PAGE
@@ -252,6 +292,80 @@ h3 {
 .login_button_padding {
     margin-top: 20px;
 }
+
+// TRACK RELATED STYLING
+.track {
+    border-style: solid;
+    border-width: 1px;
+    background-color: #3C78D8;
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.track_select {
+    border-style: solid;
+    border-width: 1px;
+    background-color: #3C78D8;
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 20px;
+}
+
+.track_select_button {
+    background-color: #7d7d7d;
+    color: #fff;
+    border: 1px solid transparent;
+    border-color: #2e6da4;
+    border-radius: 2px;
+    height: 44px;
+    font-size: 24px;  
+    font-weight: 600;  
+    outline: 0;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    margin-top: 10px;
+    // text-transform: uppercase;
+    letter-spacing: .5px;
+    transition: all .3s;
+    margin-bottom: 15px;
+    width: 75%;
+}
+
+.track_select_button:hover {
+    background-color: #26a69a;
+}
+
+
+.track_title {
+    font-weight: 200;
+    font-size: 26px;
+    background-color: #7d7d7d;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border: 1px solid transparent;
+    border-color: #2e6da4;
+
+}
+
+.track_description {
+    font-weight: 500;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    line-height: 1.7;
+    text-align: left;
+}
+
+
+
+
+
+
+
 
 // STYLES FOR CALENDAR
 

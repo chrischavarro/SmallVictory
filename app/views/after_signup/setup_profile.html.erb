@@ -2,78 +2,78 @@
 
 		<div class="animated bounce"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
 		
-		<h2>Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
+		<h2 class="profile_greeting">Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
 	<div class="col-sm-6 col-sm-offset-3">
 		<%= form_for @profile, :html => {:id => "profile_form"} do |f| %>
-		<div class="col-sm-4 track col-centered step_1">
+		<div class="col-sm-12 track col-centered step_1">
 		      <div class="card-block text-center">
-		        <h2 class="card-title">What days do you <br> want to take off?</h2>
+		        <h2 class="card-title profile_setup_header">What days do you <br> want to get a task?</h2>
 		        <p class="card-text">
-					<div class="btn-group" data-toggle="buttons">
+					<div class="select_profile_attributes" data-toggle="buttons">
 
 						<label class="btn btn-primary profile_setup_button" >
-							<label>Monday</label>
+							<label class="setup_button_text">Monday</label>
 							<input type="checkbox" value="1" name="profile[monday]" id="profile_monday">
 						</label> <br>
 						<label class="btn btn-primary profile_setup_button">
-							<label>Tuesday</label>
+							<label class="setup_button_text">Tuesday</label>
 							<input type="checkbox" value="1" name="profile[tuesday]" id="profile_tuesday">
 						</label> <br>
 						<label class="btn btn-primary profile_setup_button">
-							<label>Wednesday</label>
+							<label class="setup_button_text">Wednesday</label>
 							<input type="checkbox" value="1" name="profile[wednesday]" id="profile_wednesday">
 						</label> <br>
 						<label class="btn btn-primary profile_setup_button">
-							<label>Thursday</label>
+							<label class="setup_button_text">Thursday</label>
 							<input type="checkbox" value="1" name="profile[thursday]" id="profile_thursday">
 						</label> <br>
 						<label class="btn btn-primary profile_setup_button">
-							<label>Friday</label>
+							<label class="setup_button_text">Friday</label>
 							<input type="checkbox" value="1" name="profile[friday]" id="profile_friday">
 						</label> <br>
 						<label class="btn btn-primary profile_setup_button">
-							<label>Saturday</label>
+							<label class="setup_button_text">Saturday</label>
 							<input type="checkbox" value="1" name="profile[saturday]" id="profile_saturday">
 						</label> <br>
 						<label class="btn btn-primary profile_setup_button">
-							<label>Sunday</label>
+							<label class="setup_button_text">Sunday</label>
 							<input type="checkbox" value="1" name="profile[sunday]" id="profile_sunday">
 						</label>
 					</div>
-						<div class="profile_setup_button next_step_1">Continue</div>
+						<button class="profile_setup_continue_button next_step_1">Next</button>
 		        	</p>
 		      </div>
 		</div>
-		<div class="col-sm-4 track col-centered step_2">
+		<div class="col-sm-12 track col-centered step_2">
 		      <div class="card-block text-center">
-		        <h2 class="card-title">What time do you <br> usually wake up?</h2>
+		        <h2 class="card-title profile_setup_header">What time do you <br> usually wake up?</h2>
 		        <span class="body-text text-center card-text">
 		        	<%= f.text_field :wake_up_time, id: "wakeup_time_select" %>
 		        </span>
-				<div class="profile_setup_button next_step_2">Continue</div>
+				<button class="profile_setup_continue_button next_step_2">Next</button>
 
 			</div>
 		</div>
-		     <div class="col-sm-4 track col-centered">
+		     <div class="col-sm-12 track col-centered step_3">
 		      <div class="card-block text-center">
-		        <h2 class="card-title">What do you want <br> to get better at?</h2>
+		        <h2 class="card-title profile_setup_header">What do you want <br> to get better at?</h2>
 		        <p class="card-text">
 		        	<div class="btn-group" data-toggle="buttons">
 			        	<% @tags.each do |tag| %>
 			        		<label class="btn btn-primary profile_setup_button">
-			        		<label><%= tag.name  %></label>
+			        		<label class="setup_button_text"><%= tag.name  %></label>
 			        		<input type="checkbox" name="tags[<%= tag.id %>]" >
 			        		</label><br>
 			        	<% end %>
 		        	</div>
 		        </p>
+		<%= f.submit 'Continue', :class => 'profile_setup_continue_button'  %>
 			</div>
 		</div>
 	<br>
 	<div class="row col-sm-12 col-centered">
-		<!-- <button class="btn btn-default btn-block"> -->
-		<%= f.submit 'Continue', :class => 'btn btn-primary btn-block button'  %>
-		<!-- </button> -->
+		
+		
 	</div>
 	</div>
 </div>

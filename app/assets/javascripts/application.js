@@ -52,9 +52,20 @@ $(document).ready(function(){
     	$( "#menu" ).menu();
   })
 
-    // $('.next_step_1').click(function(){
-    //     $('.step_1').html($('.step_2'));
-    // })
+    $('.step_2').hide();
+    $('.step_3').hide();
+
+    $('.next_step_1').click(function(event){
+        event.preventDefault();
+        $('.step_1').fadeOut();
+        $('.step_2').fadeIn();
+    })
+
+    $('.next_step_2').click(function(event){
+        event.preventDefault();
+        $('.step_2').fadeOut();
+        $('.step_3').fadeIn();
+    })
 // CHART.JS
     // var ctx = document.getElementById("myChart");
     //     var myChart = new Chart(ctx, {
