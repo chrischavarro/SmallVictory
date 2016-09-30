@@ -586,44 +586,35 @@ h3 {
 
 // }
 
-.textDiv_Minutes h4 {
-    font-size: 25px !important;
-    position: absolute !important;
-    top: 66px !important;
-    left: 329px !important;
+.timer_submit_button {
+    background-color: #7d7d7d;
+    color: #fff;
+    border: 1px solid transparent;
+    // border-color: #2e6da4;
+    border-radius: 2px;
+    height: 44px;
+    font-size: 24px;  
+    font-weight: 600;  
+    outline: 0;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    margin-top: 10px;
+    // text-transform: uppercase;
+    letter-spacing: .5px;
+    transition: all .3s;
+    margin-bottom: 15px;
+    width: 75%;    
 }
 
-.textDiv_Minutes span {
-    font-size: 100px !important;
-    position: absolute !important;
-    left: 185px !important;
-    top: -40px !important;
+.timer_submit_button:hover {
+    background-color: #26a69a;
 }
 
-.textDiv_Seconds h4 {
-    display: none!important;
-}
+// .countdown_timer canvas {
+//     width: 80%!important;
+//     height: 80%!important;
+// }
 
-.textDiv_Seconds span {
-    display: none!important;
-}
-
-.demo.stopwatch {
-    overflow: hidden !important;
-    position: relative;
-    margin-left: 25px;
-}
-.body-text {
-    position:relative;
-}
-.timer_submit {
-    position: absolute;
-    top: 520px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.demo.stopwatch canvas {
-    position: absolute;
-    top: 0;
-    right: 27%;
-}
+// .textDiv_Seconds {
+//     width: 80%!important;
+// }

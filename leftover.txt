@@ -7,3 +7,9 @@ USED ON DASHBOARD PAGE TO SHOW COUNT OF TOTAL TASKS COMPLETED
     			</li>
     		<% end %>
     	</ul>
+
+
+USED ON HEADER TO GIVE USER OPTION TO EDIT THEIR PROFILE MODEL
+          <%= link_to("Edit Profile" , '/profiles/update') %>
+          
+            <%= image_tag('down_arrow.svg', size: "20x20")%>
