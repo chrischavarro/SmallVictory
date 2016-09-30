@@ -1,14 +1,13 @@
-
 <div class="row row-centered body-text">
-<%  %>
-<h1>Your task for today:</h1>
-<h2>Do 100 Pushups</h2>
-<div class="row row-centered">
-	<button class="btn btn-success start">Get Started</button>
-</div>
-	<div class="demo stopwatch col-centered" data-timer="301"></div>
-	<%= form_tag("/tracks/" + @track.id.to_s + "/tasks") do  %>
-		<button type="submit">Victory</button>
-	<% end %>
-
+	<div class="col-sm-6 col-sm-offset-3 or_span_padding">
+		<h1 class="header">Your task for today:</h1>
+		<h2 class="header">Do 100 <%= @task.name  %></h2>
+		<div class="row row-centered">
+			<button class="track_select_button" id="start">Get Started</button>
+		</div>
+			<div class="demo stopwatch col-centered" data-timer="301" style="width:800px;height:800px;"></div>
+			<%= form_tag("/tracks/" + @track.id.to_s + "/tasks") do  %>
+				<button class="btn btn-default timer_submit" type="submit">Victory</button>
+			<% end %>
+	</div>
 </div>

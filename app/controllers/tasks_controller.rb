@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 	def new
 		@track = Track.find_by(id: params[:track_id])
+		@task = @track.tasks.sample
 	end
 
 	def create

@@ -31,23 +31,13 @@
     <% if @attempted.empty? %>
       <h3>You haven't completed any victories yet!</h3>
     <% else %>
-      <h3>You've completed <%= @completion_percentage.round(0) %>% of your victories!</h3>
-      <ul>
-      <h3><% current_user.tracks.last.tasks.each do |task| %>
-        <li><%= task %></li>
-        <% end %>
-        </ul>
-      </h3>
+      <h3>You've completed <%= @completion_percentage.round(0) %>% of your victories!</h3>      
     <% end %>
 
-    <h2>You're following these tracks </h2>
-    	<ul>
-    		<% current_user.tracks.each do |track|  %>
-    			<li><%= link_to(track.name, new_track_task_path(track.id))  %>
-    				<%= UserTrackCompletionAssociation.where(track_id: track.id, user_id: current_user.id,  completed: true).count  %>
-    			</li>
-    		<% end %>
-    	</ul>
+    <h2>You're on the <%= current_user.tracks.first.name  %> track </h2>
+    <!-- INCLUDE CHECK FOR WHETHER USER COMPLETED THEIR TASK FOR THE DAY -->
+    <h3>Ready for today's task?</h3>
+      <%= button_to("Yaassss", new_track_task_path(@user_tracks.id), :method => :get, :class => "track_select_button") %>
 
       <style>
       .ui-menu { width: 150px; }
@@ -64,4 +54,4 @@
 
 <!-- Pie chart could be used to show makeup of tasks completed that week/month/year (pushups vs situps, squats, etc) -->
 <!-- Radar chart could be used to show comparison between two data sets, one showing the number of tasks presented for each task and the number actually completed -->
-<!-- Line chart could be used to show the number of completions every week/month/year -->
+<!-- Line chart could be used to show the number of completions every week/month/year

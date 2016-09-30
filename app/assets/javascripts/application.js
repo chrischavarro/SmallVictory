@@ -26,19 +26,24 @@
 
 
 $(document).ready(function(){
-    $('#calendar').datepicker({
-        inline: true,
-        firstDay: 1,
-        showOtherMonths: true,
-        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    });
+    // $('#calendar').datepicker({
+    //     inline: true,
+    //     firstDay: 1,
+    //     showOtherMonths: true,
+    //     dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    // });
 
 	 $('#wakeup_time_select').TimePickerAlone({
 	    inputFormat: 'HH:mm',
-	    hours: true,
-	    minutes: true,
-	    seconds: false,
-	    ampm: true
+	    // hours: true,
+	    // minutes: true,
+	    // seconds: false,
+	    // ampm: true,
+     //    twelveHoursFormat:true,
+        mouseWheel: false,
+        listenKeyPress: true,
+        defaultTime: '12:00',
+        inline: true
 	  });
 	  window.onerror = function (m){
 	  alert(m)
@@ -121,7 +126,7 @@ $(".demo").TimeCircles(
     Days: {show: false},
     Hours: {show: false},
     Minutes: {show: true},
-    Seconds: {show: false}
+    Seconds: {show: true}
     },
     count_past_zero: false,
     circle_bg_color: "#3C78D8",
@@ -143,7 +148,7 @@ $(".demo").TimeCircles(
 //     $clone.text(minutes);
 // }, "all")
 
-$(".start").click(function(){ 
+$("#start").click(function(){ 
     $(".demo.stopwatch").TimeCircles().start(); 
 }); 
 

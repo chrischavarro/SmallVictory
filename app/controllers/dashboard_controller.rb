@@ -12,6 +12,7 @@ class DashboardController < ApplicationController
 		completions = UserTrackCompletionAssociation.where(user_id: current_user.id)
 		@completed = []
 		@attempted = []
+		@user_tracks = current_user.tracks.first
 		completions.each do |completion|
 			if completion.completed
 				@completed.push(completion)

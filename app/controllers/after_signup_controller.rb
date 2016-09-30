@@ -11,7 +11,7 @@ class AfterSignupController < ApplicationController
 		# From Tracks Controller
 		@user_tags = current_user.tags.pluck(:id)
 		@tracks = Track.joins(:tag_associations).where("tag_associations.id IN (?)", @user_tags)
-		@unique_tracks = @tracks.distinct
+		@unique_tracks = @tracks.uniq
 		@track = Track.find_by(id: params[:track_id])
 
 

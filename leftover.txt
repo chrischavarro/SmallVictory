@@ -1,0 +1,9 @@
+USED ON DASHBOARD PAGE TO SHOW COUNT OF TOTAL TASKS COMPLETED
+
+    	<ul>
+    		<% current_user.tracks.each do |track|  %>
+    			<li><%= button_to("Yaassss", new_track_task_path(track.id))  %>
+    				<%= UserTrackCompletionAssociation.where(track_id: track.id, user_id: current_user.id,  completed: true).count  %>
+    			</li>
+    		<% end %>
+    	</ul>
