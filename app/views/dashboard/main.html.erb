@@ -23,8 +23,8 @@
 <div class="row row-centered body-text">
   <h1 class="header">Dashboard</h1>
 
-  <div class="col-sm-6 col-sm-offset-3 or_span_padding">
-    <h2>What's up, <%= current_user.first_name  %>!</h2>
+  <div class="col-sm-6 col-sm-offset-3">
+    <h2 class="sub_header">What's up, <%= current_user.first_name  %>!</h2>
     <h3>You're currently on a 3 day streak</h3>
     <h3>Your longest streak was 96 days</h3>
     <h3>You've completed <%= @completed.count  %> out of <%= @attempted.count  %> victories</h3>

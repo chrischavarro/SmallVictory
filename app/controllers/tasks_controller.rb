@@ -2,6 +2,12 @@ class TasksController < ApplicationController
 	def new
 		@track = Track.find_by(id: params[:track_id])
 		@task = @track.tasks.sample
+		@prompt = ""
+		if current_user.first_time_user
+			@prompt = "Let's get started with your first task!"
+		else
+			@prompt = "Your task for today:"
+		end
 	end
 
 	def create

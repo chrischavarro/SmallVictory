@@ -21,31 +21,25 @@
 //= require jquery.mousewheel.min.js
 //= require raphael-2.1.4.min.js
 //= require justgage.js
-//= require jquery.timepicker.min.js
+//= require bootstrap-timepicker.min.js
 //= require jquery.knob.js
 
 
 
 $(document).ready(function(){
-    // $('#calendar').datepicker({
-    //     inline: true,
-    //     firstDay: 1,
-    //     showOtherMonths: true,
-    //     dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    // });
 
-	 $('#wakeup_time_select').TimePickerAlone({
-	    inputFormat: 'HH:mm',
-	    // hours: true,
-	    // minutes: true,
-	    // seconds: false,
-	    // ampm: true,
-     //    twelveHoursFormat:true,
-        mouseWheel: false,
-        listenKeyPress: true,
-        defaultTime: '12:00',
-        inline: true
-	  });
+	 // $('#wakeup_time_select').TimePickerAlone({
+	 //    inputFormat: 'HH:mm',
+	 //    // hours: true,
+	 //    // minutes: true,
+	 //    // seconds: false,
+	 //    // ampm: true,
+  //    //    twelveHoursFormat:true,
+  //       mouseWheel: false,
+  //       listenKeyPress: true,
+  //       defaultTime: '12:00',
+  //       inline: true
+	 //  });
 	  window.onerror = function (m){
 	  alert(m)
 	  }

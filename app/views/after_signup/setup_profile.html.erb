@@ -1,9 +1,8 @@
 <div class="row row-centered body-text">
 
 		<div class="animated bounce"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
-		
-		<h2 class="profile_greeting">Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2><br>
 	<div class="col-sm-6 col-sm-offset-3">
+		<h2 class="profile_greeting">Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2>
 		<%= form_for @profile, :html => {:id => "profile_form"} do |f| %>
 		<div class="col-sm-12 track col-centered step_1">
 		      <div class="card-block text-center">
@@ -47,8 +46,8 @@
 		<div class="col-sm-12 track col-centered step_2">
 		      <div class="card-block text-center">
 		        <h2 class="card-title profile_setup_header">What time do you <br> usually wake up?</h2>
-		        <div class="body-text text-center card-text">
-		        	<%= f.text_field :wake_up_time, id: "wakeup_time_select" %>
+		        <div class="body-text text-center card-text wakeup_time_box">
+		        	<%= f.text_field :wake_up_time, id: "" %>
 		        </div>
 				<button class="profile_setup_continue_button next_step_2">Next</button>
 
@@ -78,6 +77,15 @@
 	</div>
 </div>
 <% end %>
-
-<script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.js"></script>
+<!-- 
+<script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.js"></script> -->
 <!-- TO BE USED IN DIV CLASS WITH DATA TOGGLE BUTTONS btn-group -->
+
+        <div class="input-group bootstrap-timepicker timepicker">
+            <input id="timepicker1" type="text" class="form-control input-small">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+        </div>
+ 
+        <script type="text/javascript">
+            $('#timepicker1').timepicker();
+        </script>
