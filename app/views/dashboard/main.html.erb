@@ -37,7 +37,7 @@
     <h2>You're on the <%= current_user.tracks.first.name  %> track </h2>
     <!-- INCLUDE CHECK FOR WHETHER USER COMPLETED THEIR TASK FOR THE DAY -->
     <h3>Ready for today's task?</h3>
-      <%= button_to("Yaassss", new_track_task_path(@user_tracks.id), :method => :get, :class => "track_select_button") %>
+      <%= button_to("Yaassss", new_track_task_type_path(@user_tracks.id), :method => :get, :class => "track_select_button") %>
 
       <style>
       .ui-menu { width: 150px; }

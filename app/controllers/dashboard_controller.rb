@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
 			format.json 
 		end
 
-		completions = UserTrackCompletionAssociation.where(user_id: current_user.id)
+		completions = UserCompletion.where(user_id: current_user.id)
 		@completed = []
 		@attempted = []
 		@user_tracks = current_user.tracks.first

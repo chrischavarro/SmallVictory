@@ -2,6 +2,7 @@ class TaskTypesController < ApplicationController
 	def new
 		@track = Track.find_by(id: params[:track_id])
 		@task = @track.tasks.sample
+		@task_type = @task.task_types.sample
 		@prompt = ""
 		if current_user.first_time_user
 			@prompt = "Let's get started with your first task!"
@@ -11,7 +12,7 @@ class TaskTypesController < ApplicationController
 	end
 
 	def create
-		completion = UserTrackCompletionAssociation.new
+		completion = UserCompletion.new
 		completion.user_id = current_user.id
 		completion.track_id = params[:track_id]
 		# This is where to decide how long task took, whether or not it was completed, etc

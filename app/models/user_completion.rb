@@ -1,0 +1,2 @@
+class UserCompletion < ApplicationRecord
+end

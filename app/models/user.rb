@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :user_track_associations
   has_many :tracks, through: :user_track_associations
 
-  has_many :user_track_completion_associations
+  has_many :user_completions
 
   phony_normalize :phone_number, default_country_code: 'US'
   phony_normalize :phone_number, as: :phone_number_normalized_version, default_country_code: 'US'
@@ -60,8 +60,8 @@ class User < ApplicationRecord
     if profile
       profile.destroy
     end
-    user_track_completion_associations.each do |user_track_completion_association|
-      user_track_completion_association.destroy
+    user_completions.each do |user_completion|
+      user_completion.destroy
     end
   end
 end

@@ -1,4 +1,4 @@
-ActiveAdmin.register UserTrackCompletionAssociation do
+ActiveAdmin.register UserCompletion do
 	permit_params :user_id, :track_id, :completed
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
