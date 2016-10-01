@@ -1,4 +1,4 @@
-ActiveAdmin.register TaskTrackAssociation do
+ActiveAdmin.register TaskTypeTrackAssociation do
 	permit_params :track_id, :task_id
 
 # See permitted parameters documentation:

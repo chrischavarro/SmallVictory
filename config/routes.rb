@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 	resources :after_signup
 	resources :profiles
 	resources :tracks do
-		resources :tasks
+		resources :task_types
 	end
 	
 end
