@@ -13,6 +13,16 @@ class DashboardController < ApplicationController
 		@completed = []
 		@attempted = []
 		@user_tracks = current_user.tracks.first
+
+		@tasks = @user_tracks.tasks
+		@task_type_array = []
+			@tasks.each do |task|
+				@task_type_array.push(task.task_types)
+			end
+		
+
+
+
 		completions.each do |completion|
 			if completion.completed
 				@completed.push(completion)
@@ -32,3 +42,22 @@ class DashboardController < ApplicationController
   		end
   	end
 end
+
+# @task_array2 = []			
+		# 	@task_type_array.each do |task|
+		# 		@task_array2.push(task.task_type)
+		# 	end
+
+		# last = @task_type_array.last
+		# @array2 = []
+		# last.each do |item|
+		# 	@array2.push(item.name)
+		# end
+		# @task_types = []
+		# 	@task_type_array.each do |task_type|
+		# 		@task_types.push(task_type.task_types)
+		# 	end
+    # <!-- WORKING EXAMPLE FOR PULLING TASK TYPE -->
+    # <% @array2.each do |array|  %>
+    # <%= array %>
+    # <% end %>

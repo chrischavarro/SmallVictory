@@ -35,14 +35,27 @@
     <% end %>
 
     <h2>You're on the <%= current_user.tracks.first.name  %> track </h2>
-    <!-- INCLUDE CHECK FOR WHETHER USER COMPLETED THEIR TASK FOR THE DAY -->
+    <!-- INCLUDE CHECK FOR WHETHER USER ALREADY COMPLETED THEIR TASK FOR THE DAY -->
     <h3>Ready for today's task?</h3>
       <%= button_to("Yaassss", new_track_task_type_path(@user_tracks.id), :method => :get, :class => "track_select_button") %>
+    <!-- USED TO KEEP TRACK OF ALL TASKS ASSOCIATED WITH TRACK -->
+    <ul>
+    <% @tasks.each do |task| %>
+      <li>You've done x <%=  task.name  %> tasks</li>
+    <% end %>
 
-      <style>
-      .ui-menu { width: 150px; }
-      </style>
-
+    </ul>
+    <!-- USED TO KEEP TRACK OF ALL TASK TYPES ASSOCIATED WITH ALL TASKS -->
+    <ul>
+    <% @task_type_array.each do |task_type| %>
+      <li>You've done x <%= task_type.name  %> task types</li>
+    <% end %>
+    </ul>
+  <ul>
+  <% @completed.each do |completion| %>
+  <li><%= completion.task.name %></li>
+  <% end %>
+  </ul>
     	<div class="col-md-6 col-centered">
     <%= pie_chart         data, options %>
 
@@ -55,3 +68,6 @@
 <!-- Pie chart could be used to show makeup of tasks completed that week/month/year (pushups vs situps, squats, etc) -->
 <!-- Radar chart could be used to show comparison between two data sets, one showing the number of tasks presented for each task and the number actually completed -->
 <!-- Line chart could be used to show the number of completions every week/month/year
+
+
+

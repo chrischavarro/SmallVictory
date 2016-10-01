@@ -15,6 +15,7 @@ class TaskTypesController < ApplicationController
 		completion = UserCompletion.new
 		completion.user_id = current_user.id
 		completion.track_id = params[:track_id]
+		completion.task_id = params[:task_type]
 		# This is where to decide how long task took, whether or not it was completed, etc
 		completion.completed = true
 		if completion.save
@@ -26,4 +27,9 @@ class TaskTypesController < ApplicationController
 	end
 end
 
-
+# LOGIC TO EXTRACT THE TRACK FROM THE TRACK TYPE
+# q = TaskType.last => a task type
+# p = q.tasks = Extracting the array of tasks associated with the type, may be only one in the array
+# p.each do |item|
+# puts item.name
+# end

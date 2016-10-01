@@ -2,6 +2,7 @@
 	<div class="col-sm-6 col-sm-offset-3 or_span_padding">
 		<h1 class="header"><%= @prompt  %></h1>
 		<h2 class="header">Do 100 <%= @task_type.name  %></h2>
+		<%= @task_type.tasks.name  %>
 		<div class="row row-centered">
 			<button class="timer_submit_button" id="start">Get Started</button>
 		</div>
@@ -9,6 +10,7 @@
 			<div class="row">
 			<%= form_tag("/tracks/" + @track.id.to_s + "/task_types") do  %>
 				<button class="btn btn-default task_victory_button" type="submit">Victory</button>
+				<%= hidden_field_tag("task_type", @task_type.id) %>
 			<% end %>
 			</div>
 	</div>

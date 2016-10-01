@@ -22,9 +22,6 @@
 //= require raphael-2.1.4.min.js
 //= require justgage.js
 //= require bootstrap-timepicker.min.js
-//= require jquery.knob.js
-
-
 
 $(document).ready(function(){
 
