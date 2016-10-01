@@ -15,7 +15,8 @@ class TaskTypesController < ApplicationController
 		completion = UserCompletion.new
 		completion.user_id = current_user.id
 		completion.track_id = params[:track_id]
-		completion.task_id = params[:task_type]
+		completion.task_id = params[:task]
+		completion.task_type_id = params[:task_type]
 		# This is where to decide how long task took, whether or not it was completed, etc
 		completion.completed = true
 		if completion.save

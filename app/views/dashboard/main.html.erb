@@ -51,6 +51,13 @@
       <li>You've done x <%= task_type.name  %> task types</li>
     <% end %>
     </ul>
+  <!-- USED TO COUNT COMPLETION IN TASK CATEGORIES -->
+  <ul>
+  <% @completed.each do |completion| %>
+  <li><%= completion.task_type.name %></li>
+  <% end %>
+  </ul>
+  <!-- USED TO COUNT TASK TYPES BY COMPLETION -->
   <ul>
   <% @completed.each do |completion| %>
   <li><%= completion.task.name %></li>

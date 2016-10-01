@@ -10,6 +10,7 @@
 			<div class="row">
 			<%= form_tag("/tracks/" + @track.id.to_s + "/task_types") do  %>
 				<button class="btn btn-default task_victory_button" type="submit">Victory</button>
+				<%= hidden_field_tag("task", @task.id) %>
 				<%= hidden_field_tag("task_type", @task_type.id) %>
 			<% end %>
 			</div>
