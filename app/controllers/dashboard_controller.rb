@@ -20,9 +20,6 @@ class DashboardController < ApplicationController
 				@task_type_array.push(task.task_types)
 			end
 		
-
-
-
 		completions.each do |completion|
 			if completion.completed
 				@completed.push(completion)
@@ -61,3 +58,10 @@ end
     # <% @array2.each do |array|  %>
     # <%= array %>
     # <% end %>
+
+    #     <!-- USED TO KEEP TRACK OF ALL TASK TYPES ASSOCIATED WITH ALL TASKS -->
+    # <ul>
+    # <% @task_type_array.each do |task_type| %>
+    #   <li>You've done x <%= task_type.name  %> task types</li>
+    # <% end %>
+    # </ul>

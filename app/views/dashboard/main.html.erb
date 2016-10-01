@@ -45,12 +45,7 @@
     <% end %>
 
     </ul>
-    <!-- USED TO KEEP TRACK OF ALL TASK TYPES ASSOCIATED WITH ALL TASKS -->
-    <ul>
-    <% @task_type_array.each do |task_type| %>
-      <li>You've done x <%= task_type.name  %> task types</li>
-    <% end %>
-    </ul>
+
   <!-- USED TO COUNT COMPLETION IN TASK CATEGORIES -->
   <ul>
   <% @completed.each do |completion| %>

@@ -21,7 +21,8 @@
 //= require jquery.mousewheel.min.js
 //= require raphael-2.1.4.min.js
 //= require justgage.js
-//= require bootstrap-timepicker.min.js
+//= require picker.js 
+//= require picker.time.js
 
 $(document).ready(function(){
 
@@ -40,6 +41,11 @@ $(document).ready(function(){
 	  window.onerror = function (m){
 	  alert(m)
 	  }
+
+    $('.timepicker').pickatime({
+        clear: ''
+    })
+
 
     $('.victor').click(function(){
     	$('.victor').toggleClass("animated bounce")
@@ -141,5 +147,4 @@ $(document).ready(function(){
             $clone.text(minutes);
         });
  
-
 });
