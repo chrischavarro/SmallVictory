@@ -18,6 +18,8 @@ class User < ApplicationRecord
 
   has_many :user_completions
 
+  has_streak
+
   phony_normalize :phone_number, default_country_code: 'US'
   phony_normalize :phone_number, as: :phone_number_normalized_version, default_country_code: 'US'
   phony_normalized_method :fax_number

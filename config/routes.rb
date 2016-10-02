@@ -16,5 +16,6 @@ Rails.application.routes.draw do
 	resources :tracks do
 		resources :task_types
 	end
+	resources :user_completions, except: [:new, :edit]
 	
 end

@@ -9,6 +9,11 @@ class TaskTypesController < ApplicationController
 		else
 			@prompt = "Your task for today:"
 		end
+
+		if task_completed_today = true
+			flash[:notice] = "You've already completed your task for today!"
+			redirect_to dashboard_path
+		end
 	end
 
 	def create
@@ -26,6 +31,14 @@ class TaskTypesController < ApplicationController
 		end
 
 	end
+
+	private
+
+	def task_completed_today
+		current_user.user_completions.last == Time.now
+	end
+
+
 end
 
 # LOGIC TO EXTRACT THE TRACK FROM THE TRACK TYPE
