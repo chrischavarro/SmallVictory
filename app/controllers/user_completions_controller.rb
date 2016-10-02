@@ -13,12 +13,15 @@ class UserCompletionsController < ApplicationController
 
 	def show
 		user_completion = UserCompletion.find_by(id: params[:id])
+		completion_info = user_completion.task_id
 		unless user_completion
 			render json: {error: "User completion not found"},
 				status: 404
 			return
 		end
-		render json: sandwich
+		render :json => {user_completion,
+						completion_info}
+
 	end
 
 	def update
