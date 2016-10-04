@@ -4,6 +4,8 @@ before_action(:authenticate_user!)
 	def new
 		@profile = Profile.new
 		@tags = Tag.all
+		@user = current_user
+
 	end
 
 	def update
@@ -51,6 +53,10 @@ before_action(:authenticate_user!)
 			)
 		@profile.save
 
+		# if current_user.phone_number.nil?
+		# 	current_user.phone_number = params[:profile][:phone_number]
+		# end
+
 		redirect_to '/after_signup/select_track'
 	end
 
@@ -61,3 +67,14 @@ before_action(:authenticate_user!)
 	end
 
 end
+
+# TO BE USED FOR PHONE NUMBER MODAL ON PROFILE SETUP PAGE IF USING SOCIAL LOGIN
+# <% if current_user.phone_number.nil? %>
+# 			<%= form_for @user do |f|  %>
+# 			<div class="" id="phone_number">
+#         <%= f.label :phone_number, :class => "signup_text" %><br>
+#         <%= f.telephone_field :phone_number, :class => "sign_up"  %>
+# 			</div>
+# 			<%= f.submit 'Submit'  %>
+# 			<% end %>
+# 		<% end %>

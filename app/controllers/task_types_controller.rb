@@ -9,11 +9,11 @@ class TaskTypesController < ApplicationController
 		else
 			@prompt = "Your task for today:"
 		end
+		if task_completed_today == true
+			flash[:notice] = "You've already completed your task for today!"
+			redirect_to dashboard_path
+		end
 
-		# if task_completed_today == true
-		# 	flash[:notice] = "You've already completed your task for today!"
-		# 	redirect_to dashboard_path
-		# end
 	end
 
 	def create
@@ -35,7 +35,8 @@ class TaskTypesController < ApplicationController
 	private
 
 	def task_completed_today
-		current_user.user_completions.last.created_at == Date.today
+		completed_at = current_user.user_completions.last.created_at
+		DateTime.now.beginning_of_day <= completed_at && completed_at <= DateTime.now.end_of_day
 	end
 
 
