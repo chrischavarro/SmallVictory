@@ -7,23 +7,63 @@
        <%   backgroundColor: "rgba(60, 120, 216, 0.5)",%>
         <%  borderColor: "rgba(220,220,220,1)",%>
         <%  data: [65, 59, 80, 81, 56, 55, 40]%>
-    <%  },%>
-    <% { %>
-        <%  label: "My Second dataset",%>
-        <%  backgroundColor: "rgba(30, 215, 96, 0.5)",%>
-        <% borderColor: "rgba(151,187,205,1)", %>
-        <%  data: [28, 48, 40, 19, 86, 27, 90]%>
-    <%  } %>
+    <%  }%>
   <%  ] %>
 <% } %>
 
 <% options = { :width => 200, :height => 200, :generateLegend => false } %>
+
+<% pie_data = { %>
+  <%  labels: @task_array,%>
+  <% datasets: [  %>
+    <%  { %>
+        <%  label: "My First dataset",%>
+       <%   backgroundColor: "rgba(60, 120, 216, 0.5)",%>
+        <%  borderColor: "rgba(220,220,220,1)",%>
+        <%  data: [15, 59, 80, 81, 56, 55, 40]%>
+    <%  }%>
+  <%  ] %>
+<% } %>
+
+<% radar_data = { %>
+  <%  labels: @task_array,%>
+  <% datasets: [  %>
+    <%  { %>
+        <%  label: "My First dataset",%>
+       <%   backgroundColor: "rgba(60, 120, 216, 0.5)",%>
+        <%  borderColor: "rgba(220,220,220,1)",%>
+        <%  data: [65, 59, 80, 81]%>
+    <%  }%>
+  <%  ] %>
+<% } %>
+
+<% bar_data = { %>
+  <%  labels: @task_type_labels,%>
+  <% datasets: [  %>
+    <%  { %>
+        <%  label: "My First dataset",%>
+       <%   backgroundColor: "rgba(60, 120, 216, 0.5)",%>
+        <%  borderColor: "rgba(220,220,220,1)",%>
+        <%  data: [65, 59, 80, 81]%>
+    <%  }%>
+  <%  ] %>
+<% } %>
+
+
+<% options = { :width => 200, :height => 200, :generateLegend => false } %>
+
 <!-- END RUBY CODE FOR CHART -->
 
 <div class="row row-centered body-text">
   <h1 class="header">Dashboard</h1>
 
   <div class="col-sm-6 col-sm-offset-3">
+  <% flash.each do |key, value| %>
+        <div class="alert alert-warning alert-dismissible"><%= value %>        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button></div>
+
+      <% end %>
     <h2 class="sub_header">What's up, <%= current_user.first_name  %>!</h2>
     <h3>You're currently on a <%= current_user.streak(:user_completions)  %> day streak</h3>
     <h3>Your longest streak was 96 days</h3>
@@ -59,7 +99,10 @@
   <% end %>
   </ul>
     	<div class="col-md-6 col-centered">
-    <%= pie_chart         data, options %>
+    <%= pie_chart         pie_data, options %>
+    <%= radar_chart         radar_data, options %>
+    <%= line_chart         data, options %>
+    <%= bar_chart         bar_data, options %>
 
     	<div id="gauge" class="200x160px"></div>
     	</div>

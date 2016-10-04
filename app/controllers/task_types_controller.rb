@@ -10,10 +10,10 @@ class TaskTypesController < ApplicationController
 			@prompt = "Your task for today:"
 		end
 
-		if task_completed_today = true
-			flash[:notice] = "You've already completed your task for today!"
-			redirect_to dashboard_path
-		end
+		# if task_completed_today == true
+		# 	flash[:notice] = "You've already completed your task for today!"
+		# 	redirect_to dashboard_path
+		# end
 	end
 
 	def create
@@ -22,8 +22,8 @@ class TaskTypesController < ApplicationController
 		completion.track_id = params[:track_id]
 		completion.task_id = params[:task]
 		completion.task_type_id = params[:task_type]
+		completion.completed = params[:completed]
 		# This is where to decide how long task took, whether or not it was completed, etc
-		completion.completed = true
 		if completion.save
 			redirect_to dashboard_path
 		else
@@ -35,7 +35,7 @@ class TaskTypesController < ApplicationController
 	private
 
 	def task_completed_today
-		current_user.user_completions.last == Time.now
+		current_user.user_completions.last.created_at == Date.today
 	end
 
 

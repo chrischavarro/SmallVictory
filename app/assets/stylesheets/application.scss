@@ -160,7 +160,7 @@ h3 {
     padding-left: 30px;
     padding-right: 30px;
     margin-bottom: 20px;
-    box-shadow: 0px 1px 2px 2px #7d7d7d;
+    box-shadow: 0px 8px 23px 5px rgba(88, 105, 107, 0.35);
 }
 
 .track_select_button {
@@ -206,8 +206,6 @@ h3 {
     text-align: left;
 }
 
-
-
 // TASK RELATED STYLING
 .timer_submit_button {
     background-color: #3C78D8;
@@ -247,6 +245,8 @@ h3 {
     transition: all .3s;
     margin-bottom: 15px;
     width: 35%;    
+    transition: all .3s;
+
     // border-color: #2e6da4;
     // text-transform: uppercase;
     // padding-left: 3.5rem;
@@ -261,6 +261,19 @@ h3 {
     // margin-left: 10px;
 }
 
+#DateCountdown {
+    padding-left: 35px;
+}
+
+#times_up {
+    background-color: #f44336;
+    // ef5350;
+    transition: all .7s;
+}
+
+#times_up:hover {
+    background-color: #ef5350;
+}
 // SIGN UP LOG IN RELATED STYLING
 
 // Used to create border containing 'OR' text
@@ -293,7 +306,7 @@ h3 {
     padding: 0;
     box-shadow: none;
     box-sizing: content-box;
-    transition: all .3s;
+    // transition: all .3s;
 }
 
 // Used to color the active input field
@@ -372,6 +385,7 @@ h3 {
 .profile_greeting {
     font-size: 40px;
     font-weight: 300;
+    padding-bottom: 25px;
 }
 
 

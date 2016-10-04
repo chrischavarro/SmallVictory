@@ -4,17 +4,35 @@ class DashboardController < ApplicationController
 
 
 	def main
-		respond_to do |format|
-			format.html
-			format.json 
-		end
+		# respond_to do |format|
+		# 	format.json {
+		# 		render :json => {
+		# 			:completions => completions
+		# 		}
+		# 	}
+		# end
 
 		completions = UserCompletion.where(user_id: current_user.id)
 		@completed = []
 		@attempted = []
 		@user_tracks = current_user.tracks.first
-
 		@tasks = @user_tracks.tasks
+
+		@task_array = []
+		@tasks.each do |task|
+			@task_array.push(task.name)
+		end
+
+		# @task_count_array = []
+		# @tasks.each do |task|
+		# 	@task_count_array.push(task.count)
+		# end
+
+		@task_type_labels = []
+			completions.each do |completion|
+				@task_type_labels.push(completion.task_type.name)
+			end
+
 		@task_type_array = []
 			@tasks.each do |task|
 				@task_type_array.push(task.task_types)
@@ -65,3 +83,5 @@ end
     #   <li>You've done x <%= task_type.name  %> task types</li>
     # <% end %>
     # </ul>
+
+# t.user_completions.where(task_id: 5).count

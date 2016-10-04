@@ -5,12 +5,14 @@
 		<div class="row row-centered">
 			<button class="timer_submit_button" id="start">Get Started</button>
 		</div>
-			<div id='DateCountdown' class="demo stopwatch col-sm-6 col-sm-offset-3 countdown_timer row" data-timer="300" style="height:400px;width:400px;"></div>
+			<div id='DateCountdown' class="demo stopwatch col-sm-6 col-sm-offset-3 countdown_timer row" data-timer="4" style="height:400px;width:400px;"></div>
+
 			<div class="row">
 			<%= form_tag("/tracks/" + @track.id.to_s + "/task_types") do  %>
-				<button class="btn btn-default task_victory_button" type="submit">Victory</button>
+				<button class="btn btn-default task_victory_button" id="" type="submit">Victory</button>
 				<%= hidden_field_tag("task", @task.id) %>
 				<%= hidden_field_tag("task_type", @task_type.id) %>
+				<%= hidden_field_tag("completed", 'true') %>
 			<% end %>
 			</div>
 	</div>

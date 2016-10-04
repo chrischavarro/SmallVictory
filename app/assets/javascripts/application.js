@@ -145,6 +145,12 @@ $(document).ready(function(){
             total = Math.abs(total);
             var minutes = Math.floor(total / 60) % 60;
             $clone.text(minutes);
+            if(total == 0) {
+                // alert("Time has run out");
+                $('.task_victory_button').attr('id', 'times_up')
+                $('#times_up').text("Time's Up :(")
+                $('#completed').attr('value', 'false')
+            }
         });
  
 });

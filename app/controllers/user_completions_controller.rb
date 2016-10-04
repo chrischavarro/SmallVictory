@@ -2,8 +2,10 @@ class UserCompletionsController < ApplicationController
 	  protect_from_forgery with: :null_session
 
 	def index
-		user_completions = UserCompletion.all
-		render json: user_completions
+		user_completions = User.last.user_completions
+		task_type = user_completions.task_type.all.name
+
+		render json: task_type
 	end
 
 	def create
@@ -13,14 +15,16 @@ class UserCompletionsController < ApplicationController
 
 	def show
 		user_completion = UserCompletion.find_by(id: params[:id])
-		completion_info = user_completion.task_id
+		task_type = user_completion.task_type.name
+		task = user_completion.task.name
+		completion_info = [user_completion, task_type, task]
 		unless user_completion
 			render json: {error: "User completion not found"},
 				status: 404
 			return
 		end
-		render :json => {user_completion,
-						completion_info}
+		render :json => completion_info
+						
 
 	end
 
