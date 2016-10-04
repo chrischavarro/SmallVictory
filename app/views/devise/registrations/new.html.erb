@@ -23,11 +23,6 @@
       </div>
 
       <div class="field sign_up_form">
-        <%= f.label :phone_number, :class => "signup_text" %><br>
-        <%= f.telephone_field :phone_number, :class => "sign_up"  %>
-      </div>
-
-      <div class="field sign_up_form">
         <%= f.label "Password (6 characters minimum)", :class => "signup_text" %>
         <%= f.password_field :password, autocomplete: "off", :class => "sign_up" %>
       </div>

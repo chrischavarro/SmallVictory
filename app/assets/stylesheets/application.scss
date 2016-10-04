@@ -436,6 +436,48 @@ h3 {
     background-color: #26a69a;
 }
 
+.phone_number {
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    // height: 3.5rem;
+    width: 70%;
+    margin-bottom: 15px;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all .3s;
+} 
+
+.phone_number:focus {
+    border-bottom: 3px solid #26a69a;
+    box-shadow: 0 1px 0 0 #26a69a;    
+}
+
+
+// Used to format the input fields in sign up and log in forms
+// .sign_up {
+//     background-color: transparent;
+//     border: none;
+//     border-bottom: 1px solid #9e9e9e;
+//     border-radius: 0;
+//     outline: none;
+//     height: 3.5rem;
+//     width: 70%;
+//     margin-bottom: 15px;
+//     padding: 0;
+//     box-shadow: none;
+//     box-sizing: content-box;
+//     // transition: all .3s;
+// }
+
+
 .wakeup_time {
     font-size: 36px;
     font-weight: 500;
@@ -479,4 +521,62 @@ h3 {
 
 .next_step_2 {
     margin-top: 20px;
+}
+
+// DASHBOARD RELATED STYLING
+.task_completed {
+    background-color: #26a69a;
+    color: white;
+}
+
+// Used to format 'Let's go! button
+.dashboard_start_task_button {
+    background-color: #3C78D8;
+    color: #fff;
+    border: 1px solid transparent;
+    border-color: #2e6da4;
+    border-radius: 2px;
+    height: 75px;
+    font-size: 35px;  
+    font-weight: 600;  
+    outline: 0;
+    // padding-left: 3.5rem;
+    // padding-right: 3.5rem;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    transition: all .3s;
+    margin-bottom: 15px;
+    width: 55%;
+
+}
+
+.dashboard_start_task_button:hover {
+    background-color: #26a69a;
+}
+
+.dashboard_recap {
+    box-shadow: 0px 8px 23px 5px rgba(88, 105, 107, 0.35);      
+    background-color: #3C78D8;
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0px 8px 23px 5px rgba(88, 105, 107, 0.35);    
+    margin-bottom: 30px;
+}
+
+.completion_charts {
+    box-shadow: 0px 8px 23px 5px rgba(88, 105, 107, 0.35);      
+    background-color: white;
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0px 8px 23px 5px rgba(88, 105, 107, 0.35);    
+
+}
+
+.dashboard_header {
+    font-weight: 200;
+    font-size: 70px;
+    padding-bottom: 20px;
 }

@@ -19,11 +19,6 @@
         <%= f.email_field :email, :class => "sign_up" %>
       </div>
 
-      <div class="field sign_up_form">
-        <%= f.label :phone_number, :class => "signup_text"  %><br />
-        <%= f.telephone_field :phone_number, :class => "sign_up" %>
-      </div>
-
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>

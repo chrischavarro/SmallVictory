@@ -46,6 +46,12 @@
 		</div>
 		<div class="col-sm-12 track col-centered step_2">
 		      <div class="card-block text-center">
+		      	<h2 class="card-title profile_setup_header">
+		      	What's your phone number?
+		      	</h2>
+		      	<div class="body-text text-center card-text">
+					<%= f.text_field :phone_number, :class => "phone_number"  %>
+		      	</div>
 		        <h2 class="card-title profile_setup_header">What time do you <br> usually wake up?</h2>
 		        <div class="body-text text-center card-text ">
 		        	<%= f.text_field :wake_up_time, :class => "timepicker wakeup_time" %>

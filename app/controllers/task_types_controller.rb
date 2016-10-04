@@ -9,10 +9,10 @@ class TaskTypesController < ApplicationController
 		else
 			@prompt = "Your task for today:"
 		end
-		if task_completed_today == true
-			flash[:notice] = "You've already completed your task for today!"
-			redirect_to dashboard_path
-		end
+		# if task_completed_today == true
+		# 	flash[:notice] = "You've already completed your task for today!"
+		# 	redirect_to dashboard_path
+		# end
 
 	end
 

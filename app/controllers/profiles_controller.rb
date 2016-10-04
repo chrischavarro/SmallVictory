@@ -43,6 +43,7 @@ before_action(:authenticate_user!)
 		@profile = Profile.new(
 			user_id: current_user.id,
 			wake_up_time: params[:profile][:wake_up_time],
+			phone_number: params[:profile][:phone_number],
 			monday: params[:profile][:monday],
 			tuesday: params[:profile][:tuesday],
 			wednesday: params[:profile][:wednesday],
@@ -52,10 +53,6 @@ before_action(:authenticate_user!)
 			sunday: params[:profile][:sunday]
 			)
 		@profile.save
-
-		# if current_user.phone_number.nil?
-		# 	current_user.phone_number = params[:profile][:phone_number]
-		# end
 
 		redirect_to '/after_signup/select_track'
 	end
