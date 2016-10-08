@@ -202,7 +202,7 @@ Devise.setup do |config|
   # change their passwords.
   config.reset_password_within = 6.hours
   config.omniauth :facebook, "1121906471180947", "f6981a15f89d73239fe34728bc54e0ec", 
-                  callback_url: "https://smallvictory.herokuapp.com/users/auth/facebook/callback",
+                  callback_url: "www.smallvictory.co/users/auth/facebook/callback",
                   scope: 'email, public_profile',
                   info_fields: 'email, first_name, last_name, picture'
   config.omniauth :twitter, "yxi1CquxobvbQYPnBTv8pyjq3", "XblcP26awmBwtETWgNt8HJEamL86BaAEGednMP2aftWXR2byt4",
