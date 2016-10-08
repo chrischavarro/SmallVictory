@@ -12,3 +12,4 @@ user1, user2, user3 = User.create([
 	{first_name: "George", email: "george@email.com", password: "george", password_confirmation: "george"}
 ])
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+AdminUser.create!(email: 'chavarr.christian@gmail.com', password: 'Nintendods55', password_confirmation: 'Nintendods55')
