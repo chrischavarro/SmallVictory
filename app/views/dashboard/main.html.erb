@@ -1,61 +1,3 @@
-<!-- BEGIN RUBY CODE FOR CHART -->
-<% pie_data = { %>
-  <%  labels: @task_array,%>
-  <% datasets: [  %>
-    <%  { %>
-        <%  label: "My First dataset",%>
-       <%   backgroundColor: [ %>
-              <% "rgba(60, 120, 216, 0.7)",%>
-              <% "rgba(38, 166, 154, 0.7)",%>
-              <% "rgba(255, 99, 132, 0.7)",%>
-              <% "rgba(255, 206, 86, 0.7)"%>
-              <% ], %>
-        <%  borderColor: "rgba(220,220,220,1)",%>
-        <%  data: [15, 59, 80, 81]%>
-    <%  }%>
-  <%  ] %>
-<% } %>
-
-<% radar_data = { %>
-  <%  labels: @task_array,%>
-  <% datasets: [  %>
-    <%  { %>
-        <%  label: "My First dataset",%>
-       <%   backgroundColor: "rgba(38, 166, 154, 0.7)",%>
-        <%  borderColor: "rgba(220,220,220,1)",%>
-        <%  data: [20, 50, 40, 70]%>
-    <%  },%>
-    <%  { %>
-        <%  label: "My First dataset",%>
-       <%   backgroundColor: "rgba(255, 206, 86, 0.7)",%>
-        <%  borderColor: "rgba(220,220,220,1)",%>
-        <%  data: [65, 59, 80, 81]%>
-    <%  }%>
-  <%  ] %>
-<% } %>
-
-<% bar_data = { %>
-  <%  labels: @task_type_labels,%>
-  <% datasets: [  %>
-    <%  { %>
-        <%  label: "My First dataset",%>
-       <%   backgroundColor: [ %>
-              <% "rgba(60, 120, 216, 0.7)",%>
-              <% "rgba(38, 166, 154, 0.7)",%>
-              <% "rgba(255, 99, 132, 0.7)",%>
-              <% "rgba(255, 206, 86, 0.7)"%>
-              <% ], %>
-        <%  borderColor: "rgba(220,220,220,1)",%>
-        <%  data: [65, 59, 80, 81]%>
-    <%  }%>
-  <%  ] %>
-<% } %>
-
-
-<% options = { :width => 200, :height => 200, :generateLegend => false } %>
-
-<!-- END RUBY CODE FOR CHART -->
-
 <div class="row row-centered body-text">
   <h1 class="dashboard_header">Dashboard</h1>
 
@@ -102,14 +44,346 @@
   </ul>
 </div>
   	<div class="col-sm-6 col-sm-offset-3 completion_charts card-block">
-      <div class="col-md-8 col-centered">
-    <%= pie_chart         pie_data, options %>
-    <%= radar_chart         radar_data, options %>
-    <%= bar_chart         bar_data, options %>
+      <div class="col-sm-10 col-centered">
+    <h2 class="chart_breakdown">Here's the breakdown of tasks you've gotten so far</h2>
+    <div class="row chart_range_button_set ">
+      <button id="update_pie" class="update_chart_range">This Week</button>
+      <button id="update_pie" class="update_chart_range">This Month</button>
+      <button id="update_pie" class="update_chart_range">This Year</button>
+    </div>
+      <canvas id="js_doughnut_chart" width="400" height="400"></canvas>
+    <h2 class="chart_breakdown">Here's how many tasks we've given you <br>compared to how many you've completed</h2>
+    <div class="row chart_range_button_set">
+      <button id="update_pie" class="update_chart_range">This Week</button>
+      <button id="update_pie" class="update_chart_range">This Month</button>
+      <button id="update_pie" class="update_chart_range">This Year</button>
+    </div>
+      <canvas id="js_radar_chart" width="400" height="400"></canvas>
+    <h2 class="chart_breakdown">Here's how your victories have added up</h2>
+    <div class="row chart_range_button_set">
+      <button id="update_pie" class="update_chart_range">This Week</button>
+      <button id="update_pie" class="update_chart_range">This Month</button>
+      <button id="update_pie" class="update_chart_range">This Year</button>
+    </div>
+      <canvas id="js_line_chart" width="400" height="400"></canvas>
+
+    <button id="update_radar">Update Radar</button>
+    <button id="update_line">Update Line</button>
       </div>
   	</div>
   </div> 
 
+<script>
+  $(document).ready(function(){
+// START OF DRAWING DOUGHNUT CHART
+    var pie_chart_target = $( "#js_doughnut_chart" );
+    var start_date = moment().subtract(30, 'days').format();
+    var request = $.get("/api/doughnut_chart_data/" + start_date,
+      function(data) {
+        console.log(data)
+        var labels_array = []
+        var data_array = []
+        Object.keys(data).forEach(function(label){
+          labels_array.push(label);
+          data_array.push(data[label]);
+        })
+        var chartData = {
+              labels: labels_array,
+              datasets: [
+                  {
+                      data: data_array,
+                      backgroundColor: [
+                          "#FF6384",
+                          "#36A2EB",
+                          "#FFCE56",
+                          "rgba(38, 166, 154, 0.7)"
+                      ],
+                      borderColor: [
+                          // "#FF6384"
+                      ]
+                  }]
+              };
+              console.log(chartData)
+       new Chart(pie_chart_target, {
+          type: 'doughnut',
+          data: chartData,
+          options: {
+            width: 400, 
+            height: 400,
+            generateLegend: false
+          }
+        })
+     })
+// END OF DRAWING DOUGHNUT CHART
+
+// START OF DRAWING RADAR CHART
+    var radar_chart_target = $('#js_radar_chart');
+    var start_date = moment().subtract(30, 'days').format();
+    var request = $.get("/api/radar_chart_data/" + start_date,
+      function(data) {
+        console.log(data)
+        var labels_array2 = []
+        var data_array2 = []
+        Object.keys(data).forEach(function(label){
+          labels_array2.push(label);
+          data_array2.push(data[label]);
+        })
+        var chartData2 = {
+          labels: labels_array2,
+              datasets: [
+                  {
+                      data: data_array2,
+                      backgroundColor: [
+                          "#36A2EB"
+                          // "#36A2EB",
+                          // "#FFCE56",
+                          // "rgba(38, 166, 154, 0.7)"
+                      ],
+                      borderColor: [
+                          // "#FF6384"
+                      ]
+                  }]
+              };
+              console.log(chartData2)
+        var myRadarChart = new Chart(radar_chart_target, {
+          type: 'radar',
+          data: chartData2,
+          options: {
+            width: 200,
+            height: 200,
+            generateLegend: false
+          }
+        }) 
+      })
+// END OF DRAWING RADAR CHART
+
+// START OF DRAWING LINE CHART
+    var line_chart_target = $('#js_line_chart');
+    var start_date = moment().subtract(30, 'days').format();
+    var request = $.get("/api/line_chart_data/" + start_date,
+      function(data) {
+        console.log(data)
+        var labels_array = []
+        var data_array = []
+        Object.keys(data).forEach(function(label){
+          labels_array.push(label);
+          data_array.push(data[label]);
+        })
+        var chartData = {
+          labels: labels_array,
+              datasets: [
+                  {
+                      data: data_array,
+                      backgroundColor: [
+                          "#FF6384"
+                          // "#36A2EB",
+                          // "#FFCE56",
+                          // "rgba(38, 166, 154, 0.7)"
+                      ],
+                      borderColor: [
+                          // "#FF6384"
+                      ]
+                  }]
+              };
+              console.log(chartData)
+        var myLineChart = new Chart(line_chart_target, {
+          type: 'line',
+          data: chartData,
+          options: {
+            width: 200, 
+            height: 200,
+            generateLegend: false
+          }
+        })
+      })
+// END OF DRAWING LINE CHART
+
+    // $('#update_pie').on('click', function(){
+    //   $('#pie_chart').empty();
+    //   update_pie_chart();
+    // });
+    // $('#update_radar').on('click', function(){
+    //   $('#radar_chart').empty();
+    //   update_radar_chart();
+    // });
+    // $('#update_line').on('click', function(){
+    //   $('#line_chart').empty();
+    //   update_line_chart();
+    // })
+  });
+
+
+
+
+// var canvas = document.getElementById('updating-chart'),
+//     ctx = canvas.getContext('2d'),
+//     startingData = {
+//       labels: [1, 2, 3, 4, 5, 6, 7],
+//       datasets: [
+//           {
+//               fillColor: "rgba(220,220,220,0.2)",
+//               strokeColor: "rgba(220,220,220,1)",
+//               pointColor: "rgba(220,220,220,1)",
+//               pointStrokeColor: "#fff",
+//               data: [65, 59, 80, 81, 56, 55, 40]
+//           },
+//           {
+//               fillColor: "rgba(151,187,205,0.2)",
+//               strokeColor: "rgba(151,187,205,1)",
+//               pointColor: "rgba(151,187,205,1)",
+//               pointStrokeColor: "#fff",
+//               data: [28, 48, 40, 19, 86, 27, 90]
+//           }
+//       ]
+//     };
+
+// setInterval(function(){
+//   // Get a random index point
+//   var indexToUpdate = Math.round(Math.random() * startingData.labels.length);
+  
+//   // Update one of the points in the second dataset
+//   myLiveChart.datasets[1].points[indexToUpdate].value = Math.random() * 100;
+  
+//   myLiveChart.update();
+// }, 5000);
+
+
+
+
+
+  // var update_pie_chart = function() {
+  //   var pie_chart_target = $( "#pie_chart" );
+  //   var start_date = moment().subtract(30, 'days').format();
+  //   var request = $.get("/api/doughnut_chart_data/" + start_date,
+  //     function(data) {
+  //       console.log(data)
+  //       var labels_array = []
+  //       var data_array = []
+  //       Object.keys(data).forEach(function(label){
+  //         labels_array.push(label);
+  //         data_array.push(data[label]);
+  //       })
+  //       var chartData = {
+  //             labels: labels_array,
+  //             datasets: [
+  //                 {
+  //                     data: data_array,
+  //                     backgroundColor: [
+  //                         "#FF6384",
+  //                         "#36A2EB",
+  //                         "#FFCE56",
+  //                         "rgba(38, 166, 154, 0.7)"
+  //                     ],
+  //                     hoverBackgroundColor: [
+  //                         "#FF6384",
+  //                         "#36A2EB",
+  //                         "#FFCE56",
+  //                         "rgba(38, 166, 154, 0.7)"
+  //                     ]
+  //                 }]
+  //             };
+  //             console.log(chartData)
+  //     var myDoughnutChart = new Chart(pie_chart_target, {
+  //         type: 'doughnut',
+  //         data: chartData,
+  //         options: {
+  //           width: 200, 
+  //           height: 200,
+  //           generateLegend: false
+  //         }
+  //       })
+  //    })
+  //  };
+
+  // var update_radar_chart = function() {
+  //   var radar_chart_target = $('#radar_chart');
+  //   var start_date = moment().subtract(30, 'days').format();
+  //   var request = $.get("/api/radar_chart_data/" + start_date,
+  //     function(data) {
+  //       console.log(data)
+  //       var labels_array = []
+  //       var data_array = []
+  //       Object.keys(data).forEach(function(label){
+  //         labels_array.push(label);
+  //         data_array.push(data[label]);
+  //       })
+  //       var chartData = {
+  //         labels: labels_array,
+  //             datasets: [
+  //                 {
+  //                     data: data_array,
+  //                     backgroundColor: [
+  //                         "#FF6384"
+  //                         // "#36A2EB",
+  //                         // "#FFCE56",
+  //                         // "rgba(38, 166, 154, 0.7)"
+  //                     ],
+  //                     hoverBackgroundColor: [
+  //                         "#FF6384"
+  //                         // "#36A2EB",
+  //                         // "#FFCE56",
+  //                         // "rgba(38, 166, 154, 0.7)"
+  //                     ]
+  //                 }]
+  //             };
+  //             console.log(chartData)
+  //       var myRadarChart = new Chart(radar_chart_target, {
+  //         type: 'radar',
+  //         data: chartData,
+  //         options: {
+  //           width: 200,
+  //           height: 200,
+  //           generateLegend: false
+  //         }
+  //       }) 
+  //     })
+  // };
+
+  // var update_line_chart = function() {
+  //   var line_chart_target = $('#line_chart');
+  //   var start_date = moment().subtract(30, 'days').format();
+  //   var request = $.get("/api/line_chart_data/" + start_date,
+  //     function(data) {
+  //       console.log(data)
+  //       var labels_array = []
+  //       var data_array = []
+  //       Object.keys(data).forEach(function(label){
+  //         labels_array.push(label);
+  //         data_array.push(data[label]);
+  //       })
+  //       var chartData = {
+  //         labels: labels_array,
+  //             datasets: [
+  //                 {
+  //                     data: data_array,
+  //                     backgroundColor: [
+  //                         "#FF6384",
+  //                         "#36A2EB",
+  //                         "#FFCE56",
+  //                         "rgba(38, 166, 154, 0.7)"
+  //                     ],
+  //                     hoverBackgroundColor: [
+  //                         "#FF6384",
+  //                         "#36A2EB",
+  //                         "#FFCE56",
+  //                         "rgba(38, 166, 154, 0.7)"
+  //                     ]
+  //                 }]
+  //             };
+  //             console.log(chartData)
+  //       var myLineChart = new Chart(line_chart_target, {
+  //         type: 'line',
+  //         data: chartData,
+  //         options: {
+  //           width: 200, 
+  //           height: 200,
+  //           generateLegend: false
+  //         }
+  //       })
+  //     })
+  // };
+    
+</script>
 
 <!-- Pie chart could be used to show makeup of tasks completed that week/month/year (pushups vs situps, squats, etc) -->
 <!-- Radar chart could be used to show comparison between two data sets, one showing the number of tasks presented for each task and the number actually completed -->

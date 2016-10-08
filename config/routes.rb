@@ -16,6 +16,11 @@ Rails.application.routes.draw do
 	resources :tracks do
 		resources :task_types
 	end
-	resources :user_completions, except: [:new, :edit]
+
+	get '/api/doughnut_chart_data/:start_date' => 'user_completions#generate_doughnut_chart_data'
+	get '/api/radar_chart_data/:start_date' => 'user_completions#generate_radar_chart_data'
+	get '/api/line_chart_data/:start_date' => 'user_completions#generate_line_chart_data'
+
+	
 	
 end

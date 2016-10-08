@@ -1,9 +1,78 @@
 class UserCompletionsController < ApplicationController
 	  protect_from_forgery with: :null_session
+	  # before_action :authenticate_user!, only:[:generate_doughnut_chart_data]
+
+	def generate_doughnut_chart_data
+		# CHANGE TO CURRENT_USER AFTER DONE TESTING
+		@user = User.last
+		@start_date = ""
+		if params[:start_date]
+			@start_date = params[:start_date] 
+		else
+			@start_date = @user.created_at
+		end
+		user_completions = @user.user_completions.where("created_at > ?", @start_date)
+		task_data = {}
+		user_completions.each do |label|
+			print task_data
+			if !task_data.include?(label.task.name)
+				task_data[label.task.name] = 1
+			else
+				task_data[label.task.name] += 1
+			end
+		end
+
+		render json: task_data
+	end
+
+	def generate_radar_chart_data
+		@user = User.last
+		@start_date = ""
+		if params[:start_date]
+			@start_date = params[:start_date] 
+		else
+			@start_date = @user.created_at
+		end
+		user_completions = @user.user_completions.where("created_at > ?", @start_date)
+		task_data = {}
+		user_completions.each do |label|
+			print task_data
+			if !task_data.include?(label.task.name)
+				task_data[label.task.name] = 1
+			else
+				task_data[label.task.name] += 1
+			end
+		end
+
+		render json: task_data
+	end
+
+	def generate_line_chart_data
+		@user = User.last
+		@start_date = ""
+		if params[:start_date]
+			@start_date = params[:start_date] 
+		else
+			@start_date = @user.created_at
+		end
+		user_completions = @user.user_completions.where("created_at > ?", @start_date)
+		task_data = {}
+		user_completions.each do |label|
+			print task_data
+			if !task_data.include?(label.task.name)
+				task_data[label.task.name] = 1
+			else
+				task_data[label.task.name] += 1
+			end
+		end
+
+		render json: task_data
+	end
+
 
 	def index
 		user_completions = User.last.user_completions
-		task_type = user_completions.task_type.all.name
+		task_type = user_completions.task_type.name
 
 		render json: task_type
 	end
@@ -23,9 +92,7 @@ class UserCompletionsController < ApplicationController
 				status: 404
 			return
 		end
-		render :json => completion_info
-						
-
+		render :json => completion_info				
 	end
 
 	def update

@@ -580,3 +580,31 @@ h3 {
     font-size: 70px;
     padding-bottom: 20px;
 }
+
+.chart_breakdown {
+    font-weight: 300;
+    font-size: 34px;
+    color: #7d7d7d;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.update_chart_range {
+    // color: #7d7d7d;
+    height: 35px;
+    width: 30%;
+    border: 1px solid transparent;
+    border-color: #2e6da4;
+    border-radius: 2px;
+    background-color: #3C78D8;
+    letter-spacing: .5px;
+    transition: all .3s;
+}
+
+.update_chart_range:hover {
+    background-color: #26a69a;    
+}
+
+.chart_range_button_set {
+    padding-bottom: 15px;
+}
