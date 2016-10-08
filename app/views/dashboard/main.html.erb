@@ -79,19 +79,7 @@
         })
         var chartData = {
               labels: labels_array,
-              datasets: [
-                  {
-                      data: data_array,
-                      backgroundColor: [
-                          "#FF6384",
-                          "#36A2EB",
-                          "#FFCE56",
-                          "rgba(38, 166, 154, 0.7)"
-                      ],
-                      borderColor: [
-                          // "#FF6384"
-                      ]
-                  }]
+              data: data_array
               };
               console.log(chartData)
        new Chart(pie_chart_target, {
@@ -135,19 +123,7 @@
         })
         var chartData2 = {
           labels: labels_array2,
-              datasets: [
-                  {
-                      data: data_array2,
-                      backgroundColor: [
-                          "#36A2EB"
-                          // "#36A2EB",
-                          // "#FFCE56",
-                          // "rgba(38, 166, 154, 0.7)"
-                      ],
-                      borderColor: [
-                          // "#FF6384"
-                      ]
-                  }]
+          data: data_array2
               };
               console.log(chartData2)
        new Chart(radar_chart_target, {
@@ -191,21 +167,9 @@
         })
         var chartData = {
           labels: labels_array,
-              datasets: [
-                  {
-                      data: data_array,
-                      backgroundColor: [
-                          "#FF6384"
-                          // "#36A2EB",
-                          // "#FFCE56",
-                          // "rgba(38, 166, 154, 0.7)"
-                      ],
-                      borderColor: [
-                          // "#FF6384"
-                      ]
-                  }]
+          data: data_array              
               };
-              console.log(chartData)
+       console.log(chartData)
        new Chart(line_chart_target, {
         type: 'line',
         data: {
