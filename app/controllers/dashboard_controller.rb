@@ -85,3 +85,24 @@ end
     # </ul>
 
 # t.user_completions.where(task_id: 5).count
+
+  #   <!-- USED TO KEEP TRACK OF ALL TASKS ASSOCIATED WITH TRACK -->
+  #   <ul>
+  #   <% @tasks.each do |task| %>
+  #     <li>You've done x <%=  task.name  %> tasks</li>
+  #   <% end %>
+
+  #   </ul>
+
+  # <!-- USED TO COUNT COMPLETION IN TASK CATEGORIES -->
+  # <ul>
+  # <% @completed.each do |completion| %>
+  # <li><%= completion.task_type.name %></li>
+  # <% end %>
+  # </ul>
+  # <!-- USED TO COUNT TASK TYPES BY COMPLETION -->
+  # <ul>
+  # <% @completed.each do |completion| %>
+  # <li><%= completion.task.name %></li>
+  # <% end %>
+  # </ul>

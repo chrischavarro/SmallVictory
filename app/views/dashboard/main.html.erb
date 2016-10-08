@@ -10,7 +10,7 @@
       <% end %>
     <h2 class="sub_header">What's up, <%= current_user.first_name  %>!</h2>
     <h3>You're currently on a <%= current_user.streak(:user_completions)  %> day streak</h3>
-    <h3>Your longest streak was 96 days</h3>
+    <!-- <h3>Your longest streak was 96 days</h3> -->
     <h3>You've completed <%= @completed.count  %> out of <%= @attempted.count  %> victories</h3>
     <% if @attempted.empty? %>
       <h3>You haven't completed any victories yet!</h3>
@@ -22,28 +22,8 @@
     <!-- INCLUDE CHECK FOR WHETHER USER ALREADY COMPLETED THEIR TASK FOR THE DAY -->
     <h3>Ready for today's task?</h3>
       <%= button_to("Let's Go!", new_track_task_type_path(@user_tracks.id), :method => :get, :class => "dashboard_start_task_button") %>
-    <!-- USED TO KEEP TRACK OF ALL TASKS ASSOCIATED WITH TRACK -->
-    <ul>
-    <% @tasks.each do |task| %>
-      <li>You've done x <%=  task.name  %> tasks</li>
-    <% end %>
-
-    </ul>
-
-  <!-- USED TO COUNT COMPLETION IN TASK CATEGORIES -->
-  <ul>
-  <% @completed.each do |completion| %>
-  <li><%= completion.task_type.name %></li>
-  <% end %>
-  </ul>
-  <!-- USED TO COUNT TASK TYPES BY COMPLETION -->
-  <ul>
-  <% @completed.each do |completion| %>
-  <li><%= completion.task.name %></li>
-  <% end %>
-  </ul>
-</div>
-  	<div class="col-sm-6 col-sm-offset-3 completion_charts card-block">
+  </div>
+  <div class="col-sm-6 col-sm-offset-3 completion_charts card-block">
       <div class="col-sm-10 col-centered">
     <h2 class="chart_breakdown">Here's the breakdown of tasks you've gotten so far</h2>
     <div class="row chart_range_button_set ">
@@ -52,6 +32,11 @@
       <button id="update_pie" class="update_chart_range">This Year</button>
     </div>
       <canvas id="js_doughnut_chart" width="400" height="400"></canvas>
+      </div>
+      </div>
+  <div class="col-sm-6 col-sm-offset-3 completion_charts card-block">
+        <div class="col-sm-10 col-centered">
+
     <h2 class="chart_breakdown">Here's how many tasks we've given you <br>compared to how many you've completed</h2>
     <div class="row chart_range_button_set">
       <button id="update_pie" class="update_chart_range">This Week</button>
@@ -59,6 +44,10 @@
       <button id="update_pie" class="update_chart_range">This Year</button>
     </div>
       <canvas id="js_radar_chart" width="400" height="400"></canvas>
+    </div>
+    </div>
+      <div class="col-sm-6 col-sm-offset-3 completion_charts card-block">
+
     <h2 class="chart_breakdown">Here's how your victories have added up</h2>
     <div class="row chart_range_button_set">
       <button id="update_pie" class="update_chart_range">This Week</button>
@@ -70,6 +59,7 @@
     <button id="update_radar">Update Radar</button>
     <button id="update_line">Update Line</button>
       </div>
+
   	</div>
   </div> 
 
@@ -105,14 +95,29 @@
               };
               console.log(chartData)
        new Chart(pie_chart_target, {
-          type: 'doughnut',
-          data: chartData,
-          options: {
-            width: 400, 
-            height: 400,
-            generateLegend: false
+        type: 'doughnut',
+        data: {
+          labels: labels_array, 
+          datasets: [{
+            label: "Test",
+            data: data_array,
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "rgba(38, 166, 154, 0.7)"
+                ]
+            // borderColor: [
+            //     "#FF6384"
+            //     ],
+            //     borderWidth: 5
+          }]
+        },
+        options: {
+          scales: {
           }
-        })
+        }
+       })
      })
 // END OF DRAWING DOUGHNUT CHART
 
@@ -145,16 +150,31 @@
                   }]
               };
               console.log(chartData2)
-        var myRadarChart = new Chart(radar_chart_target, {
-          type: 'radar',
-          data: chartData2,
-          options: {
-            width: 200,
-            height: 200,
-            generateLegend: false
+       new Chart(radar_chart_target, {
+        type: 'radar',
+        data: {
+          labels: labels_array2, 
+          datasets: [{
+            label: "Test",
+            data: data_array2,
+            backgroundColor: [
+                "#FF6384"
+                // "#36A2EB",
+                // "#FFCE56",
+                // "rgba(38, 166, 154, 0.7)"
+                ]
+            // borderColor: [
+            //     "#FF6384"
+            //     ],
+            //     borderWidth: 5
+          }]
+        },
+        options: {
+          scales: {
           }
-        }) 
-      })
+        }
+       })
+     })
 // END OF DRAWING RADAR CHART
 
 // START OF DRAWING LINE CHART
@@ -186,17 +206,32 @@
                   }]
               };
               console.log(chartData)
-        var myLineChart = new Chart(line_chart_target, {
-          type: 'line',
-          data: chartData,
-          options: {
-            width: 200, 
-            height: 200,
-            generateLegend: false
+       new Chart(line_chart_target, {
+        type: 'line',
+        data: {
+          labels: labels_array, 
+          datasets: [{
+            label: "Test",
+            fill: false,
+            data: data_array,
+            backgroundColor: [
+                "#FF6384"
+                // "#36A2EB",
+                // "#FFCE56",
+                // "rgba(38, 166, 154, 0.7)"
+                ]
+            // borderColor: [
+            //     "#FF6384"
+            //     ],
+            //     borderWidth: 5
+          }]
+        },
+        options: {
+          scales: {
           }
-        })
-      })
-// END OF DRAWING LINE CHART
+        }
+       })
+     })// END OF DRAWING LINE CHART
 
     // $('#update_pie').on('click', function(){
     //   $('#pie_chart').empty();
