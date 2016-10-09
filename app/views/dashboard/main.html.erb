@@ -75,9 +75,9 @@
 })
 
 //         Chart.scaleService.updateScaleDefaults('radial', {
-//     scales: {
+//     scale: {
 //       ticks: {
-//         fixedStepSize: 1,
+//         // fixedStepSize: 1,
 //         beginAtZero: true
 //         // max: 10
 //       }
@@ -148,7 +148,8 @@
         var radarOptions = {
           scale: {
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              stepSize: 1
             }
           }
         }
