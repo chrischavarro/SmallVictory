@@ -65,6 +65,12 @@
 
 <script>
   $(document).ready(function(){
+
+    Chart.scaleService.updateScaleDefaults('linear', {
+    ticks: {
+        stepSize: 1
+    }
+})
 // START OF DRAWING DOUGHNUT CHART
     var pie_chart_target = $( "#js_doughnut_chart" );
     var start_date = moment().subtract(30, 'days').format();
@@ -126,6 +132,13 @@
           data: data_array2
               };
               console.log(chartData2)
+
+        var radarOptions = {
+          ticks: {
+            stepSize: 1,
+            beginAtZero: true
+          }
+        }
        new Chart(radar_chart_target, {
         type: 'radar',
         data: {
@@ -145,13 +158,7 @@
             //     borderWidth: 5
           }]
         },
-        options: {
-          scales: {
-            ticks: {
-              beginAtZero: true
-            }
-          }
-        }
+        options: radarOptions
        })
      })
 // END OF DRAWING RADAR CHART
