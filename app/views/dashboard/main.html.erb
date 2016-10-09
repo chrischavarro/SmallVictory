@@ -74,15 +74,15 @@
     }
 })
 
-        Chart.scaleService.updateScaleDefaults('radial', {
-    scales: {
-      ticks: {
-        fixedStepSize: 1,
-        beginAtZero: true
-        // max: 10
-      }
-    }
-})
+//         Chart.scaleService.updateScaleDefaults('radial', {
+//     scales: {
+//       ticks: {
+//         fixedStepSize: 1,
+//         beginAtZero: true
+//         // max: 10
+//       }
+//     }
+// })
 // START OF DRAWING DOUGHNUT CHART
     var pie_chart_target = $( "#js_doughnut_chart" );
     var start_date = moment().subtract(30, 'days').format();
@@ -148,11 +148,8 @@
         var radarOptions = {
           scales: {
             ticks: {
-                max: 10
+              beginAtZero: true
             }
-            // stepSize: 1,
-            // beginAtZero: true
-
           }
         }
        new Chart(radar_chart_target, {
