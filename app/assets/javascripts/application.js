@@ -37,7 +37,11 @@ $(document).ready(function(){
 
 
     $('.victor').click(function(){
-    	$('.victor').toggleClass("animated bounce")
+    	$('.victor').addClass("animated bounce").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('.victor').removeClass('animated bounce')
+            });
+
     });
 
     $( function() {
@@ -49,24 +53,25 @@ $(document).ready(function(){
 
     $('.next_step_1').click(function(event){
         event.preventDefault();
-        $('.step_1').fadeOut();
-        $('.step_2').fadeIn();
-    })
+        $('#step_1').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('.step_1').hide();
+                $('#step_2').addClass("fadeInLeft")
+                $('.step_2').fadeIn();
+            });
+    });
 
     $('.next_step_2').click(function(event){
         event.preventDefault();
-        $('.step_2').fadeOut();
-        $('.step_3').fadeIn();
-    })
-
-// JustGage JS
-  // var g = new JustGage({
-  //   id: "gauge",
-  //   value: 67,
-  //   min: 0,
-  //   max: 100,
-  //   title: "Visitors"
-  // });
+        $('#step_2').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('.step_2').hide();
+                $('#step_3').addClass("fadeInLeft")
+                $('.step_3').fadeIn();
+            });
+        // $('.step_2').fadeOut();
+        // $('.step_3').fadeIn();
+    });
 
     $("#DateCountdown").TimeCircles(
         { time: {
