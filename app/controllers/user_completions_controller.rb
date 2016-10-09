@@ -1,10 +1,10 @@
 class UserCompletionsController < ApplicationController
 	  protect_from_forgery with: :null_session
-	  # before_action :authenticate_user!, only:[:generate_doughnut_chart_data]
+	  before_action :authenticate_user!, only:[:generate_doughnut_chart_data, :generate_radar_chart_data, :generate_line_chart_data]
 
 	def generate_doughnut_chart_data
 		# CHANGE TO CURRENT_USER AFTER DONE TESTING
-		@user = User.last
+		@user = current_user
 		@start_date = ""
 		if params[:start_date]
 			@start_date = params[:start_date] 
@@ -26,7 +26,7 @@ class UserCompletionsController < ApplicationController
 	end
 
 	def generate_radar_chart_data
-		@user = User.last
+		@user = current_user
 		@start_date = ""
 		if params[:start_date]
 			@start_date = params[:start_date] 
@@ -68,7 +68,7 @@ class UserCompletionsController < ApplicationController
 	end
 
 	def generate_line_chart_data
-		@user = User.last
+		@user = current_user
 		@start_date = ""
 		if params[:start_date]
 			@start_date = params[:start_date] 
@@ -91,7 +91,7 @@ class UserCompletionsController < ApplicationController
 
 
 	def index
-		user_completions = User.last.user_completions
+		user_completions = current_user.user_completions
 		task_type = user_completions.task_type.name
 
 		render json: task_type
