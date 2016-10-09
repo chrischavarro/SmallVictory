@@ -44,7 +44,10 @@ class UserCompletionsController < ApplicationController
 			end
 		end
 
-		user_attempts = @user.user_completions.where(:completed => false)
+		# user_attempts = @user.user_completions.where(!:completed)
+		user_attempts = @user.user_completions.where(:completed => true) 
+		# user_attempts = @user.user_completions.where(not_completed)
+		# user_attempts = @user.user_completions.where("created_at > ? AND :completed => ?", @start_date, false)
 		attempt_data = {}
 		user_attempts.each do |label|
 			# print attempt_data
@@ -112,4 +115,8 @@ class UserCompletionsController < ApplicationController
 		params.require(:user_completion)
 			.permit(:user_id, :track_id, :task_id, :task_type_id)
 	end
+
+	# def not_completed
+	# 	@user.user_completions.completed => false
+	# end
 end
