@@ -45,7 +45,7 @@ class UserCompletionsController < ApplicationController
 		end
 
 		# user_attempts = @user.user_completions.where(!:completed)
-		user_attempts = @user.user_completions.where(:completed => true) 
+		user_attempts = @user.user_completions.where(:completed => true).where("created_at > ?", @start_date) 
 		# user_attempts = @user.user_completions.where(not_completed)
 		# user_attempts = @user.user_completions.where("created_at > ? AND :completed => ?", @start_date, false)
 		attempt_data = {}
@@ -58,7 +58,13 @@ class UserCompletionsController < ApplicationController
 			end
 		end
 
-		render json: [completion_data, attempt_data]
+		task_labels_array = @user.tracks.last.tasks
+		task_labels = []
+		task_labels_array.each do |label|
+			task_labels.push(label.name)
+		end
+
+		render json: [completion_data, attempt_data, task_labels]
 	end
 
 	def generate_line_chart_data

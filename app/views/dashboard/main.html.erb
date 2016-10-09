@@ -125,11 +125,11 @@
     var start_date = moment().subtract(30, 'days').format();
     var request = $.get("/api/radar_chart_data/" + start_date,
       function(data) {
-        console.log(data[0])
         var attempted_labels_array = []
         var attempted_data_array = []
         var completed_labels_array = []
         var completed_data_array = []
+        var all_labels_array = data[2]
         Object.keys(data[0]).forEach(function(label){
           attempted_labels_array.push(label);
           attempted_data_array.push(data[0][label]);
@@ -138,6 +138,7 @@
           completed_labels_array.push(label);
           completed_data_array.push(data[1][label]);
         })
+          console.log(all_labels_array)
         var chartData = {
           labels: attempted_labels_array,
           data: attempted_data_array
@@ -155,7 +156,7 @@
        new Chart(radar_chart_target, {
         type: 'radar',
         data: {
-          labels: attempted_labels_array, 
+          labels: all_labels_array, 
           datasets: [
             {
               label: "Completed",
@@ -210,10 +211,6 @@
                 "rgba(255, 206, 86, 0.7)",
                 "rgba(38, 166, 154, 0.7)"
                 ]
-            // borderColor: [
-            //     "#FF6384"
-            //     ],
-            //     borderWidth: 5
           }]
         },
         options: {
