@@ -68,7 +68,8 @@
 
     Chart.scaleService.updateScaleDefaults('linear', {
     ticks: {
-        stepSize: 1
+        stepSize: 1,
+        beginAtZero: true
     }
 })
 // START OF DRAWING DOUGHNUT CHART
@@ -203,7 +204,7 @@
         options: {
           scales: {
             ticks: {
-              beginAtZero: true
+              // beginAtZero: true
             }
           }
         }
