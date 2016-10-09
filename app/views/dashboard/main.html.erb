@@ -54,7 +54,7 @@
       <button id="update_pie" class="update_chart_range">This Month</button>
       <button id="update_pie" class="update_chart_range">This Year</button>
     </div>
-      <canvas id="js_line_chart" width="200" height="200"></canvas>
+      <canvas id="js_bar_chart" width="200" height="200"></canvas>
 
     <button id="update_radar">Update Radar</button>
     <button id="update_line">Update Line</button>
@@ -153,8 +153,8 @@
      })
 // END OF DRAWING RADAR CHART
 
-// START OF DRAWING LINE CHART
-    var line_chart_target = $('#js_line_chart');
+// START OF DRAWING BAR CHART
+    var line_chart_target = $('#js_bar_chart');
     var start_date = moment().subtract(30, 'days').format();
     var request = $.get("/api/line_chart_data/" + start_date,
       function(data) {
@@ -171,7 +171,7 @@
               };
        console.log(chartData)
        new Chart(line_chart_target, {
-        type: 'line',
+        type: 'bar',
         data: {
           labels: labels_array, 
           datasets: [{
@@ -180,9 +180,9 @@
             data: data_array,
             backgroundColor: [
                 "#FF6384"
-                // "#36A2EB",
-                // "#FFCE56",
-                // "rgba(38, 166, 154, 0.7)"
+                "#36A2EB",
+                "#FFCE56",
+                "rgba(38, 166, 154, 0.7)"
                 ]
             // borderColor: [
             //     "#FF6384"
@@ -195,7 +195,7 @@
           }
         }
        })
-     })// END OF DRAWING LINE CHART
+     })// END OF DRAWING BAR CHART
 
     // $('#update_pie').on('click', function(){
     //   $('#pie_chart').empty();
