@@ -34,17 +34,28 @@ class UserCompletionsController < ApplicationController
 			@start_date = @user.created_at
 		end
 		user_completions = @user.user_completions.where("created_at > ?", @start_date)
-		task_data = {}
+		completion_data = {}
 		user_completions.each do |label|
-			print task_data
-			if !task_data.include?(label.task.name)
-				task_data[label.task.name] = 1
+			print completion_data
+			if !completion_data.include?(label.task.name)
+				completion_data[label.task.name] = 1
 			else
-				task_data[label.task.name] += 1
+				completion_data[label.task.name] += 1
 			end
 		end
 
-		render json: task_data
+		user_attempts = @user.user_completions.where(:completed => false)
+		attempt_data = {}
+		user_attempts.each do |label|
+			# print attempt_data
+			if !attempt_data.include?(label.task.name)
+				attempt_data[label.task.name] = 1
+			else
+				attempt_data[label.task.name] += 1
+			end
+		end
+
+		render json: [completion_data, attempt_data]
 	end
 
 	def generate_line_chart_data
@@ -59,10 +70,10 @@ class UserCompletionsController < ApplicationController
 		task_data = {}
 		user_completions.each do |label|
 			print task_data
-			if !task_data.include?(label.task.name)
-				task_data[label.task.name] = 1
+			if !task_data.include?(label.task_type.name)
+				task_data[label.task_type.name] = 1
 			else
-				task_data[label.task.name] += 1
+				task_data[label.task_type.name] += 1
 			end
 		end
 
@@ -94,29 +105,6 @@ class UserCompletionsController < ApplicationController
 		end
 		render :json => completion_info				
 	end
-
-	def update
-		user_completion = UserCompletion.find_by(id: params[:id])
-		unless user_completion
-			render json: {error: "User completion not found"},
-				status: 404
-			return
-		end
-		user_completion.update(user_completion_params)
-		render json: user_completion
-	end
-
-	def destroy
-		user_completion = UserCompletion.find_by(id: params[:id])
-		unless user_completion
-			render json: {error: "User completion not found"},
-			status: 404
-			return
-		end
-		user_completion.destroy
-		render json: user_completion
-	end
-
 
 	private
 

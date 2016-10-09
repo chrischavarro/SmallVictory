@@ -24,21 +24,22 @@
       <%= button_to("Let's Go!", new_track_task_type_path(@user_tracks.id), :method => :get, :class => "dashboard_start_task_button") %>
   </div>
   <div class="col-sm-6 col-sm-offset-3 completion_charts chart_1_fade card-block animated fadeInLeft">
-      <div class="col-sm-10 col-centered">
     <h2 class="chart_breakdown">Here's the breakdown of tasks you've gotten so far</h2>
-    <div class="row chart_range_button_set ">
+      <div class="col-sm-10 col-centered">
+    <div class="col-sm-11 col-sm-offset-1 chart_range_button_set ">
       <button id="update_pie" class="update_chart_range">This Week</button>
       <button id="update_pie" class="update_chart_range">This Month</button>
       <button id="update_pie" class="update_chart_range">This Year</button>
     </div>
+    <div class="col-sm-12">
       <canvas id="js_doughnut_chart" width="200" height="200"></canvas>
+    </div>
       </div>
   </div>
   <div class="col-sm-6 col-sm-offset-3 completion_charts chart_2_fade card-block animated fadeInLeft">
-        <div class="col-sm-10 col-centered">
-
     <h2 class="chart_breakdown">Here's how many tasks we've given you <br>compared to how many you've completed</h2>
-    <div class="row chart_range_button_set">
+        <div class="col-sm-10 col-centered">
+    <div class="col-sm-11 col-sm-offset-1 chart_range_button_set">
       <button id="update_pie" class="update_chart_range">This Week</button>
       <button id="update_pie" class="update_chart_range">This Month</button>
       <button id="update_pie" class="update_chart_range">This Year</button>
@@ -49,16 +50,17 @@
 
   <div class="col-sm-6 col-sm-offset-3 completion_charts chart_3_fade card-block animated fadeInLeft">
     <h2 class="chart_breakdown">Here's how your victories have added up</h2>
-    <div class="row chart_range_button_set">
+          <div class="col-sm-10 col-centered">
+    <div class="col-sm-11 col-sm-offset-1 chart_range_button_set">
       <button id="update_pie" class="update_chart_range">This Week</button>
       <button id="update_pie" class="update_chart_range">This Month</button>
       <button id="update_pie" class="update_chart_range">This Year</button>
     </div>
       <canvas id="js_bar_chart" width="200" height="200"></canvas>
-
+    </div>
+  </div>
     <button id="update_radar">Update Radar</button>
     <button id="update_line">Update Line</button>
-  </div>
 
   	</div>
   <!-- </div>  -->
@@ -74,21 +76,12 @@
     }
 })
 
-//         Chart.scaleService.updateScaleDefaults('radial', {
-//     scale: {
-//       ticks: {
-//         // fixedStepSize: 1,
-//         beginAtZero: true
-//         // max: 10
-//       }
-//     }
-// })
 // START OF DRAWING DOUGHNUT CHART
     var pie_chart_target = $( "#js_doughnut_chart" );
     var start_date = moment().subtract(30, 'days').format();
     var request = $.get("/api/doughnut_chart_data/" + start_date,
       function(data) {
-        console.log(data)
+        // console.log(data)
         var labels_array = []
         var data_array = []
         Object.keys(data).forEach(function(label){
@@ -99,7 +92,7 @@
               labels: labels_array,
               data: data_array
               };
-              console.log(chartData)
+              // console.log(chartData)
        new Chart(pie_chart_target, {
         type: 'doughnut',
         data: {
@@ -108,9 +101,9 @@
             label: "Test",
             data: data_array,
             backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
                 "rgba(38, 166, 154, 0.7)"
                 ]
             // borderColor: [
@@ -132,18 +125,24 @@
     var start_date = moment().subtract(30, 'days').format();
     var request = $.get("/api/radar_chart_data/" + start_date,
       function(data) {
-        console.log(data)
-        var labels_array2 = []
-        var data_array2 = []
-        Object.keys(data).forEach(function(label){
-          labels_array2.push(label);
-          data_array2.push(data[label]);
+        console.log(data[0])
+        var attempted_labels_array = []
+        var attempted_data_array = []
+        var completed_labels_array = []
+        var completed_data_array = []
+        Object.keys(data[0]).forEach(function(label){
+          attempted_labels_array.push(label);
+          attempted_data_array.push(data[0][label]);
         })
-        var chartData2 = {
-          labels: labels_array2,
-          data: data_array2
+        Object.keys(data[1]).forEach(function(label){
+          completed_labels_array.push(label);
+          completed_data_array.push(data[1][label]);
+        })
+        var chartData = {
+          labels: attempted_labels_array,
+          data: attempted_data_array
               };
-              console.log(chartData2)
+              // console.log(chartData)
 
         var radarOptions = {
           scale: {
@@ -156,23 +155,25 @@
        new Chart(radar_chart_target, {
         type: 'radar',
         data: {
-          labels: labels_array2, 
-          datasets: [{
-            label: "Test",
-            data: data_array2,
-            scaleSteps: 1,
-            beginAtZero: true,
-            backgroundColor: [
-                "#FF6384"
-                // "#36A2EB",
-                // "#FFCE56",
-                // "rgba(38, 166, 154, 0.7)"
-                ]
-            // borderColor: [
-            //     "#FF6384"
-            //     ],
-            //     borderWidth: 5
-          }]
+          labels: attempted_labels_array, 
+          datasets: [
+            {
+              label: "Attempted",
+              data: completed_data_array,
+              scaleSteps: 1,
+              beginAtZero: true,
+              backgroundColor: 
+                "rgba(38, 166, 154, 0.7" 
+            },
+            {
+              label: "Completed",
+              data: attempted_data_array,
+              scaleSteps: 1,
+              beginAtZero: true,
+              backgroundColor:
+                "rgba(255, 206, 86, 0.7)"
+            }
+          ]
         },
         options: radarOptions
        })
@@ -184,7 +185,7 @@
     var start_date = moment().subtract(30, 'days').format();
     var request = $.get("/api/line_chart_data/" + start_date,
       function(data) {
-        console.log(data)
+        // console.log(data)
         var labels_array = []
         var data_array = []
         Object.keys(data).forEach(function(label){
@@ -195,19 +196,18 @@
           labels: labels_array,
           data: data_array              
               };
-       console.log(chartData)
+       // console.log(chartData)
        new Chart(line_chart_target, {
         type: 'bar',
         data: {
           labels: labels_array, 
           datasets: [{
             label: "Test",
-            fill: false,
             data: data_array,
             backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
+                "rgba(255, 99, 132, 0.7)",
+                "rgba(54, 162, 235, 0.7)",
+                "rgba(255, 206, 86, 0.7)",
                 "rgba(38, 166, 154, 0.7)"
                 ]
             // borderColor: [
