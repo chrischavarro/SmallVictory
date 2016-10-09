@@ -69,7 +69,18 @@
     Chart.scaleService.updateScaleDefaults('linear', {
     ticks: {
         stepSize: 1,
+        beginAtZero: true,
+        max: 10
+    }
+})
+
+        Chart.scaleService.updateScaleDefaults('radial', {
+    scales: {
+      ticks: {
+        fixedStepSize: 1,
         beginAtZero: true
+        // max: 10
+      }
     }
 })
 // START OF DRAWING DOUGHNUT CHART
@@ -135,9 +146,13 @@
               console.log(chartData2)
 
         var radarOptions = {
-          ticks: {
-            stepSize: 1,
-            beginAtZero: true
+          scales: {
+            ticks: {
+                max: 10
+            }
+            // stepSize: 1,
+            // beginAtZero: true
+
           }
         }
        new Chart(radar_chart_target, {
@@ -147,6 +162,8 @@
           datasets: [{
             label: "Test",
             data: data_array2,
+            scaleSteps: 1,
+            beginAtZero: true,
             backgroundColor: [
                 "#FF6384"
                 // "#36A2EB",
