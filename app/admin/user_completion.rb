@@ -1,5 +1,5 @@
 ActiveAdmin.register UserCompletion do
-permit_params :user_id, :track_id, :completed, :task_id, :task_type_id, :task_count
+permit_params :user_id, :track_id, :completed, :task_id, :task_type_id, :task_count, :created_at
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
