@@ -1,7 +1,7 @@
 <div class="row row-centered body-text">
   <h1 class="dashboard_header">Dashboard</h1>
 
-  <div class="col-sm-6 col-sm-offset-3 card-block dashboard_recap">
+  <div class="col-sm-6 col-sm-offset-3 card-block dashboard_recap animated fadeInLeft">
   <% flash.each do |key, value| %>
         <div class="alert alert-warning alert-dismissible task_completed"><%= value %>        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -23,7 +23,7 @@
     <h3>Ready for today's task?</h3>
       <%= button_to("Let's Go!", new_track_task_type_path(@user_tracks.id), :method => :get, :class => "dashboard_start_task_button") %>
   </div>
-  <div class="col-sm-6 col-sm-offset-3 completion_charts card-block">
+  <div class="col-sm-6 col-sm-offset-3 completion_charts chart_1_fade card-block animated fadeInLeft">
       <div class="col-sm-10 col-centered">
     <h2 class="chart_breakdown">Here's the breakdown of tasks you've gotten so far</h2>
     <div class="row chart_range_button_set ">
@@ -31,10 +31,10 @@
       <button id="update_pie" class="update_chart_range">This Month</button>
       <button id="update_pie" class="update_chart_range">This Year</button>
     </div>
-      <canvas id="js_doughnut_chart" width="400" height="400"></canvas>
+      <canvas id="js_doughnut_chart" width="200" height="200"></canvas>
       </div>
-      </div>
-  <div class="col-sm-6 col-sm-offset-3 completion_charts card-block">
+  </div>
+  <div class="col-sm-6 col-sm-offset-3 completion_charts chart_2_fade card-block animated fadeInLeft">
         <div class="col-sm-10 col-centered">
 
     <h2 class="chart_breakdown">Here's how many tasks we've given you <br>compared to how many you've completed</h2>
@@ -43,25 +43,25 @@
       <button id="update_pie" class="update_chart_range">This Month</button>
       <button id="update_pie" class="update_chart_range">This Year</button>
     </div>
-      <canvas id="js_radar_chart" width="400" height="400"></canvas>
+      <canvas id="js_radar_chart" width="200" height="200"></canvas>
     </div>
-    </div>
-      <div class="col-sm-6 col-sm-offset-3 completion_charts card-block">
+  </div>
 
+  <div class="col-sm-6 col-sm-offset-3 completion_charts chart_3_fade card-block animated fadeInLeft">
     <h2 class="chart_breakdown">Here's how your victories have added up</h2>
     <div class="row chart_range_button_set">
       <button id="update_pie" class="update_chart_range">This Week</button>
       <button id="update_pie" class="update_chart_range">This Month</button>
       <button id="update_pie" class="update_chart_range">This Year</button>
     </div>
-      <canvas id="js_line_chart" width="400" height="400"></canvas>
+      <canvas id="js_line_chart" width="200" height="200"></canvas>
 
     <button id="update_radar">Update Radar</button>
     <button id="update_line">Update Line</button>
-      </div>
+  </div>
 
   	</div>
-  </div> 
+  <!-- </div>  -->
 
 <script>
   $(document).ready(function(){

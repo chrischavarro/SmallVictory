@@ -611,4 +611,20 @@ h3 {
 
 .completion_charts {
     margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+.chart_1_fade {
+  -webkit-animation-duration: 3s;
+  -webkit-animation-delay: 0.2s;
+}
+
+.chart_2_fade {
+  -webkit-animation-duration: 3s;
+  -webkit-animation-delay: 0.4s;
+}
+
+.chart_3_fade {
+  -webkit-animation-duration: 3s;
+  -webkit-animation-delay: 0.6s;
 }

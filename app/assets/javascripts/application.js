@@ -23,7 +23,7 @@
 //= require justgage.js
 //= require picker.js 
 //= require picker.time.js
-//= require Chart.js
+//= require Chart.min.js
 
 $(document).ready(function(){
 
