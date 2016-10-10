@@ -122,6 +122,16 @@ $(document).ready(function(){
             })
     });
 
+    $('#task_submit_button').hide();
+    $('.countdown_timer').hide();
+    $('.timer_submit_button').click(function(){
+        $('.countdown_timer').addClass("animated fadeIn");
+        $('.countdown_timer').fadeIn();
+        $('#task_submit_button').addClass("animated fadeIn");
+        $('#task_submit_button').fadeIn();
+
+    })
+
     $("#DateCountdown").TimeCircles(
         { time: {
         Days: {show: false},

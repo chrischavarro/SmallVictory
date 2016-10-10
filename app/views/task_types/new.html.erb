@@ -1,15 +1,15 @@
 <div class="row row-centered body-text">
-	<div class="col-sm-6 col-sm-offset-3 or_span_padding animated fadeInLeft" id="task_div">
-		<h1 class="header"><%= @prompt  %></h1>
-		<h2 class="header">Do 100 <%= @task_type.name  %></h2>
-		<div class="row row-centered">
+	<div class="col-sm-6 col-sm-offset-3 or_span_padding " id="task_div">
+		<h1 class="header animated fadeInLeft"><%= @prompt  %></h1>
+		<h2 class="header animated fadeInLeft">Do 100 <%= @task_type.name  %></h2>
+		<div class="row row-centered animated fadeInLeft">
 			<button class="timer_submit_button" id="start">Get Started</button>
 		</div>
 			<div id='DateCountdown' class="demo stopwatch col-sm-6 col-sm-offset-3 countdown_timer row" data-timer="300" style="height:400px;width:400px;"></div>
 
 			<div class="row">
 			<%= form_tag("/tracks/" + @track.id.to_s + "/task_types", :id => 'completion_form') do  %>
-				<button class="btn btn-default task_victory_button" id="" type="submit">Victory</button>
+				<button class="btn btn-default task_victory_button" id="task_submit_button" type="submit">Victory</button>
 				<%= hidden_field_tag("task", @task.id) %>
 				<%= hidden_field_tag("task_type", @task_type.id) %>
 				<%= hidden_field_tag("completed", 'true') %>
