@@ -94,7 +94,7 @@ $(document).ready(function(){
     });
 
     $('.track_select_button').click(function(event){
-        // event.preventDefault();
+                // event.preventDefault();
         $('.track_array').addClass("animated fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
             function(){
                 $('.track_select_button').submit();
@@ -106,6 +106,19 @@ $(document).ready(function(){
         $('#task_div').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
             function(){
                 $('#completion_form').submit();
+            })
+    });
+
+    $('.dashboard_start_task_button').click(function(event){
+        // event.preventDefault();
+        $('.dashboard_header').addClass("fadeOutRight")
+        $('.dashboard_recap').addClass("fadeOutRight")
+        $('.chart_1_fade').addClass("fadeOutRight")
+        $('.chart_2_fade').addClass("fadeOutRight")
+        $('.chart_2_fade').removeClass("fadeInLeft")
+        $('.chart_3_fade').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('.dashboard_start_task_button').submit();
             })
     });
 

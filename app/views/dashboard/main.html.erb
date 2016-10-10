@@ -21,7 +21,7 @@
     <h2>You're on the <%= current_user.tracks.first.name  %> track </h2>
     <!-- INCLUDE CHECK FOR WHETHER USER ALREADY COMPLETED THEIR TASK FOR THE DAY -->
     <h3>Ready for today's task?</h3>
-      <%= button_to("Let's Go!", new_track_task_type_path(@user_tracks.id), :method => :get, :class => "dashboard_start_task_button") %>
+      <%= button_to("Let's Go!", new_track_task_type_path(@user_tracks.id), :method => :get, :class => "dashboard_start_task_button", :id => "task_page") %>
   </div>
   <div class="col-sm-6 col-sm-offset-3 completion_charts chart_1_fade card-block animated fadeInLeft">
     <h2 class="chart_breakdown">Here's the breakdown of tasks you've gotten so far</h2>
@@ -59,11 +59,10 @@
       <canvas id="js_bar_chart" width="200" height="200"></canvas>
     </div>
   </div>
-    <button id="update_radar">Update Radar</button>
+<!--     <button id="update_radar">Update Radar</button>
     <button id="update_line">Update Line</button>
-
+ -->
   	</div>
-  <!-- </div>  -->
 
 <script>
   $(document).ready(function(){
