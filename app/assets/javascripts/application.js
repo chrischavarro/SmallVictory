@@ -43,7 +43,7 @@ $(document).ready(function(){
                     $('.victor').removeClass('animated bounce')
                  })
         })
-    
+
     $('.animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
         function(){
             $('.victor').removeClass('animated bounce')
@@ -83,6 +83,30 @@ $(document).ready(function(){
             });
         // $('.step_2').fadeOut();
         // $('.step_3').fadeIn();
+    });
+
+    $('#profile_submit').click(function(event){
+        event.preventDefault();
+        $('#step_3').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('#profile_form').submit();
+            })
+    });
+
+    $('.track_select_button').click(function(event){
+        // event.preventDefault();
+        $('.track_array').addClass("animated fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('.track_select_button').submit();
+            })
+    });
+
+    $('.task_victory_button').click(function(event){
+        event.preventDefault();
+        $('#task_div').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('#completion_form').submit();
+            })
     });
 
     $("#DateCountdown").TimeCircles(

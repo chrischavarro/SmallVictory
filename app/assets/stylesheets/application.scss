@@ -136,9 +136,6 @@ h3 {
 	background-color: #3C78D8;
 }
 
-
-
-
 // TRACK RELATED STYLING
 .track {
     // border-style: solid;
@@ -190,12 +187,12 @@ h3 {
 .track_title {
     font-weight: 200;
     font-size: 26px;
-    background-color: #7d7d7d;
+    background-color: #286090;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-    border: 1px solid transparent;
-    border-color: #2e6da4;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    // border-color: #2e6da4;
 }
 
 .track_description {
@@ -391,25 +388,32 @@ h3 {
 
 // Used to format buttons on profile setup page
 .profile_setup_button {
-    background-color:rgba(255, 152, 0, 0.7);
+    // #3C78D8 => SMALL VICTORY BLUE
+// #26a69a => SPOTIFY GREEN
+    background-color:rgba(40, 96, 144, 1);
     color: #fff;
     font-size: 22px;
     border-radius: 2px;
-    height: 50px;
+    // height: 50px;
     outline: 0;
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
+    // padding-left: 3.5rem;
+    // padding-right: 3.5rem;
     letter-spacing: .5px;
     transition: all .3s;
     margin-bottom: 15px;
     width: 100%;
-    // border: none;
-    // text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.24);
 }
 
-// .profile_setup_button:active {
-//     background-color: !important;
-// }
+.profile_setup_button:hover {
+    background-color: rgba(40, 96, 144, 0.6);
+}
+
+.profile_setup_button.active {
+    background-color: rgba(38, 166, 154, 1)!important;
+}
 
 // Used to format continue buttons on profile setup page
 .profile_setup_continue_button {
@@ -458,6 +462,15 @@ h3 {
 .phone_number:focus {
     border-bottom: 3px solid #26a69a;
     box-shadow: 0 1px 0 0 #26a69a;    
+}
+
+.phone_number:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #3C78D8 inset;
+    -webkit-text-fill-color: white;
+}
+
+#profile_submit {
+    // -webkit-animation-duration: 0.5s;
 }
 
 
