@@ -5,7 +5,7 @@
 		<div class="row row-centered animated fadeInLeft">
 			<button class="timer_submit_button" id="start">Get Started</button>
 		</div>
-			<div id='DateCountdown' class="demo stopwatch col-sm-6 col-sm-offset-3 countdown_timer row" data-timer="300" style="height:400px;width:400px;"></div>
+			<div id='DateCountdown' class="demo stopwatch col-sm-6 col-sm-offset-3 countdown_timer row" data-timer="300" style="height:400px;"></div>
 
 			<div class="row">
 			<%= form_tag("/tracks/" + @track.id.to_s + "/task_types", :id => 'completion_form') do  %>

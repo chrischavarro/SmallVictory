@@ -2,12 +2,6 @@
   <h1 class="dashboard_header animated fadeInLeft">Dashboard</h1>
 
   <div class="col-sm-6 col-sm-offset-3 card-block dashboard_recap animated fadeInLeft">
-  <% flash.each do |key, value| %>
-        <div class="alert alert-warning alert-dismissible task_completed"><%= value %>        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button></div>
-
-      <% end %>
     <h2 class="sub_header">What's up, <%= current_user.first_name  %>!</h2>
     <h3>You're currently on a <%= current_user.streak(:user_completions)  %> day streak</h3>
     <!-- <h3>Your longest streak was 96 days</h3> -->
