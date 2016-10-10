@@ -35,13 +35,25 @@ $(document).ready(function(){
         clear: ''
     })
 
+    $('.victor').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+        function(){
+            $('.victor').removeClass('animated fadeInDown')
+            $('.victor').addClass('animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                function(){
+                    $('.victor').removeClass('animated bounce')
+                 })
+        })
+    
+    $('.animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+        function(){
+            $('.victor').removeClass('animated bounce')
+        })
 
     $('.victor').click(function(){
     	$('.victor').addClass("animated bounce").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
             function(){
                 $('.victor').removeClass('animated bounce')
             });
-
     });
 
     $( function() {
