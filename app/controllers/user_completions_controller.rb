@@ -3,7 +3,6 @@ class UserCompletionsController < ApplicationController
 	  before_action :authenticate_user!, only:[:generate_doughnut_chart_data, :generate_radar_chart_data, :generate_line_chart_data]
 
 	def generate_doughnut_chart_data
-		# CHANGE TO CURRENT_USER AFTER DONE TESTING
 		@user = current_user
 		@start_date = ""
 		if params[:start_date]

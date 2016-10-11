@@ -5,7 +5,7 @@
     <h2 class="sub_header">What's up, <%= current_user.first_name  %>!</h2>
     <h3>You're currently on a <%= current_user.streak(:user_completions)  %> day streak</h3>
     <!-- <h3>Your longest streak was 96 days</h3> -->
-    <h3>You've completed <%= @completed.count  %> out of <%= @attempted.count  %> victories</h3>
+    <h3>You've completed <span class="victory_info"><%= @completed.count  %></span> out of <%= @attempted.count  %> victories</h3>
     <% if @attempted.empty? %>
       <h3>You haven't completed any victories yet!</h3>
     <% else %>
@@ -21,9 +21,9 @@
     <h2 class="chart_breakdown">Here's the breakdown of tasks you've gotten so far</h2>
       <div class="col-sm-10 col-centered">
     <div class="col-sm-11 col-sm-offset-1 chart_range_button_set ">
-      <button id="update_pie" class="update_chart_range">This Week</button>
-      <button id="update_pie" class="update_chart_range">This Month</button>
-      <button id="update_pie" class="update_chart_range">This Year</button>
+      <button id="doughnut_this_week" class="update_chart_range">This Week</button>
+      <button id="doughnut_this_month" class="update_chart_range">This Month</button>
+      <button id="doughnut_this_year" class="update_chart_range">This Year</button>
     </div>
     <div class="col-sm-12">
       <canvas id="js_doughnut_chart" width="200" height="200"></canvas>
@@ -34,9 +34,9 @@
     <h2 class="chart_breakdown">Here's how many tasks we've given you <br>compared to how many you've completed</h2>
         <div class="col-sm-10 col-centered">
     <div class="col-sm-11 col-sm-offset-1 chart_range_button_set">
-      <button id="update_pie" class="update_chart_range">This Week</button>
-      <button id="update_pie" class="update_chart_range">This Month</button>
-      <button id="update_pie" class="update_chart_range">This Year</button>
+      <button id="radar_this_week" class="update_chart_range">This Week</button>
+      <button id="radar_this_month" class="update_chart_range">This Month</button>
+      <button id="radar_this_year" class="update_chart_range">This Year</button>
     </div>
       <canvas id="js_radar_chart" width="200" height="200"></canvas>
     </div>
@@ -46,9 +46,9 @@
     <h2 class="chart_breakdown">Here's how your victories have added up</h2>
           <div class="col-sm-10 col-centered">
     <div class="col-sm-11 col-sm-offset-1 chart_range_button_set">
-      <button id="update_pie" class="update_chart_range">This Week</button>
-      <button id="update_pie" class="update_chart_range">This Month</button>
-      <button id="update_pie" class="update_chart_range">This Year</button>
+      <button id="bar_this_week" class="update_chart_range">This Week</button>
+      <button id="bar_this_month" class="update_chart_range">This Month</button>
+      <button id="bar_this_year" class="update_chart_range">This Year</button>
     </div>
       <canvas id="js_bar_chart" width="200" height="200"></canvas>
     </div>
@@ -70,51 +70,103 @@
 })
 
 // START OF DRAWING DOUGHNUT CHART
-    var pie_chart_target = $( "#js_doughnut_chart" );
-    var start_date = moment().subtract(30, 'days').format();
+    // // var doughnut_chart_target = $( "#js_doughnut_chart" );
+    // var start_date = moment().subtract(30, 'days').format();
+    // var request = $.get("/api/doughnut_chart_data/" + start_date,
+    //   function(data) {
+    //     console.log(start_date)
+    //     // var doughnut_all_labels_array = []
+    //     // var doughnut_all_data_array = []
+    //     Object.keys(data).forEach(function(label){
+    //       doughnut_all_labels_array.push(label);
+    //       doughnut_all_data_array.push(data[label]);
+    //     })
+    //     var chartData = {
+    //           labels: doughnut_all_labels_array,
+    //           data: doughnut_all_data_array
+    //           };
+    //           // console.log(chartData)
+    //    // var doughnutChart = new Chart(doughnut_chart_target, {
+    //    //  type: 'doughnut',
+    //    //  data: {
+    //    //    labels: labels_array, 
+    //    //    datasets: [{
+    //    //      label: "Test",
+    //    //      data: data_array,
+    //    //      backgroundColor: [
+    //    //          "rgba(255, 99, 132, 1)",
+    //    //          "rgba(54, 162, 235, 1)",
+    //    //          "rgba(255, 206, 86, 1)",
+    //    //          "rgba(38, 166, 154, 0.7)",
+    //    //          "rgba(12, 52, 251, 0.7)",
+    //    //          "rgba(96, 55, 169, 0.7)",
+    //    //          "rgba(255, 132, 8, 0.7)"
+    //    //          ]
+    //    //      // borderColor: [
+    //    //      //     "#FF6384"
+    //    //      //     ],
+    //    //      //     borderWidth: 5
+    //    //    }]
+    //    //  },
+    //    //  options: {
+    //    //    scales: {
+    //    //    }
+    //    //  }
+    //    // })
+    //  })
+// END OF DRAWING DOUGHNUT CHART
+
+
+    // $('#doughnut_this_week').on('click', function(){
+    //   get_data('month', handle_pie_chart_update){
+    //     $.get("api/doughnut_chart_data/" + start_date, handle_pie_chart_update)
+    //     handle_pie_chart_update(data) {
+    //       var labels_array = []
+    //       var data_array = []
+    //       console.log(data_array)
+    //       console.log(labels_array)
+    //       Object.keys(data).forEach(function(label){
+    //         labels_array.push(label);
+    //         data_array.push(data[label]);
+    //       })
+    //         doughnutChart.data.datasets.data = data_array;
+    //         doughnutChart.update();
+    //     }
+    //   }
+    // })
+
+
+    $('#doughnut_this_week').on('click', function(){
+      // $('#js_doughnut_chart').empty();
+      // update_pie_week_chart();
+    var start_date = moment().subtract(1, 'day').format();
     var request = $.get("/api/doughnut_chart_data/" + start_date,
       function(data) {
-        // console.log(data)
-        var labels_array = []
-        var data_array = []
+        var week_labels_array = []
+        var week_data_array = []
+        console.log(week_data_array)
+        console.log(week_labels_array)
         Object.keys(data).forEach(function(label){
-          labels_array.push(label);
-          data_array.push(data[label]);
+          week_labels_array.push(label);
+          week_data_array.push(data[label]);
         })
-        var chartData = {
-              labels: labels_array,
-              data: data_array
-              };
-              // console.log(chartData)
-       new Chart(pie_chart_target, {
-        type: 'doughnut',
-        data: {
-          labels: labels_array, 
-          datasets: [{
-            label: "Test",
-            data: data_array,
-            backgroundColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(38, 166, 154, 0.7)",
-                "rgba(12, 52, 251, 0.7)",
-                "rgba(96, 55, 169, 0.7)",
-                "rgba(255, 132, 8, 0.7)"
-                ]
-            // borderColor: [
-            //     "#FF6384"
-            //     ],
-            //     borderWidth: 5
-          }]
-        },
-        options: {
-          scales: {
-          }
-        }
-       })
-     })
-// END OF DRAWING DOUGHNUT CHART
+      })
+    doughnutChart.data.datasets.data = week_data_array;
+    doughnutChart.update();
+
+    });
+
+    $('#doughnut_this_month').on('click', function(){
+      $('#js_doughnut_chart').empty();
+      update_pie_chart();
+    });
+
+    $('#doughnut_this_year').on('click', function(){
+      $('#js_doughnut_chart').empty();
+      update_pie_chart();
+    });
+
+
 
 // START OF DRAWING RADAR CHART
     var radar_chart_target = $('#js_radar_chart');
@@ -134,7 +186,7 @@
           completed_labels_array.push(label);
           completed_data_array.push(data[1][label]);
         })
-          console.log(all_labels_array)
+          // console.log(all_labels_array)
         var chartData = {
           labels: attempted_labels_array,
           data: attempted_data_array
@@ -174,7 +226,7 @@
         },
         options: radarOptions
        })
-     })
+     });
 // END OF DRAWING RADAR CHART
 
 // START OF DRAWING BAR CHART
@@ -219,12 +271,13 @@
           }
         }
        })
-     })// END OF DRAWING BAR CHART
+     });
+     // END OF DRAWING BAR CHART
 
-    // $('#update_pie').on('click', function(){
-    //   $('#pie_chart').empty();
-    //   update_pie_chart();
-    // });
+
+
+  }); // <= CLOSING TAGS FOR DOCUMENT READY
+
     // $('#update_radar').on('click', function(){
     //   $('#radar_chart').empty();
     //   update_radar_chart();
@@ -232,10 +285,21 @@
     // $('#update_line').on('click', function(){
     //   $('#line_chart').empty();
     //   update_line_chart();
-    // })
-  });
-
-
+    // });
+  // var update_pie_week_chart = function(){
+  //   var start_date = moment().subtract(7, 'days').format();
+  //   var request = $.get("/api/doughnut_chart_data/" + start_date,
+  //     function(data) {
+  //       var labels_array = []
+  //       var data_array = []
+  //       Object.keys(data).forEach(function(label){
+  //         labels_array.push(label);
+  //         data_array.push(data[label]);
+  //       })
+  //   doughnutChart.data.datasets.data = data_array;
+  //   doughnutChart.update();
+  //     })
+  // }
 
 
 // var canvas = document.getElementById('updating-chart'),
@@ -260,151 +324,6 @@
 //       ]
 //     };
 
-// setInterval(function(){
-//   // Get a random index point
-//   var indexToUpdate = Math.round(Math.random() * startingData.labels.length);
-  
-//   // Update one of the points in the second dataset
-//   myLiveChart.datasets[1].points[indexToUpdate].value = Math.random() * 100;
-  
-//   myLiveChart.update();
-// }, 5000);
-
-
-
-
-
-  // var update_pie_chart = function() {
-  //   var pie_chart_target = $( "#pie_chart" );
-  //   var start_date = moment().subtract(30, 'days').format();
-  //   var request = $.get("/api/doughnut_chart_data/" + start_date,
-  //     function(data) {
-  //       console.log(data)
-  //       var labels_array = []
-  //       var data_array = []
-  //       Object.keys(data).forEach(function(label){
-  //         labels_array.push(label);
-  //         data_array.push(data[label]);
-  //       })
-  //       var chartData = {
-  //             labels: labels_array,
-  //             datasets: [
-  //                 {
-  //                     data: data_array,
-  //                     backgroundColor: [
-  //                         "#FF6384",
-  //                         "#36A2EB",
-  //                         "#FFCE56",
-  //                         "rgba(38, 166, 154, 0.7)"
-  //                     ],
-  //                     hoverBackgroundColor: [
-  //                         "#FF6384",
-  //                         "#36A2EB",
-  //                         "#FFCE56",
-  //                         "rgba(38, 166, 154, 0.7)"
-  //                     ]
-  //                 }]
-  //             };
-  //             console.log(chartData)
-  //     var myDoughnutChart = new Chart(pie_chart_target, {
-  //         type: 'doughnut',
-  //         data: chartData,
-  //         options: {
-  //           width: 200, 
-  //           height: 200,
-  //           generateLegend: false
-  //         }
-  //       })
-  //    })
-  //  };
-
-  // var update_radar_chart = function() {
-  //   var radar_chart_target = $('#radar_chart');
-  //   var start_date = moment().subtract(30, 'days').format();
-  //   var request = $.get("/api/radar_chart_data/" + start_date,
-  //     function(data) {
-  //       console.log(data)
-  //       var labels_array = []
-  //       var data_array = []
-  //       Object.keys(data).forEach(function(label){
-  //         labels_array.push(label);
-  //         data_array.push(data[label]);
-  //       })
-  //       var chartData = {
-  //         labels: labels_array,
-  //             datasets: [
-  //                 {
-  //                     data: data_array,
-  //                     backgroundColor: [
-  //                         "#FF6384"
-  //                         // "#36A2EB",
-  //                         // "#FFCE56",
-  //                         // "rgba(38, 166, 154, 0.7)"
-  //                     ],
-  //                     hoverBackgroundColor: [
-  //                         "#FF6384"
-  //                         // "#36A2EB",
-  //                         // "#FFCE56",
-  //                         // "rgba(38, 166, 154, 0.7)"
-  //                     ]
-  //                 }]
-  //             };
-  //             console.log(chartData)
-  //       var myRadarChart = new Chart(radar_chart_target, {
-  //         type: 'radar',
-  //         data: chartData,
-  //         options: {
-  //           width: 200,
-  //           height: 200,
-  //           generateLegend: false
-  //         }
-  //       }) 
-  //     })
-  // };
-
-  // var update_line_chart = function() {
-  //   var line_chart_target = $('#line_chart');
-  //   var start_date = moment().subtract(30, 'days').format();
-  //   var request = $.get("/api/line_chart_data/" + start_date,
-  //     function(data) {
-  //       console.log(data)
-  //       var labels_array = []
-  //       var data_array = []
-  //       Object.keys(data).forEach(function(label){
-  //         labels_array.push(label);
-  //         data_array.push(data[label]);
-  //       })
-  //       var chartData = {
-  //         labels: labels_array,
-  //             datasets: [
-  //                 {
-  //                     data: data_array,
-  //                     backgroundColor: [
-  //                         "#FF6384",
-  //                         "#36A2EB",
-  //                         "#FFCE56",
-  //                         "rgba(38, 166, 154, 0.7)"
-  //                     ],
-  //                     hoverBackgroundColor: [
-  //                         "#FF6384",
-  //                         "#36A2EB",
-  //                         "#FFCE56",
-  //                         "rgba(38, 166, 154, 0.7)"
-  //                     ]
-  //                 }]
-  //             };
-  //             console.log(chartData)
-  //       var myLineChart = new Chart(line_chart_target, {
-  //         type: 'line',
-  //         data: chartData,
-  //         options: {
-  //           width: 200, 
-  //           height: 200,
-  //           generateLegend: false
-  //         }
-  //       })
-  //     })
-  // };
     
 </script>
 

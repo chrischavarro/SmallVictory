@@ -139,6 +139,86 @@ $(document).ready(function(){
             })
     });
 
+
+    // DASHBOARD CHARTS
+
+        var doughnut_all_labels_array = []
+        var doughnut_all_data_array = []
+    var start_date = moment().subtract(30, 'days').format();
+    var request = $.get("/api/doughnut_chart_data/" + start_date,
+      function(data) {
+        // console.log(data)
+        Object.keys(data).forEach(function(label){
+          doughnut_all_labels_array.push(label);
+          doughnut_all_data_array.push(data[label]);
+        })
+});
+          console.log(doughnut_all_data_array)
+          console.log(doughnut_all_labels_array)       
+    var doughnut_chart_target = $( "#js_doughnut_chart" );
+    var doughnutChart = new Chart(doughnut_chart_target , {
+        type: 'doughnut',
+        data: {
+          labels: doughnut_all_labels_array, 
+          datasets: [{
+            label: "Test",
+            data: doughnut_all_data_array,
+            backgroundColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(38, 166, 154, 0.7)",
+                "rgba(12, 52, 251, 0.7)",
+                "rgba(96, 55, 169, 0.7)",
+                "rgba(255, 132, 8, 0.7)"
+                ]
+            // borderColor: [
+            //     "#FF6384"
+            //     ],
+            //     borderWidth: 5
+          }]
+        },
+        options: {
+          scales: {
+          }
+        }
+   });   
+
+
+
+   //  var doughnut_all_labels_array = [];
+   //  var doughnut_all_data_array = [];
+
+   //  var doughnut_chart_target = $( "#js_doughnut_chart" );
+   //  var doughnutChart = new Chart(doughnut_chart_target , {
+   //      type: 'doughnut',
+   //      data: {
+   //        labels: doughnut_all_data_array, 
+   //        datasets: [{
+   //          label: "Test",
+   //          data: doughnut_all_labels_array,
+   //          backgroundColor: [
+   //              "rgba(255, 99, 132, 1)",
+   //              "rgba(54, 162, 235, 1)",
+   //              "rgba(255, 206, 86, 1)",
+   //              "rgba(38, 166, 154, 0.7)",
+   //              "rgba(12, 52, 251, 0.7)",
+   //              "rgba(96, 55, 169, 0.7)",
+   //              "rgba(255, 132, 8, 0.7)"
+   //              ]
+   //          // borderColor: [
+   //          //     "#FF6384"
+   //          //     ],
+   //          //     borderWidth: 5
+   //        }]
+   //      },
+   //      options: {
+   //        scales: {
+   //        }
+   //      }
+   // })
+
+
     $("#DateCountdown").TimeCircles(
         { time: {
         Days: {show: false},
