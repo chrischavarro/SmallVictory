@@ -129,8 +129,15 @@ $(document).ready(function(){
         $('.countdown_timer').fadeIn();
         $('#task_submit_button').addClass("animated fadeIn");
         $('#task_submit_button').fadeIn();
-
     })
+
+    $('#task_submit_button').click(function(event){
+        event.preventDefault();
+        $('#task_div').addClass("animated fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('#task_submit_button').submit();
+            })
+    });
 
     $("#DateCountdown").TimeCircles(
         { time: {
