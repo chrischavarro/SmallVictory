@@ -81,8 +81,8 @@ $(document).ready(function(){
                 $('#step_3').addClass("fadeInLeft")
                 $('.step_3').fadeIn();
             });
-        $('.step_2').fadeOut();
-        $('.step_3').fadeIn();
+        // $('.step_2').fadeOut();
+        // $('.step_3').fadeIn();
     });
 
     $('#profile_submit').click(function(event){
