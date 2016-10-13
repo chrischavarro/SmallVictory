@@ -1,10 +1,13 @@
 class TaskTypesController < ApplicationController
+	before_action :user_is_first_time
+	
 	def new
+		@user = current_user
 		@track = Track.find_by(id: params[:track_id])
 		@task = @track.tasks.sample
 		@task_type = @task.task_types.sample
 		@prompt = ""
-		if current_user.first_time_user
+		if @user.first_time_user == true
 			@prompt = "Let's get started with your first task!"
 		else
 			@prompt = "Here's your task for today:"
