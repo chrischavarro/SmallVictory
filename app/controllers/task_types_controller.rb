@@ -7,7 +7,7 @@ class TaskTypesController < ApplicationController
 		if current_user.first_time_user
 			@prompt = "Let's get started with your first task!"
 		else
-			@prompt = "Your task for today:"
+			@prompt = "Here's your task for today:"
 		end
 		# if task_completed_today == true
 		# 	flash[:notice] = "You've already completed your task for today!"
@@ -17,6 +17,10 @@ class TaskTypesController < ApplicationController
 	end
 
 	def create
+		# if current_user.first_time_user == true
+		# 	current_user.first_time_user = false
+		# end
+
 		completion = UserCompletion.new
 		completion.user_id = current_user.id
 		completion.track_id = params[:track_id]
@@ -26,6 +30,8 @@ class TaskTypesController < ApplicationController
 		# This is where to decide how long task took, whether or not it was completed, etc
 		if completion.save
 			redirect_to dashboard_path
+			current_user.first_time_user = false
+
 		else
 			redirect_to :back
 		end

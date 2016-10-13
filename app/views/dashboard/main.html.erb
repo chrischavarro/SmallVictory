@@ -5,7 +5,7 @@
     <h2 class="sub_header">What's up, <%= current_user.first_name  %>!</h2>
     <h3>You're currently on a <%= current_user.streak(:user_completions)  %> day streak</h3>
     <!-- <h3>Your longest streak was 96 days</h3> -->
-    <h3>You've completed <span class="victory_info"><%= @completed.count  %></span> out of <%= @attempted.count  %> victories</h3>
+    <h3>You've completed <%= @completed.count  %> out of <%= @attempted.count  %> victories</h3>
     <% if @attempted.empty? %>
       <h3>You haven't completed any victories yet!</h3>
     <% else %>
@@ -185,7 +185,9 @@ function drawBarChart(labels, data){
                         "rgba(38, 166, 154, 0.7)",
                         "rgba(12, 52, 251, 0.7)",
                         "rgba(96, 55, 169, 0.7)",
-                        "rgba(255, 132, 8, 0.7)"
+                        "rgba(255, 132, 8, 0.7)",
+                        "rgba(216,255,70, 0.7)",
+                        "rgba(92,0,0, 0.7)"
                 ]
             }]
         },
@@ -574,7 +576,9 @@ function drawBarChart(labels, data){
                           "rgba(38, 166, 154, 0.7)",
                           "rgba(12, 52, 251, 0.7)",
                           "rgba(96, 55, 169, 0.7)",
-                          "rgba(255, 132, 8, 0.7)"
+                          "rgba(255, 132, 8, 0.7)",
+                          "rgba(216,255,70, 0.7)",
+                          "rgba(92,0,0, 0.7)"
                           ]
                         }]
                 },
@@ -613,7 +617,9 @@ function drawBarChart(labels, data){
                           "rgba(38, 166, 154, 0.7)",
                           "rgba(12, 52, 251, 0.7)",
                           "rgba(96, 55, 169, 0.7)",
-                          "rgba(255, 132, 8, 0.7)"
+                          "rgba(255, 132, 8, 0.7)",
+                          "rgba(216,255,70, 0.7)",
+                          "rgba(92,0,0, 0.7)"
                           ]
                         }]
                 },
