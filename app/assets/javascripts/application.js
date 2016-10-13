@@ -35,6 +35,23 @@ $(document).ready(function(){
         clear: ''
     })
 
+
+    $('.animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+        function(){
+            $('.victor').removeClass('animated bounce')
+        })
+
+    $('.victor').click(function(){
+        $('.victor').addClass("animated bounce").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function(){
+                $('.victor').removeClass('animated bounce')
+            });
+    });
+
+    $( function() {
+        $( "#menu" ).menu();
+  })
+
     $('.victor').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
         function(){
             $('.victor').removeClass('animated fadeInDown')
@@ -44,24 +61,18 @@ $(document).ready(function(){
                  })
         })
 
-    $('.animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function(){
-            $('.victor').removeClass('animated bounce')
-        })
-
-    $('.victor').click(function(){
-    	$('.victor').addClass("animated bounce").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-            function(){
-                $('.victor').removeClass('animated bounce')
-            });
-    });
-
-    $( function() {
-    	$( "#menu" ).menu();
-  })
-
     $('.step_2').hide();
     $('.step_3').hide();
+
+    $('.victor_profile').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+        function(){
+            $('.victor_profile').removeClass('bounce')
+        });    
+
+    $('.profile_greeting').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+        function(){
+            $('.profile_greeting').removeClass('fadeInDown')
+        });
 
     $('.next_step_1').click(function(event){
         event.preventDefault();
@@ -85,6 +96,8 @@ $(document).ready(function(){
 
     $('#profile_submit').click(function(event){
         event.preventDefault();
+        $('.profile_greeting').addClass(" fadeOutUp");
+        $('.victor_profile').addClass("fadeOutUp");
         $('#step_3').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
             function(){
                 $('#profile_form').submit();
