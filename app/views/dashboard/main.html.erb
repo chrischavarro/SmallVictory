@@ -69,73 +69,7 @@
     }
 })
 
-// START OF DRAWING DOUGHNUT CHART
-    // // var doughnut_chart_target = $( "#js_doughnut_chart" );
-    // var start_date = moment().subtract(30, 'days').format();
-    // var request = $.get("/api/doughnut_chart_data/" + start_date,
-    //   function(data) {
-    //     console.log(start_date)
-    //     // var doughnut_all_labels_array = []
-    //     // var doughnut_all_data_array = []
-    //     Object.keys(data).forEach(function(label){
-    //       doughnut_all_labels_array.push(label);
-    //       doughnut_all_data_array.push(data[label]);
-    //     })
-    //     var chartData = {
-    //           labels: doughnut_all_labels_array,
-    //           data: doughnut_all_data_array
-    //           };
-    //           // console.log(chartData)
-    //    // var doughnutChart = new Chart(doughnut_chart_target, {
-    //    //  type: 'doughnut',
-    //    //  data: {
-    //    //    labels: labels_array, 
-    //    //    datasets: [{
-    //    //      label: "Test",
-    //    //      data: data_array,
-    //    //      backgroundColor: [
-    //    //          "rgba(255, 99, 132, 1)",
-    //    //          "rgba(54, 162, 235, 1)",
-    //    //          "rgba(255, 206, 86, 1)",
-    //    //          "rgba(38, 166, 154, 0.7)",
-    //    //          "rgba(12, 52, 251, 0.7)",
-    //    //          "rgba(96, 55, 169, 0.7)",
-    //    //          "rgba(255, 132, 8, 0.7)"
-    //    //          ]
-    //    //      // borderColor: [
-    //    //      //     "#FF6384"
-    //    //      //     ],
-    //    //      //     borderWidth: 5
-    //    //    }]
-    //    //  },
-    //    //  options: {
-    //    //    scales: {
-    //    //    }
-    //    //  }
-    //    // })
-    //  })
-// END OF DRAWING DOUGHNUT CHART
-
-
-    // $('#doughnut_this_week').on('click', function(){
-    //   get_data('month', handle_pie_chart_update){
-    //     $.get("api/doughnut_chart_data/" + start_date, handle_pie_chart_update)
-    //     handle_pie_chart_update(data) {
-    //       var labels_array = []
-    //       var data_array = []
-    //       console.log(data_array)
-    //       console.log(labels_array)
-    //       Object.keys(data).forEach(function(label){
-    //         labels_array.push(label);
-    //         data_array.push(data[label]);
-    //       })
-    //         doughnutChart.data.datasets.data = data_array;
-    //         doughnutChart.update();
-    //     }
-    //   }
-    // })
-
-
+// DOUGHNUT CHART RELATED CODE
     $('#doughnut_this_week').on('click', function(){
       // $('#js_doughnut_chart').empty();
       // update_pie_week_chart();
@@ -144,54 +78,193 @@
       function(data) {
         var week_labels_array = []
         var week_data_array = []
-        console.log(week_data_array)
-        console.log(week_labels_array)
+        // console.log(week_data_array)
+        // console.log(week_labels_array)
         Object.keys(data).forEach(function(label){
           week_labels_array.push(label);
           week_data_array.push(data[label]);
-        })
-      })
-    doughnutChart.data.datasets.data = week_data_array;
-    doughnutChart.update();
+        });
 
+      doughnutChart.destroy();
+      var doughnut_chart_target = $("#js_doughnut_chart");
+       doughnutChart = new Chart(doughnut_chart_target, {
+          type: 'doughnut',
+          data: {
+              labels: week_labels_array,
+              datasets: [{
+                  label: "Test",
+                  data: week_data_array,
+                  backgroundColor: [
+                          "rgba(255, 99, 132, 1)",
+                          "rgba(54, 162, 235, 1)",
+                          "rgba(255, 206, 86, 1)",
+                          "rgba(38, 166, 154, 0.7)",
+                          "rgba(12, 52, 251, 0.7)",
+                          "rgba(96, 55, 169, 0.7)",
+                          "rgba(255, 132, 8, 0.7)"
+                          ],
+                          borderColor: "#ffffff",
+                          borderWidth: 3
+                        }]
+                }
+            }); 
+         })
     });
 
     $('#doughnut_this_month').on('click', function(){
-      $('#js_doughnut_chart').empty();
-      update_pie_chart();
+      var start_date = moment().subtract(1, 'month').format();
+      var request = $.get("/api/doughnut_chart_data/" + start_date,
+        function(data) {
+          var month_labels_array = []
+          var month_data_array = []
+          Object.keys(data).forEach(function(label){
+            month_labels_array.push(label);
+            month_data_array.push(data[label]);
+          });
+          
+        doughnutChart.destroy();
+        var doughnut_chart_target = $("#js_doughnut_chart");
+         doughnutChart = new Chart(doughnut_chart_target, {
+            type: 'doughnut',
+            data: {
+                labels: month_labels_array,
+                datasets: [{
+                    label: "Test",
+                    data: month_data_array,
+                    backgroundColor: [
+                            "rgba(255, 99, 132, 1)",
+                            "rgba(54, 162, 235, 1)",
+                            "rgba(255, 206, 86, 1)",
+                            "rgba(38, 166, 154, 0.7)",
+                            "rgba(12, 52, 251, 0.7)",
+                            "rgba(96, 55, 169, 0.7)",
+                            "rgba(255, 132, 8, 0.7)"
+                            ]
+                          }]
+                  }
+              }); 
+           })
     });
 
     $('#doughnut_this_year').on('click', function(){
-      $('#js_doughnut_chart').empty();
-      update_pie_chart();
-    });
+      var start_date = moment().subtract(1, 'year').format();
+      var request = $.get("/api/doughnut_chart_data/" + start_date,
+        function(data) {
+          var year_labels_array = []
+          var year_data_array = []
+          Object.keys(data).forEach(function(label){
+            year_labels_array.push(label);
+            year_data_array.push(data[label]);
+          });
+          
+        doughnutChart.destroy();
+        var doughnut_chart_target = $("#js_doughnut_chart");
+         doughnutChart = new Chart(doughnut_chart_target, {
+            type: 'doughnut',
+            data: {
+                labels: year_labels_array,
+                datasets: [{
+                    label: "Test",
+                    data: year_data_array,
+                    backgroundColor: [
+                            "rgba(255, 99, 132, 1)",
+                            "rgba(54, 162, 235, 1)",
+                            "rgba(255, 206, 86, 1)",
+                            "rgba(38, 166, 154, 0.7)",
+                            "rgba(12, 52, 251, 0.7)",
+                            "rgba(96, 55, 169, 0.7)",
+                            "rgba(255, 132, 8, 0.7)"
+                            ]
+                      }]
+                  }
+              }); 
+           })
+   });
+// DOUGHNUT CHART RELATED CODE END
 
 
 
 // START OF DRAWING RADAR CHART
-    var radar_chart_target = $('#js_radar_chart');
-    var start_date = moment().subtract(30, 'days').format();
+    // var radar_chart_target = $('#js_radar_chart');
+    // var start_date = moment().subtract(30, 'days').format();
+    // var request = $.get("/api/radar_chart_data/" + start_date,
+    //   function(data) {
+    //     var attempted_labels_array = []
+    //     var attempted_data_array = []
+    //     var completed_labels_array = []
+    //     var completed_data_array = []
+    //     var all_labels_array = data[2]
+    //     Object.keys(data[0]).forEach(function(label){
+    //       attempted_labels_array.push(label);
+    //       attempted_data_array.push(data[0][label]);
+    //     })
+    //     Object.keys(data[1]).forEach(function(label){
+    //       completed_labels_array.push(label);
+    //       completed_data_array.push(data[1][label]);
+    //     })
+    //       // console.log(all_labels_array)
+    //     var chartData = {
+    //       labels: attempted_labels_array,
+    //       data: attempted_data_array
+    //           };
+    //           // console.log(chartData)
+
+    //     var radarOptions = {
+    //       scale: {
+    //         ticks: {
+    //           beginAtZero: true,
+    //           stepSize: 1
+    //         }
+    //       }
+    //     }
+    //    new Chart(radar_chart_target, {
+    //     type: 'radar',
+    //     data: {
+    //       labels: attempted_labels_array, 
+    //       datasets: [
+    //         {
+    //           label: "Completed",
+    //           data: completed_data_array,
+    //           scaleSteps: 1,
+    //           beginAtZero: true,
+    //           backgroundColor: 
+    //             "rgba(38, 166, 154, 0.7)" 
+    //         },
+    //         {
+    //           label: "Attempted",
+    //           data: attempted_data_array,
+    //           scaleSteps: 1,
+    //           beginAtZero: true,
+    //           backgroundColor:
+    //             "rgba(255, 206, 86, 0.7)"
+    //         }
+    //       ]
+    //     },
+    //     options: radarOptions
+    //    })
+    //  });
+// END OF DRAWING RADAR CHART
+
+
+// RADAR CHART RELATED CODE
+
+
+    $('#radar_this_week').on('click', function(){      
+    var start_date = moment().subtract(1, 'day').format();
     var request = $.get("/api/radar_chart_data/" + start_date,
       function(data) {
-        var attempted_labels_array = []
-        var attempted_data_array = []
-        var completed_labels_array = []
-        var completed_data_array = []
-        var all_labels_array = data[2]
+        var attempted_week_labels_array = []
+        var attempted_week_data_array = []
+        var completed_week_labels_array = []
+        var completed_week_data_array = []
         Object.keys(data[0]).forEach(function(label){
-          attempted_labels_array.push(label);
-          attempted_data_array.push(data[0][label]);
+          attempted_week_labels_array.push(label);
+          attempted_week_data_array.push(data[0][label]);
         })
         Object.keys(data[1]).forEach(function(label){
-          completed_labels_array.push(label);
-          completed_data_array.push(data[1][label]);
-        })
-          // console.log(all_labels_array)
-        var chartData = {
-          labels: attempted_labels_array,
-          data: attempted_data_array
-              };
-              // console.log(chartData)
+          completed_week_labels_array.push(label);
+          completed_week_data_array.push(data[1][label]);
+        });
 
         var radarOptions = {
           scale: {
@@ -201,130 +274,311 @@
             }
           }
         }
-       new Chart(radar_chart_target, {
-        type: 'radar',
-        data: {
-          labels: attempted_labels_array, 
-          datasets: [
-            {
-              label: "Completed",
-              data: completed_data_array,
-              scaleSteps: 1,
-              beginAtZero: true,
-              backgroundColor: 
-                "rgba(38, 166, 154, 0.7)" 
-            },
-            {
-              label: "Attempted",
-              data: attempted_data_array,
-              scaleSteps: 1,
-              beginAtZero: true,
-              backgroundColor:
-                "rgba(255, 206, 86, 0.7)"
-            }
-          ]
-        },
-        options: radarOptions
-       })
-     });
-// END OF DRAWING RADAR CHART
 
-// START OF DRAWING BAR CHART
-    var line_chart_target = $('#js_bar_chart');
+      radarChart.destroy();
+      var radar_chart_target = $("#js_radar_chart");
+       radarChart = new Chart(radar_chart_target, {
+          type: 'radar',
+          data: {
+              labels: attempted_week_labels_array,
+              datasets: [
+                {
+                  label: "Completed",
+                  data: completed_week_data_array,
+                  backgroundColor: 
+                    "rgba(38, 166, 154, 0.7)" 
+                },
+                {
+                  label: "Attempted",
+                  data: attempted_week_data_array,
+                  backgroundColor:
+                    "rgba(255, 206, 86, 0.7)"
+                }
+              ]
+                },
+                options: radarOptions
+            }); 
+         })
+    });
+
+    $('#radar_this_month').on('click', function(){      
     var start_date = moment().subtract(30, 'days').format();
-    var request = $.get("/api/line_chart_data/" + start_date,
+    var request = $.get("/api/radar_chart_data/" + start_date,
       function(data) {
-        // console.log(data)
-        var labels_array = []
-        var data_array = []
-        Object.keys(data).forEach(function(label){
-          labels_array.push(label);
-          data_array.push(data[label]);
+        var attempted_month_labels_array = []
+        var attempted_month_data_array = []
+        var completed_month_labels_array = []
+        var completed_month_data_array = []
+        Object.keys(data[0]).forEach(function(label){
+          attempted_month_labels_array.push(label);
+          attempted_month_data_array.push(data[0][label]);
         })
-        var chartData = {
-          labels: labels_array,
-          data: data_array              
-              };
-       // console.log(chartData)
-       new Chart(line_chart_target, {
-        type: 'bar',
-        data: {
-          labels: labels_array, 
-          datasets: [{
-            label: "Test",
-            data: data_array,
-            backgroundColor: [
-                "rgba(255, 99, 132, 0.7)",
-                "rgba(54, 162, 235, 0.7)",
-                "rgba(255, 206, 86, 0.7)",
-                "rgba(38, 166, 154, 0.7)",
-                "rgba(96, 55, 169, 0.7)",
-                "rgba(255, 132, 8, 0.7)",
-                "rgba(12, 52, 251, 0.7)"
+        Object.keys(data[1]).forEach(function(label){
+          completed_month_labels_array.push(label);
+          completed_month_data_array.push(data[1][label]);
+        });
 
-                ]
-          }]
-        },
-        options: {
-          legend: {
-            display: false
+        var radarOptions = {
+          scale: {
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            }
           }
         }
-       })
-     });
+
+      radarChart.destroy();
+      var radar_chart_target = $("#js_radar_chart");
+       radarChart = new Chart(radar_chart_target, {
+          type: 'radar',
+          data: {
+              labels: attempted_month_labels_array,
+              datasets: [
+                {
+                  label: "Completed",
+                  data: completed_month_data_array,
+                  backgroundColor: 
+                    "rgba(38, 166, 154, 0.7)" 
+                },
+                {
+                  label: "Attempted",
+                  data: attempted_month_data_array,
+                  backgroundColor:
+                    "rgba(255, 206, 86, 0.7)"
+                }
+              ]
+                },
+                options: radarOptions
+            }); 
+         })
+    });
+
+    $('#radar_this_year').on('click', function(){      
+    var start_date = moment().subtract(1, 'year').format();
+    var request = $.get("/api/radar_chart_data/" + start_date,
+      function(data) {
+        var attempted_year_labels_array = []
+        var attempted_year_data_array = []
+        var completed_year_labels_array = []
+        var completed_year_data_array = []
+        Object.keys(data[0]).forEach(function(label){
+          attempted_year_labels_array.push(label);
+          attempted_year_data_array.push(data[0][label]);
+        })
+        Object.keys(data[1]).forEach(function(label){
+          completed_year_labels_array.push(label);
+          completed_year_data_array.push(data[1][label]);
+        });
+
+        var radarOptions = {
+          scale: {
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            }
+          }
+        }
+
+      radarChart.destroy();
+      var radar_chart_target = $("#js_radar_chart");
+       radarChart = new Chart(radar_chart_target, {
+          type: 'radar',
+          data: {
+              labels: attempted_year_labels_array,
+              datasets: [
+                {
+                  label: "Completed",
+                  data: completed_year_data_array,
+                  backgroundColor: 
+                    "rgba(38, 166, 154, 0.7)" 
+                },
+                {
+                  label: "Attempted",
+                  data: attempted_year_data_array,
+                  backgroundColor:
+                    "rgba(255, 206, 86, 0.7)"
+                }
+              ]
+                },
+                options: radarOptions
+            }); 
+         })
+    });
+
+// RADAR CHART RELATED CODE END
+
+// BAR CHART RELATED CODE 
+
+    $('#bar_this_week').on('click', function(){
+    var start_date = moment().subtract(1, 'day').format();
+    var request = $.get("/api/line_chart_data/" + start_date,
+      function(data) {
+        var week_labels_array = []
+        var week_data_array = []
+        Object.keys(data).forEach(function(label){
+          week_labels_array.push(label);
+          week_data_array.push(data[label]);
+        });
+
+      barChart.destroy();
+      var bar_chart_target = $("#js_bar_chart");
+       bar = new Chart(bar_chart_target, {
+          type: 'bar',
+          data: {
+              labels: week_labels_array,
+              datasets: [{
+                  data: week_data_array,
+                  backgroundColor: [
+                          "rgba(255, 99, 132, 0.7)",
+                          "rgba(54, 162, 235, 0.7)",
+                          "rgba(255, 206, 86, 0.7)",
+                          "rgba(38, 166, 154, 0.7)",
+                          "rgba(12, 52, 251, 0.7)",
+                          "rgba(96, 55, 169, 0.7)",
+                          "rgba(255, 132, 8, 0.7)"
+                          ]
+                        }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  }
+                }
+            }); 
+         })
+    });
+
+    $('#bar_this_month').on('click', function(){
+    var start_date = moment().subtract(1, 'month').format();
+    var request = $.get("/api/line_chart_data/" + start_date,
+      function(data) {
+        var month_labels_array = []
+        var month_data_array = []
+        Object.keys(data).forEach(function(label){
+          month_labels_array.push(label);
+          month_data_array.push(data[label]);
+        });
+
+      barChart.destroy();
+      var bar_chart_target = $("#js_bar_chart");
+       bar = new Chart(bar_chart_target, {
+          type: 'bar',
+          data: {
+              labels: month_labels_array,
+              datasets: [{
+                  data: month_data_array,
+                  backgroundColor: [
+                          "rgba(255, 99, 132, 0.7)",
+                          "rgba(54, 162, 235, 0.7)",
+                          "rgba(255, 206, 86, 0.7)",
+                          "rgba(38, 166, 154, 0.7)",
+                          "rgba(12, 52, 251, 0.7)",
+                          "rgba(96, 55, 169, 0.7)",
+                          "rgba(255, 132, 8, 0.7)"
+                          ]
+                        }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  }
+                }
+            }); 
+         })
+    });
+
+    $('#bar_this_year').on('click', function(){
+    var start_date = moment().subtract(1, 'year').format();
+    var request = $.get("/api/line_chart_data/" + start_date,
+      function(data) {
+        var year_labels_array = []
+        var year_data_array = []
+        Object.keys(data).forEach(function(label){
+          year_labels_array.push(label);
+          year_data_array.push(data[label]);
+        });
+
+      barChart.destroy();
+      var bar_chart_target = $("#js_bar_chart");
+       bar = new Chart(bar_chart_target, {
+          type: 'bar',
+          data: {
+              labels: year_labels_array,
+              datasets: [{
+                  data: year_data_array,
+                  backgroundColor: [
+                          "rgba(255, 99, 132, 0.7)",
+                          "rgba(54, 162, 235, 0.7)",
+                          "rgba(255, 206, 86, 0.7)",
+                          "rgba(38, 166, 154, 0.7)",
+                          "rgba(12, 52, 251, 0.7)",
+                          "rgba(96, 55, 169, 0.7)",
+                          "rgba(255, 132, 8, 0.7)"
+                          ]
+                        }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  }
+                }
+            }); 
+         })
+    });
+
+
+
+// BAR CHART RELATED CODE END
+
+// START OF DRAWING BAR CHART
+    // var line_chart_target = $('#js_bar_chart');
+    // var start_date = moment().subtract(30, 'days').format();
+    // var request = $.get("/api/line_chart_data/" + start_date,
+    //   function(data) {
+    //     // console.log(data)
+    //     var labels_array = []
+    //     var data_array = []
+    //     Object.keys(data).forEach(function(label){
+    //       labels_array.push(label);
+    //       data_array.push(data[label]);
+    //     })
+    //     var chartData = {
+    //       labels: labels_array,
+    //       data: data_array              
+    //           };
+    //    // console.log(chartData)
+    //    new Chart(line_chart_target, {
+    //     type: 'bar',
+    //     data: {
+    //       labels: labels_array, 
+    //       datasets: [{
+    //         label: "Test",
+    //         data: data_array,
+    //         backgroundColor: [
+    //             "rgba(255, 99, 132, 0.7)",
+    //             "rgba(54, 162, 235, 0.7)",
+    //             "rgba(255, 206, 86, 0.7)",
+    //             "rgba(38, 166, 154, 0.7)",
+    //             "rgba(96, 55, 169, 0.7)",
+    //             "rgba(255, 132, 8, 0.7)",
+    //             "rgba(12, 52, 251, 0.7)"
+
+    //             ]
+    //       }]
+    //     },
+    //     options: {
+    //       legend: {
+    //         display: false
+    //       }
+    //     }
+    //    })
+    //  });
      // END OF DRAWING BAR CHART
 
 
 
   }); // <= CLOSING TAGS FOR DOCUMENT READY
 
-    // $('#update_radar').on('click', function(){
-    //   $('#radar_chart').empty();
-    //   update_radar_chart();
-    // });
-    // $('#update_line').on('click', function(){
-    //   $('#line_chart').empty();
-    //   update_line_chart();
-    // });
-  // var update_pie_week_chart = function(){
-  //   var start_date = moment().subtract(7, 'days').format();
-  //   var request = $.get("/api/doughnut_chart_data/" + start_date,
-  //     function(data) {
-  //       var labels_array = []
-  //       var data_array = []
-  //       Object.keys(data).forEach(function(label){
-  //         labels_array.push(label);
-  //         data_array.push(data[label]);
-  //       })
-  //   doughnutChart.data.datasets.data = data_array;
-  //   doughnutChart.update();
-  //     })
-  // }
-
-
-// var canvas = document.getElementById('updating-chart'),
-//     ctx = canvas.getContext('2d'),
-//     startingData = {
-//       labels: [1, 2, 3, 4, 5, 6, 7],
-//       datasets: [
-//           {
-//               fillColor: "rgba(220,220,220,0.2)",
-//               strokeColor: "rgba(220,220,220,1)",
-//               pointColor: "rgba(220,220,220,1)",
-//               pointStrokeColor: "#fff",
-//               data: [65, 59, 80, 81, 56, 55, 40]
-//           },
-//           {
-//               fillColor: "rgba(151,187,205,0.2)",
-//               strokeColor: "rgba(151,187,205,1)",
-//               pointColor: "rgba(151,187,205,1)",
-//               pointStrokeColor: "#fff",
-//               data: [28, 48, 40, 19, 86, 27, 90]
-//           }
-//       ]
-//     };
-
-    
 </script>
 
 <!-- Pie chart could be used to show makeup of tasks completed that week/month/year (pushups vs situps, squats, etc) -->
