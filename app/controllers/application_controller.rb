@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def user_is_first_time
-    if current_user.user_completions.nil?
+    if current_user.user_completions == []
       current_user.first_time_user = true
     else
       current_user.first_time_user = false
