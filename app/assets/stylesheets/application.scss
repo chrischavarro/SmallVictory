@@ -5,6 +5,9 @@
 // @import "jquery.timepicker.min";
 @import "default.css";
 @import "default.time.css";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 
 // COLOR GUIDE
 // #3C78D8 => SMALL VICTORY BLUE
@@ -285,15 +288,43 @@ h3 {
     padding-bottom: 50px;
 }
 
-// Used to create spacing between twitter button
-.facebook_button {
-    // padding-right: 10px;
+.fb_button {
+    background-color: #2f4b93;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 400;
+    width: 100%;
+    border: 1px solid transparent;
+    // margin-left: 20px;
+    // margin-right: 20px;
 }
 
-// Used to create spacing between facebook button
-.twitter_button {
-    // padding-left: 10px;
-}    
+.fb_button:hover {
+    background-color: #3c61bd;
+    color: #ffffff;
+    transition: all .3s;
+    border: 1px solid transparent;
+}
+
+.twtr_button {
+    background-color: #69A9D9;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 400;
+    width: 100%;
+    border: 1px solid transparent;
+    // margin-left: 20px;
+    // margin-right: 20px;
+
+}
+
+.twtr_button:hover {
+    background-color: #74b7e8;
+    color: #ffffff;
+    transition: all .3s;
+    border: 1px solid transparent;
+}
+
 
 // Used to format the input fields in sign up and log in forms
 .sign_up {

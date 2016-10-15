@@ -1,10 +1,20 @@
 <div class="row row-centered body-text">
 <h1 class="header">Log in</h1>
-
+<!--   <div class="col-sm-6">
+  <a href="/auth/facebook" class="btn btn-primary fb_button" rel="nofollow">
+  Login with Facebook
+  </a>
+  </div>
+<i class="fa fa-facebook-square" aria-hidden="true"></i>
+ -->
   <div class="col-sm-4 col-sm-offset-4">
     <div class="row social_buttons">
-      <%= link_to image_tag('facebook_login_unpressed.png', :class => "facebook_button col-sm-6"), user_facebook_omniauth_authorize_path %> 
-      <%= link_to image_tag('twitter_login_unpressed.png', :class => "twitter_button col-sm-6"), user_twitter_omniauth_authorize_path %>
+      <div class="col-sm-6">
+      <%= button_to "Login with Facebook", user_facebook_omniauth_authorize_path, :class => "btn btn-primary fb_button" %>
+      </div>
+      <div class="col-sm-6">
+      <%= button_to "Login with Twitter", user_twitter_omniauth_authorize_path, :class => "btn btn-primary twtr_button" %>
+      </div>
     </div>
   </div>
 
