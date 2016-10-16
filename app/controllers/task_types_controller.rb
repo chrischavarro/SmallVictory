@@ -7,6 +7,10 @@ class TaskTypesController < ApplicationController
 		@task = @track.tasks.sample
 		@task_type = @task.task_types.sample
 		@prompt = ""
+		@rep_range = [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
+		if @track.id == 1
+			@reps = @rep_range.sample
+		end
 		if @user.first_time_user == true
 			@prompt = "Let's get started with your first task!"
 		else
@@ -30,6 +34,7 @@ class TaskTypesController < ApplicationController
 		completion.task_id = params[:task]
 		completion.task_type_id = params[:task_type]
 		completion.completed = params[:completed]
+		completion.task_count = params[:task_count]
 		# This is where to decide how long task took, whether or not it was completed, etc
 		if completion.save
 			redirect_to dashboard_path

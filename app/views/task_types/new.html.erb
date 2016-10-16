@@ -1,7 +1,7 @@
 <div class="row row-centered body-text">
 	<div class="col-sm-6 col-sm-offset-3 or_span_padding " id="task_div">
 		<h1 class="header animated fadeInLeft"><%= @prompt  %></h1>
-		<h2 class="header animated fadeInLeft">Do 100 <%= @task_type.name  %></h2>
+		<h2 class="header animated fadeInLeft">Do <%= @reps %> <%= @task_type.name  %></h2>
 		<div class="row row-centered animated fadeInLeft">
 			<button class="timer_submit_button" id="start">Get Started</button>
 		</div>
@@ -13,6 +13,7 @@
 				<%= hidden_field_tag("task", @task.id) %>
 				<%= hidden_field_tag("task_type", @task_type.id) %>
 				<%= hidden_field_tag("completed", 'true') %>
+				<%= hidden_field_tag("task_count", @reps) %>
 			<% end %>
 			</div>
 	</div>
