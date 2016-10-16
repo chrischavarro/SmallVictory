@@ -4,16 +4,25 @@
 	<h1 class="header animated fadeInDown">Select Your Track</h1><br>
 
 	<% @unique_tracks.each do |track|  %>
+		<% if track.id != 1 %>
 			<div class="col-sm-12 track_select col-centered animated fadeInLeft ">
-		      
+		        <h3 class="card-header track_title"><%= track.name  %></h3>
+		      <div class="card-block text-center">
+		        <p class="card-text track_description"><%= track.description %></p>
+		        <!-- user_track_path(track.id) fixes problem of track not being assigned -->
+		        <%= button_to("Coming Soon", user_track_path(track.id), :class => 'coming_soon_button', :method => :get)  %>
+		      </div>
+			</div>
+	<% else %>
+			<div class="col-sm-12 track_select col-centered animated fadeInLeft ">
 		        <h3 class="card-header track_title"><%= track.name  %></h3>
 		      <div class="card-block text-center">
 		        <p class="card-text track_description"><%= track.description %></p>
 		        <!-- user_track_path(track.id) fixes problem of track not being assigned -->
 		        <%= button_to("Select", user_track_path(track.id), :class => 'track_select_button', :method => :get)  %>
-
 		      </div>
 			</div>
+		<% end %>
 	<% end %>
 	</div>
 </div>

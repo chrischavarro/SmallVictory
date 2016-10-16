@@ -179,6 +179,11 @@ $(document).ready(function(){
             })
     });
 
+    $('.coming_soon_button').click(function(event){
+        event.preventDefault();
+        alert("I'm working on releasing this track soon!");
+    })
+
     $('.task_victory_button').click(function(event){
         event.preventDefault();
         $('#task_div').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',

@@ -187,6 +187,30 @@ h3 {
     background-color: #26a69a;
 }
 
+.coming_soon_button {
+    background-color: #7d7d7d;
+    color: #fff;
+    border: 1px solid transparent;
+    border-color: #2e6da4;
+    border-radius: 2px;
+    height: 44px;
+    font-size: 24px;  
+    font-weight: 600;  
+    outline: 0;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    margin-top: 10px;
+    // text-transform: uppercase;
+    letter-spacing: .5px;
+    transition: all .3s;
+    margin-bottom: 15px;
+    width: 75%;
+}
+
+.coming_soon_button:hover {
+    background-color: rgba(210, 61, 50, 1);
+}
+
 .track_title {
     font-weight: 200;
     font-size: 26px;
@@ -271,11 +295,10 @@ h3 {
 }
 
 #times_up {
-    background-color: #f44336;
-    // ef5350;
+    background-color: rgba(210, 61, 50, 1);
+    // #f44336;
     transition: all .7s;
 }
-
 #times_up:hover {
     background-color: #ef5350;
 }
