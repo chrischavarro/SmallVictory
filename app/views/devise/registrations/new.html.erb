@@ -1,19 +1,19 @@
-<div class="row row-centered body-text">
+<div class="row row-centered body-text animated fadeInDown" id="fade_right">
   <h1 class="header">Sign up</h1>
 
   <div class="col-sm-4 col-sm-offset-4">
     <div class="row social_buttons">
       <div class="col-sm-6">
-      <%= button_to "Login with Facebook", user_facebook_omniauth_authorize_path, :class => "btn btn-primary fb_button" %>
+      <%= button_to "Sign up with Facebook", user_facebook_omniauth_authorize_path, :class => "btn btn-primary fb_button" %>
       </div>
       <div class="col-sm-6">
-      <%= button_to "Login with Twitter", user_twitter_omniauth_authorize_path, :class => "btn btn-primary twtr_button" %>
+      <%= button_to "Sign up with Twitter", user_twitter_omniauth_authorize_path, :class => "btn btn-primary twtr_button" %>
       </div>
     </div>
     <span class="or">OR</span><br>
   </div>
   <div class="col-sm-4 col-sm-offset-4 or_span_padding">
-  <%= form_for(resource, as: resource_name, html:{ :class => "signup_form" }, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, html:{ :class => "signup_form", :id => "sign_up_form" }, url: registration_path(resource_name)) do |f| %>
     
     <%= render 'layouts/error_messages', object: resource  %>
       <div class="field sign_up_form">
@@ -37,7 +37,7 @@
       </div>
 
       <div class="actions sign_up_form">
-        <%= f.submit "Sign up", :class => "button" %>
+        <%= f.submit "Sign up", :class => "button", :id => "signup_user" %>
       </div>
   <% end %>
   
@@ -45,7 +45,7 @@
 
   <h2 class="sub_header">Already signed up?</h2>
     <div class="login_button_padding">
-      <%= button_to "Log in", new_session_path(resource_name), :class => "button", :method => :get %><br />
+      <%= button_to "Log in", new_session_path(resource_name), :class => "button", :id => "already_signed_up", :method => :get %><br />
 
     </div>
   </div>

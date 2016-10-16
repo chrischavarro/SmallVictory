@@ -1,7 +1,7 @@
 <div style="padding-top: 150px"></div>
-<div class="row row-centered body-text">
+<div class="row row-centered body-text" id="fade_on_click">
 
-		<div class=""><%= image_tag('bouncey.svg', size: "200x100", :class => "victor animated fadeInDown")  %></div>
+		<div class=""><%= image_tag('bouncey.svg', size: "200x100", :class => "victor animated fadeInDown", :id => "fade_on_click")  %></div>
 
 		<div class="small_victory_text"><%= image_tag('small_victory_text.svg', size: "400x100", :class => "animated fadeInDown") %></div>
 			<h3 class="app_description animated fadeInDown">Do one 5 minute task that <br>
@@ -10,7 +10,7 @@
 			<% if user_signed_in? %>
 				<h3>How's it going, <%= current_user.name %>?</h3>
 			<% else %>
-				<h3 class="animated fadeInDown"><span class="underline"><%= link_to("Log in", new_user_session_path) %></span> | <span class="underline"><%= link_to("Sign up", new_user_registration_path) %></span></h3>
+				<h3 class="animated fadeInDown"><span class="underline"><%= link_to("Log in", new_user_session_path, :id => "log_in") %></span> | <span class="underline"><%= link_to("Sign up", new_user_registration_path, :id => "sign_up") %></span></h3>
 				</div>
 			<% end %>
 </div>

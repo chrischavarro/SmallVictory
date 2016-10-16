@@ -1,4 +1,4 @@
-<div class="row row-centered body-text">
+<div class="row row-centered body-text animated fadeInDown" id="fade_right">
 <h1 class="header">Log in</h1>
 <!--   <div class="col-sm-6">
   <a href="/auth/facebook" class="btn btn-primary fb_button" rel="nofollow">
@@ -19,7 +19,7 @@
   </div>
 
   <div class="col-sm-4 col-sm-offset-4 or_span_padding">
-    <%= form_for(resource, as: resource_name, html:{ :class => "sign_up_form" }, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, html:{ :class => "sign_up_form", :id => "log_in_form" }, url: session_path(resource_name)) do |f| %>
       <div class="field sign_up_form">
         <%= f.label :email, :class => "signup_text" %><br />
         <%= f.email_field :email, :class => "sign_up", autofocus: true %>
@@ -38,7 +38,7 @@
       <% end -%>
 
       <div class="actions">
-        <%= f.submit "Log in", :class => "button" %>
+        <%= f.submit "Log in", :class => "button", :id => "login_user" %>
       </div>
     <% end %>
 
@@ -48,7 +48,7 @@
       <div class="col-sm-6">
     <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
       <h2 class="sub_header">Not a user yet?</h2>
-      <%= button_to "Sign up", new_registration_path(resource_name), :class => "button", :method => :get %>
+      <%= button_to "Sign up", new_registration_path(resource_name), :class => "button", :id => "not_user_yet", :method => :get %>
     <% end -%>
       </div>
       <div class="col-sm-6 ">

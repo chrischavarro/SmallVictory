@@ -20,21 +20,41 @@
 //= require moment.min.js
 //= require jquery.mousewheel.min.js
 //= require raphael-2.1.4.min.js
-//= require justgage.js
 //= require picker.js 
 //= require picker.time.js
 //= require Chart.min.js
 
 $(document).ready(function(){
 
+        $.fn.extend({
+            animateCss: function (animationName) {
+                var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                this.addClass('animated ' + animationName).one(animationEnd, function() {
+                    $(this).removeClass('animated ' + animationName);
+                });
+            }
+        });
+
+
 	  window.onerror = function (m){
 	  alert(m)
 	  }
+// HOME PAGE
+      $('#log_in').click(function(event){
+        event.preventDefault();
+        $('#fade_on_click').addClass("animated fadeOutUp").one('webkitAnimationEnd mozAnimationEnd oanimationend animationend',
+            function(){
+                window.location = "http://smallvictory.co/users/sign_in";
+            })
+      });      
 
-    $('.timepicker').pickatime({
-        clear: ''
-    })
-
+      $('#sign_up').click(function(event){
+        event.preventDefault();
+        $('#fade_on_click').addClass("animated fadeOutUp").one('webkitAnimationEnd mozAnimationEnd oanimationend animationend',
+            function(){
+                window.location = "http://smallvictory.co/users/sign_in";
+            })
+      });
 
     $('.animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
         function(){
@@ -48,10 +68,6 @@ $(document).ready(function(){
             });
     });
 
-    $( function() {
-        $( "#menu" ).menu();
-  })
-
     $('.victor').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
         function(){
             $('.victor').removeClass('animated fadeInDown')
@@ -59,8 +75,59 @@ $(document).ready(function(){
                 function(){
                     $('.victor').removeClass('animated bounce')
                  })
-        })
+        });
 
+// LOG IN PAGE
+      $('#login_user').click(function(event){
+        event.preventDefault();
+        $('#fade_right').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd oanimationend animationend',
+            function(){
+                $('#log_in_form').submit();
+            })
+      })
+
+    $('#not_user_yet').click(function(event){
+        $('#fade_right').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd oanimationend animationend',
+            function(){
+                $('#already_signed_up').submit();
+            })
+    });    
+
+    $('.fb_button').click(function(event){
+        $('#fade_right').addClass("fadeOutRight")
+    });    
+
+    $('.twtr_button').click(function(event){
+        $('#fade_right').addClass("fadeOutRight")
+    });
+
+// SIGN UP PAGE
+      $('#signup_user').click(function(event){
+        event.preventDefault();
+        $('#fade_right').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd oanimationend animationend',
+            function(){
+                $('#sign_up_form').submit();
+            })
+      })
+
+    $('#already_signed_up').click(function(event){
+        // event.preventDefault();
+        $('#fade_right').addClass("fadeOutRight").one('webkitAnimationEnd mozAnimationEnd oanimationend animationend',
+            function(){
+                $('#already_signed_up').submit();
+            })
+      })
+
+
+
+    $('.timepicker').pickatime({
+        clear: ''
+    })
+
+
+
+
+// PROFILE SETUP PAGE
     $('.step_2').hide();
     $('.step_3').hide();
 
@@ -150,11 +217,6 @@ $(document).ready(function(){
             })
     });
 
-
-
-
-
-
     $("#DateCountdown").TimeCircles(
         { time: {
         Days: {show: false},
@@ -188,5 +250,4 @@ $(document).ready(function(){
                 $('#completed').attr('value', 'false')
             }
         });
- 
 });
