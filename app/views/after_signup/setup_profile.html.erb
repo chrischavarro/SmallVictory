@@ -2,7 +2,12 @@
 
 		<div class="animated bounce fadeInDown victor_profile"><%= image_tag('bouncey.svg', size: "150x80")  %></div>
 	<div class="col-sm-6 col-sm-offset-3">
-		<h2 class="profile_greeting animated fadeInDown">Hey, <%= current_user.first_name %>! I'm Victor. Let's get started.</h2>
+		<!-- <h2 class="profile_greeting animated fadeInDown"> -->
+		<p class="profile_greeting animated fadeInDown">
+		<span class="rwd-line">Hey, <%= current_user.first_name %>! I'm Victor.</span>
+		<span class="rwd-line">Let's get started.</span>
+		</p>
+		<!-- </h2> -->
 		
 		<%= form_for @profile, :html => {:id => "profile_form"} do |f| %>
 		<div class="col-sm-12 track col-centered step_1 animated fadeInLeft" id="step_1">

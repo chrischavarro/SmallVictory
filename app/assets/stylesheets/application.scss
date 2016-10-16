@@ -443,6 +443,9 @@ h3 {
     padding-bottom: 25px;
 }
 
+.rwd-line {
+    display: inline-block;
+}
 
 // Used to format buttons on profile setup page
 .profile_setup_button {
@@ -712,7 +715,14 @@ h3 {
     body {
         padding-top: 50px;
     }
-    
+// HOME PAGE RELATED
+
+    #small_victory_text {
+        width: 350px;
+    }
+
+// SIGN UP/LOG IN RELATED
+
     .fb_button {
         width: 75%;
     }
@@ -721,12 +731,19 @@ h3 {
         width: 75%;
     }
 
-    #small_victory_text {
-        width: 350px;
-    }
+
+// PROFILE SETUP RELATED
 
     .profile_greeting {
         font-size: 22px;
+    }
+
+    .victor_profile {
+        padding-top: 20px;
+    }
+
+    .profile_setup_header {
+        font-size: 35px;
     }
 
 }
