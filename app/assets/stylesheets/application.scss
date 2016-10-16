@@ -444,7 +444,7 @@ h3 {
 }
 
 .rwd-line {
-    display: inline-block;
+    display: inline;
 }
 
 // Used to format buttons on profile setup page
@@ -735,15 +735,16 @@ h3 {
 // PROFILE SETUP RELATED
 
     .profile_greeting {
-        font-size: 22px;
+        font-size: 35px;
+        display: block;
     }
 
     .victor_profile {
-        padding-top: 20px;
+        padding-top: 35px;
     }
 
     .profile_setup_header {
-        font-size: 35px;
+        font-size: 30px;
     }
 
 }
