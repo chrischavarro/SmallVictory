@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
 	get '/api/doughnut_chart_data/:start_date' => 'user_completions#generate_doughnut_chart_data'
 	get '/api/radar_chart_data/:start_date' => 'user_completions#generate_radar_chart_data'
+	get '/api/bar_chart_data/:start_date' => 'user_completions#generate_bar_chart_data'
 	get '/api/line_chart_data/:start_date' => 'user_completions#generate_line_chart_data'
+	get '/api/generate_test_reps/:start_date' => 'user_completions#generate_test_reps'
 
 	
 	

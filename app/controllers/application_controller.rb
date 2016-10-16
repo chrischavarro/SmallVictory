@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def set_admin_timezone
+    Time.zone = 'Eastern Time (US & Canada)'
+  end
+
   def user_is_first_time
     if current_user.user_completions == []
       current_user.first_time_user = true

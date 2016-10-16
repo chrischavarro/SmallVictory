@@ -53,6 +53,18 @@
       <canvas id="js_bar_chart" width="200" height="200"></canvas>
     </div>
   </div>
+
+  <div class="col-sm-6 col-sm-offset-3 completion_charts chart_3_fade card-block animated fadeInLeft">
+    <h2 class="chart_breakdown">Here's how many reps you've done so far</h2>
+          <div class="col-sm-10 col-centered">
+    <div class="col-sm-11 col-sm-offset-1 chart_range_button_set">
+      <button id="line_this_week" class="update_chart_range">This Week</button>
+      <button id="line_this_month" class="update_chart_range">This Month</button>
+      <button id="line_this_year" class="update_chart_range">This Year</button>
+    </div>
+      <canvas id="js_line_chart" width="200" height="200"></canvas>
+    </div>
+  </div>
 <!--     <button id="update_radar">Update Radar</button>
     <button id="update_line">Update Line</button>
  -->
@@ -65,146 +77,211 @@
 
     // DASHBOARD CHARTS
 // DOUGHNUT
-var doughnut_all_labels_array = []
-var doughnut_all_data_array = []
-var start_date = moment().subtract(30, 'days').format();
-var request = $.get("/api/doughnut_chart_data/" + start_date,
-    function(data) {
-        // console.log(data)
-        Object.keys(data).forEach(function(label) {
-            doughnut_all_labels_array.push(label);
-            doughnut_all_data_array.push(data[label]);
-        })
-        drawDoughnutChart(doughnut_all_labels_array, doughnut_all_data_array)
-    });
+  var doughnut_all_labels_array = []
+  var doughnut_all_data_array = []
+  var start_date = moment().subtract(30, 'days').format();
+  var request = $.get("/api/doughnut_chart_data/" + start_date,
+      function(data) {
+          // console.log(data)
+          Object.keys(data).forEach(function(label) {
+              doughnut_all_labels_array.push(label);
+              doughnut_all_data_array.push(data[label]);
+          })
+          drawDoughnutChart(doughnut_all_labels_array, doughnut_all_data_array)
+      });
 
-function drawDoughnutChart(labels, data){
-    var doughnut_chart_target = $("#js_doughnut_chart");
-     doughnutChart = new Chart(doughnut_chart_target, {
-        type: 'doughnut',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Test",
-                data: data,
-                backgroundColor: [
-                        "rgba(255, 99, 132, 1)",
-                        "rgba(54, 162, 235, 1)",
-                        "rgba(255, 206, 86, 1)",
-                        "rgba(38, 166, 154, 0.7)",
-                        "rgba(12, 52, 251, 0.7)",
-                        "rgba(96, 55, 169, 0.7)",
-                        "rgba(255, 132, 8, 0.7)"
-                ]
-            }]
-        }
-    });
-}
+  function drawDoughnutChart(labels, data){
+      var doughnut_chart_target = $("#js_doughnut_chart");
+       doughnutChart = new Chart(doughnut_chart_target, {
+          type: 'doughnut',
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: "Test",
+                  data: data,
+                  backgroundColor: [
+                          "rgba(255, 99, 132, 1)",
+                          "rgba(54, 162, 235, 1)",
+                          "rgba(255, 206, 86, 1)",
+                          "rgba(38, 166, 154, 0.7)",
+                          "rgba(12, 52, 251, 0.7)",
+                          "rgba(96, 55, 169, 0.7)",
+                          "rgba(255, 132, 8, 0.7)"
+                  ]
+              }]
+          }
+      });
+  }
 
 // RADAR
 
-var radar_all_attempted_labels_array = []
-var radar_all_attempted_data_array = []
-var radar_all_completed_labels_array = []
-var radar_all_completed_data_array = []
-var start_date = moment().subtract(30, 'days').format();
-var request = $.get("/api/radar_chart_data/" + start_date,
-    function(data) {
-        Object.keys(data[0]).forEach(function(label){
-            radar_all_attempted_labels_array.push(label);
-            radar_all_attempted_data_array.push(data[0][label]);
-        })
-        Object.keys(data[1]).forEach(function(label){
-            radar_all_completed_labels_array.push(label);
-            radar_all_completed_data_array.push(data[1][label]);
-        })
-        drawRadarChart(radar_all_attempted_labels_array, radar_all_attempted_data_array, radar_all_completed_labels_array, radar_all_completed_data_array)
-    });
+  var radar_all_attempted_labels_array = []
+  var radar_all_attempted_data_array = []
+  var radar_all_completed_labels_array = []
+  var radar_all_completed_data_array = []
+  var start_date = moment().subtract(30, 'days').format();
+  var request = $.get("/api/radar_chart_data/" + start_date,
+      function(data) {
+          Object.keys(data[0]).forEach(function(label){
+              radar_all_attempted_labels_array.push(label);
+              radar_all_attempted_data_array.push(data[0][label]);
+          })
+          Object.keys(data[1]).forEach(function(label){
+              radar_all_completed_labels_array.push(label);
+              radar_all_completed_data_array.push(data[1][label]);
+          })
+          drawRadarChart(radar_all_attempted_labels_array, radar_all_attempted_data_array, radar_all_completed_labels_array, radar_all_completed_data_array)
+      });
 
-        var radarOptions = {
-          scale: {
-            ticks: {
-              beginAtZero: true,
-              stepSize: 1
+          var radarOptions = {
+            scale: {
+              ticks: {
+                beginAtZero: true,
+                stepSize: 1
+              }
             }
           }
-        }
 
-function drawRadarChart(attempted_labels, attempted_data, completed_labels, completed_data){
-    var radar_chart_target = $("#js_radar_chart");
-     radarChart = new Chart(radar_chart_target, {
-        type: 'radar',
-            data: {
-              labels: attempted_labels, 
-              datasets: [
-                {
-                  label: "Completed",
-                  data: completed_data,
-                  backgroundColor: 
-                    "rgba(38, 166, 154, 0.7)" 
-                },
-                {
-                  label: "Attempted",
-                  data: attempted_data,
-                  backgroundColor:
-                    "rgba(255, 206, 86, 0.7)"
-                }
-              ]
-            },
-            options: radarOptions
-    });
-}
+  function drawRadarChart(attempted_labels, attempted_data, completed_labels, completed_data){
+      var radar_chart_target = $("#js_radar_chart");
+       radarChart = new Chart(radar_chart_target, {
+          type: 'radar',
+              data: {
+                labels: attempted_labels, 
+                datasets: [
+                  {
+                    label: "Completed",
+                    data: completed_data,
+                    backgroundColor: 
+                      "rgba(38, 166, 154, 0.7)" 
+                  },
+                  {
+                    label: "Attempted",
+                    data: attempted_data,
+                    backgroundColor:
+                      "rgba(255, 206, 86, 0.7)"
+                  }
+                ]
+              },
+              options: radarOptions
+      });
+  }
 
 // BAR
 
-var bar_all_labels_array = []
-var bar_all_data_array = []
-var start_date = moment().subtract(30, 'days').format();
-var request = $.get("/api/line_chart_data/" + start_date,
-    function(data) {
-        // console.log(data)
-        Object.keys(data).forEach(function(label) {
-            bar_all_labels_array.push(label);
-            bar_all_data_array.push(data[label]);
-        })
-        drawBarChart(bar_all_labels_array, bar_all_data_array)
-    });
+  var bar_all_labels_array = []
+  var bar_all_data_array = []
+  var start_date = moment().subtract(30, 'days').format();
+  var request = $.get("/api/bar_chart_data/" + start_date,
+      function(data) {
+          // console.log(data)
+          Object.keys(data).forEach(function(label) {
+              bar_all_labels_array.push(label);
+              bar_all_data_array.push(data[label]);
+          })
+          drawBarChart(bar_all_labels_array, bar_all_data_array)
+      });
+        
+  function drawBarChart(labels, data){
+      var bar_chart_target = $("#js_bar_chart");
+       barChart = new Chart(bar_chart_target, {
+          type: 'bar',
+          data: {
+              labels: labels,
+              datasets: [{
+                  data: data,
+                  backgroundColor: [
+                          "rgba(255, 99, 132, 0.7)",
+                          "rgba(54, 162, 235, 0.7)",
+                          "rgba(255, 206, 86, 0.7)",
+                          "rgba(38, 166, 154, 0.7)",
+                          "rgba(12, 52, 251, 0.7)",
+                          "rgba(96, 55, 169, 0.7)",
+                          "rgba(255, 132, 8, 0.7)",
+                          "rgba(216,255,70, 0.7)",
+                          "rgba(92,0,0, 0.7)"
+                  ]
+              }]
+          },
+                options: {
+                  legend: {
+                    display: false
+                  }
+                }
+      });
+  }
 
-function drawBarChart(labels, data){
-    var bar_chart_target = $("#js_bar_chart");
-     barChart = new Chart(bar_chart_target, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                data: data,
-                backgroundColor: [
-                        "rgba(255, 99, 132, 0.7)",
-                        "rgba(54, 162, 235, 0.7)",
-                        "rgba(255, 206, 86, 0.7)",
-                        "rgba(38, 166, 154, 0.7)",
-                        "rgba(12, 52, 251, 0.7)",
-                        "rgba(96, 55, 169, 0.7)",
-                        "rgba(255, 132, 8, 0.7)",
-                        "rgba(216,255,70, 0.7)",
-                        "rgba(92,0,0, 0.7)"
-                ]
-            }]
-        },
-        options: {
-            legend: {
-                display: false
+// LINE
+
+  var line_all_labels_array = []
+  var line_all_data_array = []
+  var start_date = moment().subtract(30, 'days').format();
+  var request = $.get("/api/generate_test_reps/" + start_date,
+      function(data) {
+          console.log(data)
+          Object.keys(data).forEach(function(label) {
+              line_all_labels_array.push(label);
+              line_all_data_array.push(data[label]);
+          })
+          // line_all_data_array.forEach(function(name){
+          //   console.log(name)
+          // })
+          drawLineChart(line_all_labels_array, line_all_data_array)
+      });
+
+  var lineOptions = {
+            scale: {
+              ticks: {
+                beginAtZero: true,
+                stepSize: 1
+              }
             }
-        }
-    });
-}
+          }
 
+
+
+  function drawLineChart(labels, data){
+var data_sets = []
+            data.forEach(function(task_type){
+              data_sets.push("label: `test`, data: task_type, backgroundColor: `#000000`")
+            })
+            console.log(data_sets)
+      var line_chart_target = $("#js_line_chart");
+       lineChart = new Chart(line_chart_target, {
+          type: 'line',
+          options: lineOptions,
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: "Reps",
+                  data: data,
+                  fill: true,
+                  backgroundColor: 
+                          // "rgba(255, 99, 132, 0.7)"
+                          "rgba(54, 162, 235, 0.7)"
+                          // "rgba(255, 206, 86, 0.7)"
+                          // "rgba(38, 166, 154, 0.7)"
+                          // "rgba(12, 52, 251, 0.7)"
+                          // "rgba(96, 55, 169, 0.7)"
+                          // "rgba(255, 132, 8, 0.7)",
+                          // "rgba(216,255,70, 0.7)",
+                          // "rgba(92,0,0, 0.7)"
+                  
+              }]
+          }, //END OF DATA
+                options: {
+                  legend: {
+                    display: false
+                  }
+                }
+      });
+  }
 
 
 
     Chart.scaleService.updateScaleDefaults('linear', {
     ticks: {
-        stepSize: 1,
+        // stepSize: 1,
         beginAtZero: true
         // max: 10
     }
@@ -322,70 +399,6 @@ function drawBarChart(labels, data){
            })
    });
 // DOUGHNUT CHART RELATED CODE END
-
-
-
-// START OF DRAWING RADAR CHART
-    // var radar_chart_target = $('#js_radar_chart');
-    // var start_date = moment().subtract(30, 'days').format();
-    // var request = $.get("/api/radar_chart_data/" + start_date,
-    //   function(data) {
-    //     var attempted_labels_array = []
-    //     var attempted_data_array = []
-    //     var completed_labels_array = []
-    //     var completed_data_array = []
-    //     var all_labels_array = data[2]
-    //     Object.keys(data[0]).forEach(function(label){
-    //       attempted_labels_array.push(label);
-    //       attempted_data_array.push(data[0][label]);
-    //     })
-    //     Object.keys(data[1]).forEach(function(label){
-    //       completed_labels_array.push(label);
-    //       completed_data_array.push(data[1][label]);
-    //     })
-    //       // console.log(all_labels_array)
-    //     var chartData = {
-    //       labels: attempted_labels_array,
-    //       data: attempted_data_array
-    //           };
-    //           // console.log(chartData)
-
-    //     var radarOptions = {
-    //       scale: {
-    //         ticks: {
-    //           beginAtZero: true,
-    //           stepSize: 1
-    //         }
-    //       }
-    //     }
-    //    new Chart(radar_chart_target, {
-    //     type: 'radar',
-    //     data: {
-    //       labels: attempted_labels_array, 
-    //       datasets: [
-    //         {
-    //           label: "Completed",
-    //           data: completed_data_array,
-    //           scaleSteps: 1,
-    //           beginAtZero: true,
-    //           backgroundColor: 
-    //             "rgba(38, 166, 154, 0.7)" 
-    //         },
-    //         {
-    //           label: "Attempted",
-    //           data: attempted_data_array,
-    //           scaleSteps: 1,
-    //           beginAtZero: true,
-    //           backgroundColor:
-    //             "rgba(255, 206, 86, 0.7)"
-    //         }
-    //       ]
-    //     },
-    //     options: radarOptions
-    //    })
-    //  });
-// END OF DRAWING RADAR CHART
-
 
 // RADAR CHART RELATED CODE
 
@@ -552,7 +565,7 @@ function drawBarChart(labels, data){
 
     $('#bar_this_week').on('click', function(){
     var start_date = moment().subtract(1, 'day').format();
-    var request = $.get("/api/line_chart_data/" + start_date,
+    var request = $.get("/api/bar_chart_data/" + start_date,
       function(data) {
         var week_labels_array = []
         var week_data_array = []
@@ -593,7 +606,7 @@ function drawBarChart(labels, data){
 
     $('#bar_this_month').on('click', function(){
     var start_date = moment().subtract(1, 'month').format();
-    var request = $.get("/api/line_chart_data/" + start_date,
+    var request = $.get("/api/bar_chart_data/" + start_date,
       function(data) {
         var month_labels_array = []
         var month_data_array = []
@@ -634,7 +647,7 @@ function drawBarChart(labels, data){
 
     $('#bar_this_year').on('click', function(){
     var start_date = moment().subtract(1, 'year').format();
-    var request = $.get("/api/line_chart_data/" + start_date,
+    var request = $.get("/api/bar_chart_data/" + start_date,
       function(data) {
         var year_labels_array = []
         var year_data_array = []
@@ -675,10 +688,109 @@ function drawBarChart(labels, data){
 
 // BAR CHART RELATED CODE END
 
+// LINE CHART RELATED CODE
+
+    $('#line_this_week').on('click', function(){
+    var start_date = moment().subtract(1, 'day').format();
+    var request = $.get("/api/generate_test_reps/" + start_date,
+      function(data) {
+        var week_labels_array = []
+        var week_data_array = []
+        Object.keys(data).forEach(function(label){
+          week_labels_array.push(label);
+          week_data_array.push(data[label]);
+        });
+
+      lineChart.destroy();
+      var line_chart_target = $("#js_line_chart");
+       line = new Chart(line_chart_target, {
+          type: 'line',
+          data: {
+              labels: week_labels_array,
+              datasets: [{
+                  data: week_data_array,
+                  backgroundColor: 
+                          "rgba(54, 162, 235, 0.7)"
+                        }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  }
+                }
+            }); 
+         })
+    });
+
+    $('#line_this_month').on('click', function(){
+    var start_date = moment().subtract(1, 'month').format();
+    var request = $.get("/api/generate_test_reps/" + start_date,
+      function(data) {
+        var month_labels_array = []
+        var month_data_array = []
+        Object.keys(data).forEach(function(label){
+          month_labels_array.push(label);
+          month_data_array.push(data[label]);
+        });
+
+      lineChart.destroy();
+      var line_chart_target = $("#js_line_chart");
+       line = new Chart(line_chart_target, {
+          type: 'line',
+          data: {
+              labels: month_labels_array,
+              datasets: [{
+                  data: month_data_array,
+                  backgroundColor: 
+                          "rgba(54, 162, 235, 0.7)"
+                        }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  }
+                }
+            }); 
+         })
+    });
+
+    $('#line_this_year').on('click', function(){
+    var start_date = moment().subtract(1, 'year').format();
+    var request = $.get("/api/generate_test_reps/" + start_date,
+      function(data) {
+        var year_labels_array = []
+        var year_data_array = []
+        Object.keys(data).forEach(function(label){
+          year_labels_array.push(label);
+          year_data_array.push(data[label]);
+        });
+
+      lineChart.destroy();
+      var line_chart_target = $("#js_line_chart");
+       line = new Chart(line_chart_target, {
+          type: 'line',
+          data: {
+              labels: year_labels_array,
+              datasets: [{
+                  data: year_data_array,
+                  backgroundColor: 
+                          "rgba(54, 162, 235, 0.7)"
+                        }]
+                },
+                options: {
+                  legend: {
+                    display: false
+                  }
+                }
+            }); 
+         })
+    });
+
+
 // START OF DRAWING BAR CHART
     // var line_chart_target = $('#js_bar_chart');
     // var start_date = moment().subtract(30, 'days').format();
-    // var request = $.get("/api/line_chart_data/" + start_date,
+    // var request = $.get("/api/bar_chart_data/" + start_date,
     //   function(data) {
     //     // console.log(data)
     //     var labels_array = []

@@ -13,7 +13,7 @@ class UserCompletionsController < ApplicationController
 		user_completions = @user.user_completions.where("created_at > ?", @start_date)
 		task_data = {}
 		user_completions.each do |label|
-			print task_data
+			# print task_data
 			if !task_data.include?(label.task.name)
 				task_data[label.task.name] = 1
 			else
@@ -45,7 +45,6 @@ class UserCompletionsController < ApplicationController
 
 		# user_attempts = @user.user_completions.where(!:completed)
 		user_attempts = @user.user_completions.where(:completed => true).where("created_at > ?", @start_date) 
-		# user_attempts = @user.user_completions.where(not_completed)
 		# user_attempts = @user.user_completions.where("created_at > ? AND :completed => ?", @start_date, false)
 		attempt_data = {}
 		user_attempts.each do |label|
@@ -66,6 +65,28 @@ class UserCompletionsController < ApplicationController
 		render json: [completion_data, attempt_data, task_labels]
 	end
 
+	def generate_bar_chart_data
+		@user = current_user
+		@start_date = ""
+		if params[:start_date]
+			@start_date = params[:start_date] 
+		else
+			@start_date = @user.created_at
+		end
+		user_completions = @user.user_completions.where("created_at > ?", @start_date)
+		task_data = {}
+		user_completions.each do |label|
+			# print task_data
+			if !task_data.include?(label.task_type.name)
+				task_data[label.task_type.name] = 1
+			else
+				task_data[label.task_type.name] += 1
+			end
+		end
+
+		render json: task_data
+	end
+
 	def generate_line_chart_data
 		@user = current_user
 		@start_date = ""
@@ -77,7 +98,30 @@ class UserCompletionsController < ApplicationController
 		user_completions = @user.user_completions.where("created_at > ?", @start_date)
 		task_data = {}
 		user_completions.each do |label|
-			print task_data
+			# print task_data
+			if !task_data.include?(label.task_type.name)
+				task_data[label.task_type.name] = 0
+			else
+				task_data[label.task_type.name] += 1
+			end
+		end
+
+
+		render json: [task_data]
+	end
+
+	def generate_test_reps
+		@user = User.last
+		@start_date = ""
+		if params[:start_date]
+			@start_date = params[:start_date] 
+		else
+			@start_date = @user.created_at
+		end
+		user_completions = @user.user_completions.where("created_at > ?", @start_date)
+		task_data = {}
+		user_completions.each do |label|
+			# print task_data
 			if !task_data.include?(label.task_type.name)
 				task_data[label.task_type.name] = 1
 			else
@@ -85,7 +129,18 @@ class UserCompletionsController < ApplicationController
 			end
 		end
 
-		render json: task_data
+		rep_count = {}
+		user_completions.each do |task|
+			if !rep_count.include?(task.task_type.name)
+				rep_count[task.task_type.name] = task.task_count
+			else
+				rep_count[task.task_type.name] += task.task_count
+			end
+		end
+
+
+		render json: rep_count
+
 	end
 
 
