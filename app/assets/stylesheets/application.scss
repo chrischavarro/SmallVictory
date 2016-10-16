@@ -709,3 +709,12 @@ h3 {
   -webkit-animation-duration: 3s;
   -webkit-animation-delay: 0.6s;
 }
+
+
+// MOBILE SETTINGS
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 100px;
+    }
+}
