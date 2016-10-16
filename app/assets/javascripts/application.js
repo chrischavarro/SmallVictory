@@ -52,7 +52,7 @@ $(document).ready(function(){
         event.preventDefault();
         $('#fade_on_click').addClass("animated fadeOutUp").one('webkitAnimationEnd mozAnimationEnd oanimationend animationend',
             function(){
-                window.location = "http://smallvictory.co/users/sign_in";
+                window.location = "http://smallvictory.co/users/sign_up";
             })
       });
 
