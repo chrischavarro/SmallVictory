@@ -1,0 +1,71 @@
+<div class="row row-centered body-text mobile_row">
+
+  <h2 class="social_feed_header">Here's what everyone's <br>been up to today!</h2>
+
+  <div class="col-sm-6 col-sm-offset-3 card-block  animated fadeInLeft social_feed_container">
+  	<div class="width_reducer">
+	    <ul class="social_feed_items">
+
+	    <% @users.each do |user|  %>
+	    	<% if user.user_completions.last.nil? %>
+<!-- 				<div class="user_completion_container">
+					<li class="list_style_normalize user_name"><%= user.first_name  %></li>
+					<div class="col-sm-3">
+						<canvas width="75px" height="75px" ></canvas>
+					</div>
+				</div>
+ -->			<% else %>
+				<div class="user_completion_container">
+					<li class="list_style_normalize user_name">
+						<% if user.profile_pic.nil? == false %>
+							<img src="<%= user.profile_pic %>" class="img-circle other_user_profile_pic" width="60px" height="60px">
+						<% else %>
+							<%= image_tag('bouncey.svg', size: "60x60", style: "background-color:white", class:"img-circle other_user_profile_pic")%>
+						<% end %>
+
+						<%= user.first_name  %></li>
+					<li class="user_completion list_style_normalize"><%= user.user_completions.last.task_type.name  %></li>
+					<li class="user_completion list_style_normalize"><%= user.user_completions.last.created_at.strftime("%l:%M %p")  %></li>
+					<div class="col-sm-3 mini_chart">
+						<canvas id="myChart" width="100px" height="100px"></canvas>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+		</ul>
+	</div>
+  </div>
+</div>
+
+<!-- <script>
+var ctx = document.getElementById("myChart");
+
+	var myPieChart = new Chart(ctx,{
+	    type: 'pie',
+	    data: data
+	    // options: options
+	});
+
+var data = {
+    labels: [
+        "Red",
+        "Blue",
+        "Yellow"
+    ],
+    datasets: [
+        {
+            data: [300, 50, 100],
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+};
+
+</script> -->

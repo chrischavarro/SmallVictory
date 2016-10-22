@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 	get '/setup' => 'static_pages#setup'
 	get '/termsofservice' => 'static_pages#TOS'
 	get '/privacypolicy' => 'static_pages#privacypolicy'
+	get '/social_feed' => 'social_feed#show'
 
 	get '/assign_track/:id' => 'user_tracks_associations#create', as: 'user_track'
 	resources :after_signup

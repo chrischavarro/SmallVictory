@@ -1,5 +1,5 @@
 <div class="row row-centered body-text mobile_row">
-  <h1 class="dashboard_header animated fadeInLeft">Dashboard</h1>
+  <h1 class="dashboard_header animated fadeInLeft">Dashboard </h1>
 
   <div class="col-sm-6 col-sm-offset-3 card-block dashboard_recap animated fadeInLeft">
     <h2 class="sub_header">What's up, <%= current_user.first_name  %>!</h2>
@@ -11,6 +11,7 @@
     <% else %>
       <h3>You've completed <%= @completion_percentage.round(0) %>% of your victories!</h3>      
     <% end %>
+<i class="icon-globe"></i>
 
     <h2>You're on the <%= current_user.tracks.first.name  %> track </h2>
     <!-- INCLUDE CHECK FOR WHETHER USER ALREADY COMPLETED THEIR TASK FOR THE DAY -->
@@ -65,9 +66,7 @@
       <canvas id="js_line_chart" width="200" height="200"></canvas>
     </div>
   </div>
-<!--     <button id="update_radar">Update Radar</button>
-    <button id="update_line">Update Line</button>
- -->
+
   	</div>
 
 <script>
@@ -218,7 +217,7 @@
   var start_date = moment().subtract(30, 'days').format();
   var request = $.get("/api/generate_test_reps/" + start_date,
       function(data) {
-          console.log(data)
+          // console.log(data)
           Object.keys(data).forEach(function(label) {
               line_all_labels_array.push(label);
               line_all_data_array.push(data[label]);
@@ -245,7 +244,7 @@ var data_sets = []
             data.forEach(function(task_type){
               data_sets.push("label: `test`, data: task_type, backgroundColor: `#000000`")
             })
-            console.log(data_sets)
+            // console.log(data_sets)
       var line_chart_target = $("#js_line_chart");
        lineChart = new Chart(line_chart_target, {
           type: 'line',
@@ -785,62 +784,11 @@ var data_sets = []
             }); 
          })
     });
-
-
-// START OF DRAWING BAR CHART
-    // var line_chart_target = $('#js_bar_chart');
-    // var start_date = moment().subtract(30, 'days').format();
-    // var request = $.get("/api/bar_chart_data/" + start_date,
-    //   function(data) {
-    //     // console.log(data)
-    //     var labels_array = []
-    //     var data_array = []
-    //     Object.keys(data).forEach(function(label){
-    //       labels_array.push(label);
-    //       data_array.push(data[label]);
-    //     })
-    //     var chartData = {
-    //       labels: labels_array,
-    //       data: data_array              
-    //           };
-    //    // console.log(chartData)
-    //    new Chart(line_chart_target, {
-    //     type: 'bar',
-    //     data: {
-    //       labels: labels_array, 
-    //       datasets: [{
-    //         label: "Test",
-    //         data: data_array,
-    //         backgroundColor: [
-    //             "rgba(255, 99, 132, 0.7)",
-    //             "rgba(54, 162, 235, 0.7)",
-    //             "rgba(255, 206, 86, 0.7)",
-    //             "rgba(38, 166, 154, 0.7)",
-    //             "rgba(96, 55, 169, 0.7)",
-    //             "rgba(255, 132, 8, 0.7)",
-    //             "rgba(12, 52, 251, 0.7)"
-
-    //             ]
-    //       }]
-    //     },
-    //     options: {
-    //       legend: {
-    //         display: false
-    //       }
-    //     }
-    //    })
-    //  });
      // END OF DRAWING BAR CHART
-
-
 
   }); // <= CLOSING TAGS FOR DOCUMENT READY
 
 </script>
-
-<!-- Pie chart could be used to show makeup of tasks completed that week/month/year (pushups vs situps, squats, etc) -->
-<!-- Radar chart could be used to show comparison between two data sets, one showing the number of tasks presented for each task and the number actually completed -->
-<!-- Line chart could be used to show the number of completions every week/month/year
 
 
 

@@ -61,6 +61,9 @@ li span {
     font-size: 28px;
 }
 
+.list_style_normalize {
+    list-style: none;
+}
 
 .bottom_padding {
     padding-bottom: 100px;
@@ -708,6 +711,75 @@ h3 {
   -webkit-animation-delay: 0.6s;
 }
 
+// SOCIAL FEED SETTINGS
+
+.social_feed_header {
+    color: #7d7d7d;
+    font-weight: 300;
+    font-size: 34pt;
+    padding-bottom: 20px;
+}
+
+.social_feed_container {
+
+}
+
+.social_feed_items {
+    padding: 0;
+    list-style-type: none;
+}
+
+.width_reducer {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.user_name {
+    color: #ffffff;
+    font-size: 22pt;
+    font-weight: 400;
+    text-align: left;
+    width: 50%;
+
+}
+
+.user_completion_container {
+    box-shadow: 0px 8px 23px 5px rgba(88, 105, 107, 0.35);      
+    background-color: #3C78D8;
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    box-shadow: 0px 8px 23px 5px rgba(88, 105, 107, 0.35);    
+    margin-bottom: 25px;
+
+}
+
+.user_completion {
+    color: #ffffff;
+    font-size: 18pt;
+    font-weight: 300;
+    text-align: left;
+    margin-left: 15px;
+}
+
+.mini_chart {
+    float: right;
+    position: relative;
+    bottom: 128px;
+    left: 25px;
+}
+
+.other_user_profile_pic {
+    margin: 15px;
+}
+
+#myChart {
+    background-color: red;
+
+}
 
 // MOBILE SETTINGS
 
@@ -715,13 +787,13 @@ h3 {
     body {
         padding-top: 50px;
     }
-// HOME PAGE RELATED
+// Home page related
 
     #small_victory_text {
         width: 350px;
     }
 
-// SIGN UP/LOG IN RELATED
+// Sign up/Log in related
 
     .fb_button {
         width: 75%;
@@ -732,7 +804,7 @@ h3 {
     }
 
 
-// PROFILE SETUP RELATED
+// Profile setup related
 
     .profile_greeting {
         font-size: 35px;
@@ -753,10 +825,6 @@ h3 {
 
     .stopwatch {
         height: 200px;
-    }
-
-    .timer_submit_button {
-        // font-size: 22px;
     }
 
     .header {
