@@ -25,6 +25,8 @@
 		<div class="right">
 			<% if user_signed_in? %>
 				<span class="top">
+        <%=  icon('globe', id: "social_feed")%>
+
       <% if current_user.profile_pic? %>
        <img src="<%= current_user.profile_pic %>" class="img-circle" width="35px" height="35px">
        <% end %>

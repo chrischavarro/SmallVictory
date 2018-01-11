@@ -48,6 +48,7 @@ $(document).ready(function(){
             })
       });      
 
+
       $('#sign_up').click(function(event){
         event.preventDefault();
         $('#fade_on_click').addClass("animated fadeOutUp").one('webkitAnimationEnd mozAnimationEnd oanimationend animationend',
@@ -55,6 +56,10 @@ $(document).ready(function(){
                 window.location = "http://smallvictory.co/users/sign_up";
             })
       });
+
+      $('#social_feed').click(function(){
+        window.location = "http://localhost:3000/social_feed";
+      })
 
     $('.animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
         function(){
@@ -123,9 +128,6 @@ $(document).ready(function(){
     $('.timepicker').pickatime({
         clear: ''
     })
-
-
-
 
 // PROFILE SETUP PAGE
     $('.step_2').hide();
@@ -221,6 +223,12 @@ $(document).ready(function(){
                 $('#task_submit_button').submit();
             })
     });
+
+// SOCIAL FEED PAGE
+    $('#like').click(function(){
+        $('.fa-star').attr('id', 'liked')
+    })
+
 
     $("#DateCountdown").TimeCircles(
         { time: {

@@ -1,7 +1,6 @@
 <div class="row row-centered body-text mobile_row">
 
   <h2 class="social_feed_header">Here's what everyone's <br>been up to today!</h2>
-
   <div class="col-sm-6 col-sm-offset-3 card-block  animated fadeInLeft social_feed_container">
   	<div class="width_reducer">
 	    <ul class="social_feed_items">
@@ -22,12 +21,11 @@
 						<% else %>
 							<%= image_tag('bouncey.svg', size: "60x60", style: "background-color:white", class:"img-circle other_user_profile_pic")%>
 						<% end %>
-
-						<%= user.first_name  %></li>
-					<li class="user_completion list_style_normalize"><%= user.user_completions.last.task_type.name  %></li>
-					<li class="user_completion list_style_normalize"><%= user.user_completions.last.created_at.strftime("%l:%M %p")  %></li>
+						<%= user.first_name %> completed <%= user.user_completions.last.task_count%> <%= user.user_completions.last.task_type.name%> at <%= user.user_completions.last.created_at.strftime("%l:%M %p") %> <%= icon('star', name: user.id, id: 'like') %>
+</li>
+						<!-- <i class="fa fa-star-o fa-6" aria-hidden="true"></i> -->
 					<div class="col-sm-3 mini_chart">
-						<canvas id="myChart" width="100px" height="100px"></canvas>
+						
 					</div>
 				</div>
 			<% end %>

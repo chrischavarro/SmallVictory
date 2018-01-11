@@ -77,6 +77,14 @@ h3 {
 	margin-top: 12px;
 }
 
+.fa-globe {
+    transition: all .3s;
+}
+
+.fa-globe:hover {
+    color: #26a69a;
+}
+
 .left {
 	float: left;
 	padding-left: 20px;
@@ -741,7 +749,7 @@ h3 {
     font-size: 22pt;
     font-weight: 400;
     text-align: left;
-    width: 50%;
+    width: 100%;
 
 }
 
@@ -765,12 +773,12 @@ h3 {
     margin-left: 15px;
 }
 
-.mini_chart {
-    float: right;
-    position: relative;
-    bottom: 128px;
-    left: 25px;
-}
+// .mini_chart {
+//     float: right;
+//     position: relative;
+//     bottom: 128px;
+//     left: 25px;
+// }
 
 .other_user_profile_pic {
     margin: 15px;
@@ -780,6 +788,23 @@ h3 {
     background-color: red;
 
 }
+
+.fa-star {
+    font-size: 2.1em;
+    position: relative;
+    top: 15px;
+    left: 70px
+}
+
+.fa-star:hover {
+    color: #FFD700;
+}
+
+#liked {
+    color: #FFD700;
+}
+
+
 
 // MOBILE SETTINGS
 

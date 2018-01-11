@@ -19,7 +19,6 @@ class User < ApplicationRecord
 
   has_streak
 
-
 	def self.from_omniauth(auth)
 	  	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 	  		if auth.provider == 'facebook'
